@@ -64,10 +64,10 @@ const Footer: React.FC = () => {
               <div className="text-sm">
                 <h4 className="font-semibold text-white mb-2">Horarios de Atención</h4>
                 <p className="text-neutral-400">
-                  Lunes a Sábado: {SITE_CONFIG.businessHours.monday.open} - {SITE_CONFIG.businessHours.saturday.close}
+                  Lunes a Sábado: {SITE_CONFIG.businessHours?.monday?.open || '9:00'} - {SITE_CONFIG.businessHours?.saturday?.close || '18:00'}
                 </p>
                 <p className="text-neutral-400">
-                  Domingo: {SITE_CONFIG.businessHours.sunday.open} - {SITE_CONFIG.businessHours.sunday.close}
+                  Domingo: {SITE_CONFIG.businessHours?.sunday?.open || '10:00'} - {SITE_CONFIG.businessHours?.sunday?.close || '16:00'}
                 </p>
               </div>
             </div>
