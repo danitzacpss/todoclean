@@ -167,7 +167,18 @@ const TestimonialsSection: React.FC = () => {
   };
 
   return (
-    <section className="py-20 bg-neutral-50 overflow-hidden">
+    <section className="py-20 bg-gradient-to-br from-white to-neutral-50 overflow-hidden relative">      
+      {/* Elementos decorativos sutiles pero visibles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Pequeños acentos celestes visibles */}
+        <div className="absolute top-32 right-1/3 w-1.5 h-1.5 bg-cyan-500 rounded-full opacity-30"></div>
+        <div className="absolute bottom-40 left-1/4 w-2 h-2 bg-teal-500 rounded-full opacity-25"></div>
+        
+        {/* Elementos geométricos más visibles */}
+        <div className="absolute top-20 right-20 w-8 h-8 border-2 border-cyan-300 rounded rotate-12 opacity-50"></div>
+        <div className="absolute bottom-28 left-20 w-10 h-10 border-2 border-teal-300 rounded-full opacity-40"></div>
+        <div className="absolute top-36 right-16 w-6 h-6 border-2 border-blue-300 opacity-45 rotate-12"></div>
+      </div>
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16">
@@ -302,8 +313,8 @@ const TestimonialsSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Google Reviews CTA */}
-        <motion.div
+        {/* Google Reviews CTA - Temporalmente oculto */}
+        {/* <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
@@ -330,7 +341,7 @@ const TestimonialsSection: React.FC = () => {
               </svg>
             </a>
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );

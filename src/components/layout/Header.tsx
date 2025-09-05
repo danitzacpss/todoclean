@@ -86,20 +86,39 @@ const Header: React.FC = () => {
               className="flex items-center gap-3 hover:opacity-80 transition-opacity duration-200"
               aria-label="Todo Clean Chillán - Inicio"
             >
-              {/* Logo Icon */}
-              <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center text-white font-bold text-lg">
-                TC
-              </div>
-              
-              {/* Logo Text */}
-              <div className="hidden sm:block">
-                <div className="font-heading font-bold text-xl text-neutral-900">
-                  Todo Clean
-                </div>
-                <div className="text-xs text-primary-600 font-medium -mt-1">
-                  Chillán
-                </div>
-              </div>
+              {/* Logo */}
+              <svg
+                width="200"
+                height="80"
+                viewBox="0 0 200 80"
+                className="h-10 w-auto"
+                aria-label="Todo Clean - Servicio de Limpieza Profesional"
+              >
+                {/* Casa */}
+                <g fill="none" stroke="#4FB3D9" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round">
+                  {/* Techo triangular */}
+                  <path d="M25 35 L40 20 L55 35" />
+                  {/* Paredes */}
+                  <path d="M25 35 L25 55 L55 55 L55 35" />
+                  {/* Base */}
+                  <path d="M20 55 L60 55" />
+                </g>
+                
+                {/* Estrella de 4 puntas */}
+                <g fill="#4FB3D9">
+                  <path d="M40 28 L42 32 L46 30 L44 34 L48 36 L44 38 L46 42 L42 40 L40 44 L38 40 L34 42 L36 38 L32 36 L36 34 L34 30 L38 32 Z" />
+                </g>
+                
+                {/* Texto Todo */}
+                <text x="75" y="32" fontFamily="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" fontSize="24" fontWeight="700" fill="#4A5568" letterSpacing="-0.5px">
+                  Todo
+                </text>
+                
+                {/* Texto Clean */}
+                <text x="75" y="55" fontFamily="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" fontSize="24" fontWeight="700" fill="#4FB3D9" letterSpacing="-0.5px">
+                  Clean
+                </text>
+              </svg>
             </Link>
           </div>
 
@@ -247,7 +266,7 @@ const Header: React.FC = () => {
                   Atención personalizada
                 </p>
                 <p className="font-medium text-neutral-900">
-                  {SITE_CONFIG.businessHours.monday.open} - {SITE_CONFIG.businessHours.saturday.close}
+                  {SITE_CONFIG.businessHours?.monday?.open || '08:00'} - {SITE_CONFIG.businessHours?.saturday?.close || '18:00'}
                 </p>
                 <p className="text-sm text-neutral-600">
                   Lunes a Sábado

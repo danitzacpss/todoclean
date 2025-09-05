@@ -172,7 +172,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
       {/* Duration Badge */}
       <div className="absolute top-4 right-4">
         <div className="bg-neutral-100 text-neutral-700 px-3 py-1 rounded-full text-xs font-medium">
-          {SERVICE_PRICING[serviceType]?.minHours || 3}-{SERVICE_PRICING[serviceType]?.maxHours || 6}h
+          {(SERVICE_PRICING as any)[serviceType]?.minHours || 3}-{(SERVICE_PRICING as any)[serviceType]?.maxHours || 6}h
         </div>
       </div>
     </motion.div>
@@ -185,7 +185,19 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
 
 const ServicesSection: React.FC = () => {
   return (
-    <section className="py-20 bg-neutral-50">
+    <section className="relative py-20 bg-gradient-to-b from-white via-neutral-50/80 to-neutral-50 overflow-hidden">
+      {/* Elementos decorativos sutiles pero visibles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Pequeños acentos celestes visibles */}
+        <div className="absolute top-20 left-10 w-1.5 h-1.5 bg-cyan-400 rounded-full opacity-30"></div>
+        <div className="absolute top-40 right-20 w-2 h-2 bg-blue-400 rounded-full opacity-25"></div>
+        <div className="absolute bottom-32 left-1/4 w-1.5 h-1.5 bg-teal-400 rounded-full opacity-30"></div>
+        
+        {/* Elementos geométricos más visibles */}
+        <div className="absolute top-1/3 right-10 w-8 h-8 border-2 border-cyan-300 rounded opacity-50 rotate-45"></div>
+        <div className="absolute bottom-20 right-1/3 w-10 h-10 border-2 border-blue-300 rounded-full opacity-40"></div>
+        <div className="absolute top-16 left-1/3 w-6 h-6 border-2 border-teal-300 opacity-45 rotate-12"></div>
+      </div>
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16">
@@ -220,8 +232,8 @@ const ServicesSection: React.FC = () => {
           ))}
         </div>
 
-        {/* Bottom CTA */}
-        <motion.div
+        {/* Bottom CTA - Temporalmente oculto */}
+        {/* <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
@@ -244,7 +256,7 @@ const ServicesSection: React.FC = () => {
               Hablar con un Experto
             </WhatsAppButton>
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );

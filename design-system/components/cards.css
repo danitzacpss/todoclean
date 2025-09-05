@@ -76,10 +76,16 @@
 
 .card-service {
   position: relative;
-  background: linear-gradient(135deg, 
-    var(--color-neutral-0) 0%, 
-    var(--color-neutral-50) 100%);
-  border: 2px solid var(--color-neutral-200);
+  background: var(--gradient-card);
+  border: 2px solid var(--color-primary-200);
+  box-shadow: var(--shadow-md);
+  transition: all var(--duration-300) var(--ease-out);
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-primary-400);
+  }
   
   /* Service Card Header */
   .card-service-header {
@@ -91,15 +97,18 @@
     .service-icon {
       width: var(--space-12);
       height: var(--space-12);
-      background: linear-gradient(135deg, 
-        var(--color-primary-500), 
-        var(--color-primary-600));
+      background: var(--gradient-primary-vibrant);
       border-radius: var(--radius-lg);
       display: flex;
       align-items: center;
       justify-content: center;
       color: var(--color-neutral-0);
       box-shadow: var(--shadow-primary);
+      transition: transform var(--duration-200) var(--ease-out);
+      
+      &:hover {
+        transform: scale(1.05);
+      }
       
       svg {
         width: 24px;

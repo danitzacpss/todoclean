@@ -55,8 +55,8 @@ const PROCESS_STEPS: ProcessStep[] = [
     details: [
       'Disponibilidad lunes a domingo',
       'Horarios desde 8:00 a 20:00',
-      'Agendamiento online 24/7',
-      'Confirmación automática',
+      'Agendamiento por WhatsApp 24/7',
+      'Confirmación inmediata',
     ],
     ctaText: 'Ver Horarios',
   },
@@ -210,13 +210,19 @@ const ProcessSection: React.FC = () => {
   const [activeStep, setActiveStep] = useState<number>(1);
 
   return (
-    <section className="py-20 bg-gradient-to-br from-neutral-50 to-white relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-20 left-10 w-32 h-32 rounded-full bg-primary-400"></div>
-        <div className="absolute bottom-40 right-20 w-24 h-24 rounded-full bg-accent-400"></div>
-        <div className="absolute top-1/2 left-1/3 w-16 h-16 rounded-full bg-secondary-400"></div>
-      </div>
+    <section className="relative pt-20 pb-8 bg-gradient-to-br from-white via-neutral-50/70 to-neutral-50 overflow-hidden">
+      {/* Elementos decorativos sutiles pero visibles */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Pequeños acentos celestes visibles */}
+          <div className="absolute top-24 left-16 w-1.5 h-1.5 bg-cyan-400 rounded-full opacity-30"></div>
+          <div className="absolute top-48 right-24 w-2 h-2 bg-blue-400 rounded-full opacity-25"></div>
+          <div className="absolute bottom-40 left-1/3 w-1.5 h-1.5 bg-teal-400 rounded-full opacity-30"></div>
+          
+          {/* Elementos geométricos más visibles */}
+          <div className="absolute top-1/3 right-16 w-8 h-8 border-2 border-cyan-300 rounded opacity-50 rotate-45"></div>
+          <div className="absolute bottom-24 right-1/4 w-10 h-10 border-2 border-blue-300 rounded-full opacity-40"></div>
+          <div className="absolute top-20 left-1/4 w-6 h-6 border-2 border-teal-300 opacity-45 rotate-12"></div>
+        </div>
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
@@ -276,62 +282,7 @@ const ProcessSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
-          <div className="bg-gradient-to-r from-primary-600 to-secondary-600 rounded-3xl p-8 md:p-12 text-white max-w-4xl mx-auto">
-            <h3 className="text-2xl md:text-3xl font-bold mb-4">
-              ¿Listo para Empezar?
-            </h3>
-            <p className="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
-              Únete a los +500 hogares que ya disfrutan de un hogar impecable sin esfuerzo
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <WhatsAppButton
-                size="lg"
-                message={WHATSAPP_MESSAGES.general}
-                trackingSource="process-cta"
-                className="bg-accent-500 hover:bg-accent-600"
-              >
-                Comenzar Ahora
-              </WhatsAppButton>
-              
-              <button
-                onClick={() => {
-                  const calculatorSection = document.querySelector('[data-section="calculator"]');
-                  if (calculatorSection) {
-                    calculatorSection.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }}
-                className="px-8 py-3 border-2 border-white text-white rounded-xl hover:bg-white hover:text-primary-700 transition-all duration-300 font-semibold"
-              >
-                Calcular Precio
-              </button>
-            </div>
 
-            {/* Trust indicators */}
-            <div className="flex flex-wrap justify-center items-center gap-6 mt-8 text-primary-200 text-sm">
-              <span className="flex items-center">
-                <span className="w-2 h-2 bg-accent-400 rounded-full mr-2"></span>
-                Sin compromiso
-              </span>
-              <span className="flex items-center">
-                <span className="w-2 h-2 bg-accent-400 rounded-full mr-2"></span>
-                Cotización gratuita
-              </span>
-              <span className="flex items-center">
-                <span className="w-2 h-2 bg-accent-400 rounded-full mr-2"></span>
-                Respuesta inmediata
-              </span>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
