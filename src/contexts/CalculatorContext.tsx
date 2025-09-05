@@ -3,7 +3,7 @@
 // State management for the price calculator
 // ===================================
 
-import React, { createContext, useContext, useReducer, useEffect } from 'react';
+import React, { createContext, useContext, useReducer, useEffect, useCallback, useMemo } from 'react';
 import type { CalculatorContextType, QuoteFormData, PriceCalculation } from '@/types';
 import { calculatePrice, validatePricingParams } from '@/utils/pricing';
 import { trackCalculatorStart, trackCalculatorStep, trackCalculatorComplete } from '@/utils/analytics';
@@ -201,50 +201,36 @@ export function CalculatorProvider({ children }: { children: React.ReactNode }) 
   // AUTOMATIC PRICE CALCULATION
   // ==========================================
 
-  useEffect(() => {
-    // Auto-calculate when we have enough data
+  // Memoize calculation to avoid infinite loops
+  const autoCalculation = useMemo(() => {
     const { serviceType, propertyType, squareMeters, rooms, frequency, extras = [], zone } = state.formData;
     
-    if (serviceType && propertyType && squareMeters && rooms && frequency) {
-      const calculationData = {
-        serviceType,
-        propertyType,
-        squareMeters,
-        rooms,
-        frequency,
-        extras,
-        zone,
-      };
+    if (!serviceType || !propertyType || !squareMeters || !rooms || !frequency) {
+      return null;
+    }
 
-      // Validate data first
-      const validationErrors = validatePricingParams(calculationData);
-      
-      if (validationErrors.length === 0) {
-        try {
-          dispatch({ type: 'SET_CALCULATING', payload: true });
-          
-          const calculation = calculatePrice(calculationData);
-          dispatch({ type: 'SET_CALCULATION', payload: calculation });
-          
-          // Track calculation for analytics
-          if (state.currentStep >= 2) {
-            trackCalculatorStep(state.currentStep, calculationData);
-          }
-          
-        } catch (error) {
-          console.error('Calculation error:', error);
-          dispatch({ type: 'SET_ERRORS', payload: { 
-            calculation: 'Error al calcular el precio. Por favor intenta nuevamente.' 
-          }});
-        }
-      } else {
-        const errorMap: Record<string, string> = {};
-        validationErrors.forEach(error => {
-          errorMap.general = error;
-        });
-        dispatch({ type: 'SET_ERRORS', payload: errorMap });
+    const calculationData = {
+      serviceType,
+      propertyType,
+      squareMeters,
+      rooms,
+      frequency,
+      extras,
+      ...(zone && { zone }),
+    };
+
+    const validationErrors = validatePricingParams(calculationData);
+    
+    if (validationErrors.length === 0) {
+      try {
+        return calculatePrice(calculationData);
+      } catch (error) {
+        console.error('Calculation error:', error);
+        return null;
       }
     }
+    
+    return null;
   }, [
     state.formData.serviceType,
     state.formData.propertyType, 
@@ -253,8 +239,19 @@ export function CalculatorProvider({ children }: { children: React.ReactNode }) 
     state.formData.frequency,
     state.formData.extras,
     state.formData.zone,
-    state.currentStep,
   ]);
+
+  // Update calculation only when auto-calculation changes
+  useEffect(() => {
+    if (autoCalculation && autoCalculation.totalPrice !== (state.calculation?.totalPrice || 0)) {
+      dispatch({ type: 'SET_CALCULATION', payload: autoCalculation });
+      
+      // Clear errors when calculation succeeds
+      if (Object.keys(state.errors).length > 0) {
+        dispatch({ type: 'SET_ERRORS', payload: {} });
+      }
+    }
+  }, [autoCalculation, state.calculation?.totalPrice, state.errors]);
 
   // ==========================================
   // ACTION CREATORS
@@ -300,7 +297,7 @@ export function CalculatorProvider({ children }: { children: React.ReactNode }) 
           rooms,
           frequency,
           extras,
-          zone,
+          ...(zone && { zone }),
         });
         
         dispatch({ type: 'SET_CALCULATION', payload: calculation });
@@ -335,11 +332,11 @@ export function CalculatorProvider({ children }: { children: React.ReactNode }) 
       trackCalculatorStart();
     },
     
-    validateCurrentStep: (): boolean => {
-      const { currentStep, formData } = state;
+    validateCurrentStep: useCallback((): boolean => {
       const errors: Record<string, string> = {};
+      const { formData } = state;
       
-      switch (currentStep) {
+      switch (state.currentStep) {
         case 1:
           if (!formData.propertyType) errors.propertyType = 'Selecciona el tipo de propiedad';
           if (!formData.squareMeters || formData.squareMeters < 20) errors.squareMeters = 'Ingresa los metros cuadrados';
@@ -358,9 +355,8 @@ export function CalculatorProvider({ children }: { children: React.ReactNode }) 
           break;
       }
       
-      dispatch({ type: 'SET_ERRORS', payload: errors });
       return Object.keys(errors).length === 0;
-    },
+    }, [state.currentStep, state.formData]),
     
     getStepProgress: (): number => {
       return (state.currentStep / state.totalSteps) * 100;
@@ -394,7 +390,7 @@ export function CalculatorProvider({ children }: { children: React.ReactNode }) 
         formData: state.formData,
       });
     }
-  }, [state, actions]);
+  }, [state.currentStep, Object.keys(state.errors).length]);
 
   // ==========================================
   // CONTEXT VALUE

@@ -192,29 +192,53 @@ const TestimonialsSection: React.FC = () => {
         {/* Carousel Container */}
         <div className="relative max-w-6xl mx-auto">
           {/* Testimonials */}
-          <div className="grid md:grid-cols-3 gap-8 min-h-[400px]">
+          <div className="relative max-w-6xl mx-auto">
             <AnimatePresence mode="wait">
               {typeof window !== 'undefined' && window.innerWidth >= 768 ? (
                 // Desktop: Show 3 testimonials
-                getVisibleTestimonials().map((testimonial, index) => {
-                  if (!testimonial) return null;
-                  return (
-                    <TestimonialCard
-                      key={`${testimonial.id}-${currentIndex}-${index}`}
-                      testimonial={testimonial}
-                      isActive={index === 1} // Center testimonial is active
-                    />
-                  );
-                })
+                <motion.div
+                  key={`desktop-${currentIndex}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5 }}
+                  className="grid md:grid-cols-3 gap-8 min-h-[400px]"
+                >
+                  {getVisibleTestimonials().map((testimonial, index) => {
+                    if (!testimonial) return null;
+                    return (
+                      <TestimonialCard
+                        key={`${testimonial.id}-${currentIndex}-${index}`}
+                        testimonial={testimonial}
+                        isActive={index === 1} // Center testimonial is active
+                      />
+                    );
+                  })}
+                </motion.div>
               ) : (
                 // Mobile: Show 1 testimonial
-                <div className="md:col-span-3">
-                  <TestimonialCard
-                    key={`${TESTIMONIALS[currentIndex]?.id || 'fallback'}-mobile`}
-                    testimonial={TESTIMONIALS[currentIndex] || TESTIMONIALS[0]}
-                    isActive={true}
-                  />
-                </div>
+                 <motion.div
+                   key={`mobile-${currentIndex}`}
+                   initial={{ opacity: 0, y: 20 }}
+                   animate={{ opacity: 1, y: 0 }}
+                   exit={{ opacity: 0, y: -20 }}
+                   transition={{ duration: 0.5 }}
+                   className="grid md:grid-cols-3 gap-8 min-h-[400px]"
+                 >
+                   <div className="md:col-span-3">
+                     {(() => {
+                       const testimonial = TESTIMONIALS[currentIndex] || TESTIMONIALS[0];
+                       if (!testimonial) return null;
+                       return (
+                         <TestimonialCard
+                           key={`${testimonial.id}-mobile`}
+                           testimonial={testimonial}
+                           isActive={true}
+                         />
+                       );
+                     })()}
+                   </div>
+                 </motion.div>
               )}
             </AnimatePresence>
           </div>

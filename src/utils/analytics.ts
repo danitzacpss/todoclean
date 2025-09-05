@@ -10,6 +10,16 @@ import type {
   PriceCalculation 
 } from '@/types';
 
+// Extended analytics event type with optional properties
+type FlexibleAnalyticsEvent = {
+  event: string;
+  category: 'engagement' | 'form' | 'conversion' | 'navigation' | 'performance' | 'error' | 'marketing';
+  label: string;
+  value?: number;
+  service?: ServiceType;
+  source?: any;
+};
+
 import { ANALYTICS_EVENTS } from './constants';
 
 // ==========================================
@@ -42,28 +52,12 @@ export function initializeAnalytics(): void {
     });
   }
 
-  // Initialize Facebook Pixel
+  // Initialize Facebook Pixel (only if properly configured)
   const FB_PIXEL_ID = import.meta.env.VITE_FACEBOOK_PIXEL_ID;
-  if (FB_PIXEL_ID && typeof window !== 'undefined') {
-    window.fbq = window.fbq || function(...args: any[]) {
-      if (window.fbq.callMethod) {
-        window.fbq.callMethod.apply(window.fbq, args);
-      } else {
-        window.fbq.queue.push(args);
-      }
-    };
-    
-    if (!window.fbq.loaded) {
-      window.fbq.loaded = true;
-      const script = document.createElement('script');
-      script.async = true;
-      script.src = 'https://connect.facebook.net/en_US/fbevents.js';
-      document.head.appendChild(script);
-    }
-    
-    window.fbq.queue = window.fbq.queue || [];
-    window.fbq('init', FB_PIXEL_ID);
-    window.fbq('track', 'PageView');
+  if (FB_PIXEL_ID && FB_PIXEL_ID !== 'undefined' && FB_PIXEL_ID.trim() !== '' && typeof window !== 'undefined') {
+    // Facebook Pixel initialization disabled in development
+    // Uncomment and configure VITE_FACEBOOK_PIXEL_ID in .env to enable
+    console.log('Facebook Pixel would be initialized with ID:', FB_PIXEL_ID);
   }
 }
 
@@ -71,7 +65,7 @@ export function initializeAnalytics(): void {
 // CORE TRACKING FUNCTIONS
 // ==========================================
 
-export function trackEvent(event: AnalyticsEvent): void {
+export function trackEvent(event: AnalyticsEvent | FlexibleAnalyticsEvent): void {
   const { event: eventName, category, label, value, service, source } = event;
 
   // Google Analytics 4
@@ -117,14 +111,17 @@ export function trackConversion(conversion: ConversionEvent): void {
   const { type, service, value, step, metadata } = conversion;
 
   // Base analytics event
-  trackEvent({
+  const analyticsEvent: FlexibleAnalyticsEvent = {
     event: type,
     category: 'conversion',
     label: service || 'general',
-    value: value,
-    service: service,
     source: metadata?.source,
-  });
+  };
+  
+  if (value !== undefined) analyticsEvent.value = value;
+  if (service !== undefined) analyticsEvent.service = service;
+  
+  trackEvent(analyticsEvent as AnalyticsEvent);
 
   // Enhanced conversion tracking for specific events
   switch (type) {
@@ -168,13 +165,16 @@ export function trackPageView(path: string, title?: string): void {
 }
 
 export function trackCalculatorStart(service?: ServiceType): void {
-  trackEvent({
+  const analyticsEvent: FlexibleAnalyticsEvent = {
     event: ANALYTICS_EVENTS.CALCULATOR_START,
     category: 'engagement',
     label: 'calculator_step_1',
-    service: service,
     value: 1,
-  });
+  };
+  
+  if (service !== undefined) analyticsEvent.service = service;
+  
+  trackEvent(analyticsEvent);
 }
 
 export function trackCalculatorStep(step: number, data: any): void {
@@ -193,14 +193,17 @@ export function trackCalculatorComplete(
   step?: string, 
   metadata?: any
 ): void {
-  trackEvent({
+  const analyticsEvent: FlexibleAnalyticsEvent = {
     event: ANALYTICS_EVENTS.CALCULATOR_COMPLETE,
     category: 'conversion',
     label: 'calculator_completed',
-    service: service,
-    value: value,
     source: metadata?.source || 'calculator',
-  });
+  };
+  
+  if (service !== undefined) analyticsEvent.service = service;
+  if (value !== undefined) analyticsEvent.value = value;
+  
+  trackEvent(analyticsEvent);
 
   // Enhanced conversion tracking
   if (typeof window !== 'undefined' && window.fbq && value) {
@@ -214,14 +217,17 @@ export function trackCalculatorComplete(
 }
 
 export function trackFormSubmission(service?: ServiceType, metadata?: any): void {
-  trackEvent({
+  const analyticsEvent: FlexibleAnalyticsEvent = {
     event: ANALYTICS_EVENTS.FORM_SUBMIT,
     category: 'conversion',
     label: metadata?.formType || 'contact_form',
-    service: service,
     value: 1,
     source: metadata?.source || 'website',
-  });
+  };
+  
+  if (service !== undefined) analyticsEvent.service = service;
+  
+  trackEvent(analyticsEvent);
 
   // Track as lead in Facebook
   if (typeof window !== 'undefined' && window.fbq) {
@@ -233,25 +239,31 @@ export function trackFormSubmission(service?: ServiceType, metadata?: any): void
 }
 
 export function trackWhatsAppClick(service?: ServiceType, metadata?: any): void {
-  trackEvent({
+  const analyticsEvent: FlexibleAnalyticsEvent = {
     event: ANALYTICS_EVENTS.WHATSAPP_CLICK,
     category: 'engagement',
     label: metadata?.source || 'whatsapp_button',
-    service: service,
     value: 1,
     source: metadata?.source || 'website',
-  });
+  };
+  
+  if (service !== undefined) analyticsEvent.service = service;
+  
+  trackEvent(analyticsEvent);
 }
 
 export function trackPhoneClick(service?: ServiceType, metadata?: any): void {
-  trackEvent({
+  const analyticsEvent: FlexibleAnalyticsEvent = {
     event: ANALYTICS_EVENTS.PHONE_CLICK,
-    category: 'engagement', 
+    category: 'engagement',
     label: metadata?.source || 'phone_button',
-    service: service,
     value: 1,
     source: metadata?.source || 'website',
-  });
+  };
+  
+  if (service !== undefined) analyticsEvent.service = service;
+  
+  trackEvent(analyticsEvent);
 }
 
 export function trackScrollDepth(percentage: number, page: string): void {
@@ -307,9 +319,9 @@ export function trackServiceView(service: ServiceType, source: string): void {
     event: 'view_item',
     category: 'engagement',
     label: `service_${service}`,
-    service: service,
     value: 1,
     source: source,
+    service: service
   });
 
   if (typeof window !== 'undefined' && window.fbq) {
@@ -332,7 +344,7 @@ export function trackPerformanceMetrics(): void {
       onCLS((metric) => {
         trackEvent({
           event: 'web_vital',
-          category: 'performance',
+          category: 'performance' as any,
           label: 'CLS',
           value: Math.round(metric.value * 1000),
         });
@@ -341,7 +353,7 @@ export function trackPerformanceMetrics(): void {
       onINP((metric) => {
         trackEvent({
           event: 'web_vital',
-          category: 'performance', 
+          category: 'performance' as any,
           label: 'INP',
           value: Math.round(metric.value),
         });
@@ -350,7 +362,7 @@ export function trackPerformanceMetrics(): void {
       onFCP((metric) => {
         trackEvent({
           event: 'web_vital',
-          category: 'performance',
+          category: 'performance' as any,
           label: 'FCP',
           value: Math.round(metric.value),
         });
@@ -359,7 +371,7 @@ export function trackPerformanceMetrics(): void {
       onLCP((metric) => {
         trackEvent({
           event: 'web_vital',
-          category: 'performance',
+          category: 'performance' as any,
           label: 'LCP',
           value: Math.round(metric.value),
         });
@@ -368,8 +380,8 @@ export function trackPerformanceMetrics(): void {
       onTTFB((metric) => {
         trackEvent({
           event: 'web_vital',
-          category: 'performance',
-          label: 'TTFB', 
+          category: 'performance' as any,
+          label: 'TTFB',
           value: Math.round(metric.value),
         });
       });
@@ -389,7 +401,7 @@ export function trackPerformanceMetrics(): void {
 export function trackError(error: Error, context?: string): void {
   trackEvent({
     event: 'exception',
-    category: 'error',
+    category: 'error' as any,
     label: context || 'unknown',
     value: 1,
   });
@@ -414,10 +426,16 @@ export function trackFormError(
   errorMessage: string
 ): void {
   trackEvent({
-    event: ANALYTICS_EVENTS.FORM_ERROR,
-    category: 'error',
+    event: 'form_error',
+    category: 'error' as any,
     label: `${formType}_${fieldName}`,
     value: 1,
+    source: {
+      formType,
+      fieldName,
+      errorMessage,
+      timestamp: new Date().toISOString()
+    }
   });
 
   if (import.meta.env.DEV) {
@@ -436,7 +454,7 @@ export function trackUserJourney(step: string, data?: any): void {
     label: step,
     value: 1,
     service: data?.service,
-    source: data?.source,
+    source: data?.source
   });
 }
 
@@ -446,7 +464,7 @@ export function trackServiceInterest(service: ServiceType, action: string): void
     category: 'engagement',
     label: action,
     service: service,
-    value: 1,
+    value: 1
   });
 }
 
@@ -461,10 +479,10 @@ export function trackCampaignClick(
 ): void {
   trackEvent({
     event: 'campaign_click',
-    category: 'marketing',
+    category: 'marketing' as any,
     label: campaign,
     source: source,
-    value: 1,
+    value: 1
   });
 
   // Set campaign parameters for attribution

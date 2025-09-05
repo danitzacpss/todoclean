@@ -295,8 +295,10 @@ Frecuencia: ${frequencyName}`;
 
   const renderLoading = () => (
     <motion.div
+      key="loading"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       className="text-center py-12"
     >
       <div className="w-16 h-16 border-4 border-white/30 border-t-accent-400 rounded-full animate-spin mx-auto mb-6"></div>
@@ -311,8 +313,10 @@ Frecuencia: ${frequencyName}`;
 
   const renderResult = () => (
     <motion.div
+      key="result"
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.9 }}
       className="text-center"
     >
       <div className="bg-white/10 rounded-2xl p-8 max-w-md mx-auto mb-8">
@@ -384,13 +388,9 @@ Frecuencia: ${frequencyName}`;
           <div className="min-h-[400px] flex items-center justify-center">
             <AnimatePresence mode="wait">
               {isLoading ? (
-                <motion.div key="loading">
-                  {renderLoading()}
-                </motion.div>
+                renderLoading()
               ) : state.showResult ? (
-                <motion.div key="result">
-                  {renderResult()}
-                </motion.div>
+                renderResult()
               ) : (
                 <motion.div key={`step-${state.currentStep}`} className="w-full">
                   {state.currentStep === 1 && renderStep1()}

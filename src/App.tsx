@@ -104,7 +104,6 @@ function App() {
             
             {/* Preconnect to external domains for performance */}
             <link rel='preconnect' href='https://www.googletagmanager.com' />
-            <link rel='preconnect' href='https://connect.facebook.net' />
             <link rel='preconnect' href='https://wa.me' />
             
             {/* DNS prefetch for external resources */}
