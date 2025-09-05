@@ -1,0 +1,739 @@
+/* ================================
+   TODO CLEAN - ACCESSIBILITY GUIDE
+   WCAG 2.1 AA Compliance & Accessibility Features
+   ================================ */
+
+/* ==========================================
+   ACCESSIBILITY FOUNDATION
+   ========================================== */
+
+/* Skip Links for Screen Readers */
+.skip-links {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  right: 0;
+  z-index: var(--z-index-tooltip);
+  background-color: var(--color-neutral-900);
+  color: var(--color-neutral-0);
+  padding: var(--space-2);
+  text-align: center;
+}
+
+.skip-link {
+  display: inline-block;
+  padding: var(--space-2) var(--space-4);
+  margin: 0 var(--space-2);
+  background-color: var(--color-primary-600);
+  color: var(--color-neutral-0);
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  font-weight: var(--font-weight-medium);
+  transition: top var(--duration-150) var(--ease-out);
+}
+
+.skip-link:focus {
+  position: relative;
+  top: 0;
+  outline: 3px solid var(--color-accent-500);
+  outline-offset: 2px;
+}
+
+/* Screen Reader Only Content */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.sr-only-focusable:focus {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  padding: inherit !important;
+  margin: inherit !important;
+  overflow: visible !important;
+  clip: auto !important;
+  white-space: normal !important;
+}
+
+/* ==========================================
+   FOCUS MANAGEMENT
+   ========================================== */
+
+/* Universal Focus Indicator */
+*:focus-visible {
+  outline: 3px solid var(--color-primary-500);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* High Contrast Focus Indicators */
+@media (prefers-contrast: high) {
+  *:focus-visible {
+    outline: 4px solid var(--color-text-primary);
+    outline-offset: 3px;
+  }
+}
+
+/* Custom Focus Styles for Interactive Elements */
+.focus-primary:focus-visible {
+  outline-color: var(--color-primary-500);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2);
+}
+
+.focus-accent:focus-visible {
+  outline-color: var(--color-accent-500);
+  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.2);
+}
+
+.focus-secondary:focus-visible {
+  outline-color: var(--color-secondary-500);
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+}
+
+/* Focus Within for Container Elements */
+.focus-within-highlight:focus-within {
+  background-color: var(--color-primary-50);
+  border-color: var(--color-primary-300);
+}
+
+/* ==========================================
+   COLOR CONTRAST COMPLIANCE
+   ========================================== */
+
+/* Text Contrast Verification Classes */
+.text-contrast-aa {
+  /* Ensures 4.5:1 contrast ratio for normal text */
+  color: var(--color-text-primary);
+  background-color: var(--color-surface-primary);
+}
+
+.text-contrast-aa-large {
+  /* Ensures 3:1 contrast ratio for large text (18px+ or 14px+ bold) */
+  font-size: var(--font-size-lg);
+  color: var(--color-text-primary);
+  background-color: var(--color-surface-primary);
+}
+
+.text-contrast-aaa {
+  /* Ensures 7:1 contrast ratio for enhanced contrast */
+  color: var(--color-neutral-900);
+  background-color: var(--color-neutral-0);
+}
+
+/* Interactive Element Contrast */
+.interactive-contrast {
+  /* Ensures 3:1 contrast ratio for interactive elements */
+  border: 2px solid var(--color-primary-600);
+  background-color: var(--color-primary-50);
+}
+
+/* Error State Contrast */
+.error-contrast {
+  color: var(--color-error-800);
+  background-color: var(--color-error-50);
+  border-color: var(--color-error-600);
+}
+
+.success-contrast {
+  color: var(--color-secondary-800);
+  background-color: var(--color-secondary-50);
+  border-color: var(--color-secondary-600);
+}
+
+.warning-contrast {
+  color: var(--color-warning-800);
+  background-color: var(--color-warning-50);
+  border-color: var(--color-warning-600);
+}
+
+/* ==========================================
+   SEMANTIC HTML STRUCTURE
+   ========================================== */
+
+/* Landmark Roles and Structure */
+.main-content {
+  /* Main content area */
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
+}
+
+.content-section {
+  /* Section with proper heading hierarchy */
+  margin-bottom: var(--space-12);
+}
+
+.content-section > h1,
+.content-section > h2,
+.content-section > h3,
+.content-section > h4,
+.content-section > h5,
+.content-section > h6 {
+  /* Ensure proper heading structure */
+  margin-bottom: var(--space-4);
+  line-height: var(--line-height-tight);
+}
+
+/* List Semantics */
+.semantic-list {
+  list-style-type: disc;
+  padding-left: var(--space-6);
+  margin-bottom: var(--space-4);
+}
+
+.semantic-list li {
+  margin-bottom: var(--space-2);
+  line-height: var(--line-height-relaxed);
+}
+
+.semantic-list-ordered {
+  list-style-type: decimal;
+  padding-left: var(--space-6);
+  margin-bottom: var(--space-4);
+}
+
+/* Definition Lists */
+.definition-list {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: var(--space-2) var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.definition-term {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.definition-description {
+  color: var(--color-text-secondary);
+}
+
+/* ==========================================
+   FORM ACCESSIBILITY
+   ========================================== */
+
+/* Accessible Form Groups */
+.form-group-accessible {
+  margin-bottom: var(--space-6);
+}
+
+.form-group-accessible .form-label {
+  display: block;
+  margin-bottom: var(--space-2);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+}
+
+.form-group-accessible .form-label[for] {
+  cursor: pointer;
+}
+
+/* Required Field Indicators */
+.form-required::after {
+  content: ' *';
+  color: var(--color-error-600);
+  font-weight: var(--font-weight-bold);
+  aria-hidden: true;
+}
+
+.form-required .sr-only {
+  content: ' (required)';
+}
+
+/* Error Message Association */
+.form-error-message {
+  color: var(--color-error-700);
+  font-size: var(--font-size-sm);
+  margin-top: var(--space-2);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.form-error-message::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23dc2626' viewBox='0 0 16 16'%3e%3cpath d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/%3e%3cpath d='M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z'/%3e%3c/svg%3e");
+  background-size: contain;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Success Message Association */
+.form-success-message {
+  color: var(--color-secondary-700);
+  font-size: var(--font-size-sm);
+  margin-top: var(--space-2);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.form-success-message::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%2316a34a' viewBox='0 0 16 16'%3e%3cpath d='m13.854 3.646-7.5 7.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6 10.293l7.146-7.147a.5.5 0 0 1 .708.708z'/%3e%3c/svg%3e");
+  background-size: contain;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Help Text Association */
+.form-help-text {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  margin-top: var(--space-2);
+  line-height: var(--line-height-relaxed);
+}
+
+/* Fieldset Styling */
+.form-fieldset {
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  margin: var(--space-6) 0;
+}
+
+.form-fieldset .form-legend {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  padding: 0 var(--space-3);
+  background-color: var(--color-surface-primary);
+}
+
+/* ==========================================
+   KEYBOARD NAVIGATION
+   ========================================== */
+
+/* Tab Order Management */
+.keyboard-nav-container [tabindex="-1"]:focus {
+  outline: none;
+}
+
+/* Focus Trap for Modals */
+.focus-trap {
+  position: relative;
+}
+
+.focus-trap-start,
+.focus-trap-end {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Skip Navigation within Sections */
+.section-skip {
+  position: absolute;
+  top: -40px;
+  left: var(--space-4);
+  background-color: var(--color-primary-600);
+  color: var(--color-neutral-0);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  z-index: var(--z-index-tooltip);
+  transition: top var(--duration-150) var(--ease-out);
+}
+
+.section-skip:focus {
+  top: var(--space-4);
+}
+
+/* Keyboard Shortcuts Indicator */
+.keyboard-shortcut {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  background-color: var(--color-neutral-100);
+  border: 1px solid var(--color-neutral-300);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+}
+
+/* ==========================================
+   SCREEN READER SUPPORT
+   ========================================== */
+
+/* Live Regions for Dynamic Content */
+.sr-live-polite {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.sr-live-assertive {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Status Messages */
+.status-message {
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  margin: var(--space-4) 0;
+}
+
+.status-message-success {
+  background-color: var(--color-secondary-50);
+  border: 1px solid var(--color-secondary-200);
+  color: var(--color-secondary-800);
+}
+
+.status-message-error {
+  background-color: var(--color-error-50);
+  border: 1px solid var(--color-error-200);
+  color: var(--color-error-800);
+}
+
+.status-message-warning {
+  background-color: var(--color-warning-50);
+  border: 1px solid var(--color-warning-200);
+  color: var(--color-warning-800);
+}
+
+.status-message-info {
+  background-color: var(--color-info-50);
+  border: 1px solid var(--color-info-200);
+  color: var(--color-info-800);
+}
+
+/* ==========================================
+   IMAGES AND MEDIA ACCESSIBILITY
+   ========================================== */
+
+/* Image Alt Text Styles */
+.img-accessible {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+}
+
+.img-decorative {
+  /* For decorative images with empty alt="" */
+  pointer-events: none;
+}
+
+.img-loading {
+  background-color: var(--color-neutral-200);
+  background-image: 
+    linear-gradient(45deg, var(--color-neutral-300) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--color-neutral-300) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--color-neutral-300) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--color-neutral-300) 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+/* Figure and Caption Styling */
+.figure-accessible {
+  margin: var(--space-6) 0;
+  text-align: center;
+}
+
+.figure-caption {
+  margin-top: var(--space-3);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+}
+
+/* Video Accessibility */
+.video-accessible {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+}
+
+.video-controls-visible .video-accessible {
+  /* Ensure controls are always visible */
+  pointer-events: auto;
+}
+
+/* ==========================================
+   TABLE ACCESSIBILITY
+   ========================================== */
+
+/* Accessible Data Tables */
+.table-accessible {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.table-accessible caption {
+  padding: var(--space-4);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  text-align: left;
+  background-color: var(--color-background-secondary);
+  border-bottom: 1px solid var(--color-border-primary);
+}
+
+.table-accessible thead {
+  background-color: var(--color-primary-50);
+}
+
+.table-accessible th {
+  padding: var(--space-4);
+  text-align: left;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  border-bottom: 2px solid var(--color-border-primary);
+  border-right: 1px solid var(--color-border-primary);
+}
+
+.table-accessible th:last-child {
+  border-right: none;
+}
+
+.table-accessible td {
+  padding: var(--space-4);
+  color: var(--color-text-primary);
+  border-bottom: 1px solid var(--color-border-primary);
+  border-right: 1px solid var(--color-border-primary);
+}
+
+.table-accessible td:last-child {
+  border-right: none;
+}
+
+.table-accessible tbody tr:nth-child(even) {
+  background-color: var(--color-neutral-50);
+}
+
+.table-accessible tbody tr:hover {
+  background-color: var(--color-primary-50);
+}
+
+/* Table Responsive Wrapper */
+.table-responsive {
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-primary);
+}
+
+.table-responsive:focus {
+  outline: 3px solid var(--color-primary-500);
+  outline-offset: 2px;
+}
+
+/* ==========================================
+   MODAL AND DIALOG ACCESSIBILITY
+   ========================================== */
+
+/* Modal Base Styles */
+.modal-accessible {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--z-index-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+}
+
+.modal-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  position: relative;
+  background-color: var(--color-surface-primary);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-2xl);
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  padding: var(--space-6);
+  border-bottom: 1px solid var(--color-border-primary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-title {
+  margin: 0;
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  padding: var(--space-2);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  transition: all var(--duration-150) var(--ease-out);
+}
+
+.modal-close:hover {
+  background-color: var(--color-neutral-100);
+  color: var(--color-text-primary);
+}
+
+.modal-close:focus-visible {
+  outline: 3px solid var(--color-primary-500);
+  outline-offset: 2px;
+}
+
+.modal-body {
+  padding: var(--space-6);
+}
+
+.modal-footer {
+  padding: var(--space-6);
+  border-top: 1px solid var(--color-border-primary);
+  display: flex;
+  gap: var(--space-4);
+  justify-content: flex-end;
+}
+
+/* ==========================================
+   HIGH CONTRAST MODE SUPPORT
+   ========================================== */
+
+@media (prefers-contrast: high) {
+  /* Enhanced contrast for high contrast mode */
+  :root {
+    --color-text-primary: #000000;
+    --color-text-secondary: #333333;
+    --color-background-primary: #ffffff;
+    --color-border-primary: #000000;
+  }
+  
+  .btn-primary {
+    border: 2px solid currentColor;
+  }
+  
+  .btn-secondary {
+    border: 3px solid currentColor;
+  }
+  
+  .form-input {
+    border: 3px solid var(--color-text-primary);
+  }
+  
+  .card-base {
+    border: 2px solid var(--color-text-primary);
+  }
+  
+  .focus-primary:focus-visible,
+  .focus-accent:focus-visible,
+  .focus-secondary:focus-visible {
+    outline: 4px solid var(--color-text-primary);
+    outline-offset: 4px;
+  }
+}
+
+/* ==========================================
+   REDUCED MOTION SUPPORT
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Disable animations for users who prefer reduced motion */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  /* Keep essential transitions for usability */
+  .form-input:focus {
+    transition: border-color 0.15s ease;
+  }
+  
+  *:focus-visible {
+    transition: none;
+  }
+}
+
+/* ==========================================
+   PRINT ACCESSIBILITY
+   ========================================== */
+
+@media print {
+  /* Print-specific accessibility considerations */
+  .skip-links,
+  .sr-only,
+  .modal-backdrop,
+  .whatsapp-float,
+  [aria-hidden="true"] {
+    display: none !important;
+  }
+  
+  /* Ensure sufficient contrast in print */
+  * {
+    background: transparent !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  /* Show URLs for links */
+  a[href]:after {
+    content: " (" attr(href) ")";
+    font-size: 90%;
+  }
+  
+  /* Page break management */
+  .page-break-before {
+    page-break-before: always;
+  }
+  
+  .page-break-after {
+    page-break-after: always;
+  }
+  
+  .page-break-inside-avoid {
+    page-break-inside: avoid;
+  }
+}

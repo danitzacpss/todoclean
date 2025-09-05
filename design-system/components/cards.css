@@ -1,0 +1,683 @@
+/* ================================
+   TODO CLEAN - CARD COMPONENTS
+   Service cards, testimonials, and content cards
+   ================================ */
+
+/* ==========================================
+   BASE CARD STYLES
+   ========================================== */
+
+.card-base {
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  
+  /* Visual */
+  background-color: var(--color-surface-primary);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  
+  /* Shadows */
+  box-shadow: var(--shadow-sm);
+  
+  /* Transitions */
+  transition: var(--transition-card);
+}
+
+/* ==========================================
+   CARD SIZES
+   ========================================== */
+
+.card-sm {
+  padding: var(--space-4);
+  gap: var(--space-3);
+}
+
+.card-base,
+.card-md {
+  padding: var(--space-6);
+  gap: var(--space-4);
+}
+
+.card-lg {
+  padding: var(--space-8);
+  gap: var(--space-6);
+}
+
+/* ==========================================
+   INTERACTIVE CARDS
+   ========================================== */
+
+.card-interactive {
+  cursor: pointer;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-border-accent);
+  }
+  
+  &:active {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+  
+  &:focus-visible {
+    outline: 3px solid var(--color-primary-500);
+    outline-offset: 2px;
+  }
+}
+
+/* ==========================================
+   SERVICE CARDS
+   ========================================== */
+
+.card-service {
+  position: relative;
+  background: linear-gradient(135deg, 
+    var(--color-neutral-0) 0%, 
+    var(--color-neutral-50) 100%);
+  border: 2px solid var(--color-neutral-200);
+  
+  /* Service Card Header */
+  .card-service-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+    
+    .service-icon {
+      width: var(--space-12);
+      height: var(--space-12);
+      background: linear-gradient(135deg, 
+        var(--color-primary-500), 
+        var(--color-primary-600));
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-neutral-0);
+      box-shadow: var(--shadow-primary);
+      
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+    
+    .service-title {
+      font-family: var(--font-family-heading);
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text-primary);
+      line-height: var(--line-height-tight);
+      margin: 0;
+    }
+  }
+  
+  /* Service Card Price */
+  .card-service-price {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+    
+    .price-from {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: var(--letter-spacing-wide);
+    }
+    
+    .price-amount {
+      font-family: var(--font-family-mono);
+      font-size: var(--font-size-2xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-accent-600);
+    }
+    
+    .price-currency {
+      font-size: var(--font-size-lg);
+      color: var(--color-text-secondary);
+    }
+  }
+  
+  /* Service Card Features */
+  .card-service-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-6) 0;
+    
+    li {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-2) 0;
+      font-size: var(--font-size-base);
+      color: var(--color-text-secondary);
+      
+      &::before {
+        content: '';
+        width: 16px;
+        height: 16px;
+        background: var(--color-secondary-500);
+        border-radius: var(--radius-full);
+        flex-shrink: 0;
+        position: relative;
+        
+        /* Checkmark */
+        &::after {
+          content: '';
+          position: absolute;
+          left: 4px;
+          top: 2px;
+          width: 4px;
+          height: 8px;
+          border: 2px solid var(--color-neutral-0);
+          border-top: 0;
+          border-left: 0;
+          transform: rotate(45deg);
+        }
+      }
+    }
+  }
+  
+  /* Service Card CTA */
+  .card-service-cta {
+    margin-top: auto;
+  }
+  
+  /* Hover Effects */
+  &:hover {
+    border-color: var(--color-primary-300);
+    box-shadow: var(--shadow-primary);
+    
+    .service-icon {
+      transform: scale(1.1);
+    }
+  }
+}
+
+/* ==========================================
+   TESTIMONIAL CARDS
+   ========================================== */
+
+.card-testimonial {
+  background: var(--color-neutral-0);
+  border: 1px solid var(--color-neutral-200);
+  position: relative;
+  
+  /* Quote decoration */
+  &::before {
+    content: '"';
+    position: absolute;
+    top: var(--space-4);
+    left: var(--space-6);
+    font-size: 4rem;
+    font-family: var(--font-family-heading);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary-200);
+    line-height: 1;
+    z-index: 1;
+  }
+  
+  .testimonial-content {
+    position: relative;
+    z-index: 2;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-6);
+    padding-top: var(--space-4);
+    font-style: italic;
+  }
+  
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    
+    .author-avatar {
+      width: var(--space-12);
+      height: var(--space-12);
+      border-radius: var(--radius-full);
+      background: linear-gradient(135deg, 
+        var(--color-secondary-400), 
+        var(--color-secondary-600));
+      overflow: hidden;
+      flex-shrink: 0;
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    
+    .author-info {
+      .author-name {
+        font-weight: var(--font-weight-semibold);
+        color: var(--color-text-primary);
+        margin: 0 0 var(--space-1) 0;
+        font-size: var(--font-size-base);
+      }
+      
+      .author-location {
+        color: var(--color-text-secondary);
+        font-size: var(--font-size-sm);
+        margin: 0;
+      }
+    }
+  }
+  
+  .testimonial-rating {
+    display: flex;
+    gap: var(--space-1);
+    margin-top: var(--space-3);
+    
+    .star {
+      width: 16px;
+      height: 16px;
+      color: var(--color-accent-500);
+    }
+  }
+}
+
+/* ==========================================
+   FEATURE CARDS
+   ========================================== */
+
+.card-feature {
+  text-align: center;
+  background: var(--color-neutral-0);
+  border: 1px solid var(--color-neutral-200);
+  
+  .feature-icon {
+    width: var(--space-16);
+    height: var(--space-16);
+    margin: 0 auto var(--space-4);
+    background: linear-gradient(135deg, 
+      var(--color-secondary-100), 
+      var(--color-secondary-200));
+    border-radius: var(--radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    svg {
+      width: 32px;
+      height: 32px;
+      color: var(--color-secondary-600);
+    }
+  }
+  
+  .feature-title {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-3) 0;
+  }
+  
+  .feature-description {
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+}
+
+/* ==========================================
+   PRICING CARDS
+   ========================================== */
+
+.card-pricing {
+  position: relative;
+  background: var(--color-neutral-0);
+  border: 2px solid var(--color-neutral-200);
+  text-align: center;
+  
+  /* Popular badge */
+  &.pricing-popular {
+    border-color: var(--color-accent-500);
+    transform: scale(1.05);
+    z-index: 1;
+    
+    &::before {
+      content: 'Más Popular';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--color-accent-500);
+      color: var(--color-neutral-0);
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius-full);
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-semibold);
+      text-transform: uppercase;
+      letter-spacing: var(--letter-spacing-wide);
+    }
+  }
+  
+  .pricing-header {
+    padding: var(--space-6) var(--space-6) var(--space-4);
+    border-bottom: 1px solid var(--color-neutral-200);
+    
+    .pricing-plan {
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-primary);
+      margin: 0 0 var(--space-2) 0;
+      text-transform: uppercase;
+      letter-spacing: var(--letter-spacing-wide);
+    }
+    
+    .pricing-price {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: var(--space-1);
+      
+      .currency {
+        font-size: var(--font-size-lg);
+        color: var(--color-text-secondary);
+      }
+      
+      .amount {
+        font-family: var(--font-family-mono);
+        font-size: var(--font-size-4xl);
+        font-weight: var(--font-weight-bold);
+        color: var(--color-text-primary);
+      }
+      
+      .period {
+        color: var(--color-text-secondary);
+        font-size: var(--font-size-base);
+      }
+    }
+  }
+  
+  .pricing-features {
+    padding: var(--space-6);
+    
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      
+      li {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+        padding: var(--space-3) 0;
+        color: var(--color-text-secondary);
+        
+        &::before {
+          content: '';
+          width: 16px;
+          height: 16px;
+          background: var(--color-secondary-500);
+          border-radius: var(--radius-full);
+          flex-shrink: 0;
+          position: relative;
+          
+          &::after {
+            content: '';
+            position: absolute;
+            left: 4px;
+            top: 2px;
+            width: 4px;
+            height: 8px;
+            border: 2px solid var(--color-neutral-0);
+            border-top: 0;
+            border-left: 0;
+            transform: rotate(45deg);
+          }
+        }
+      }
+    }
+  }
+  
+  .pricing-cta {
+    padding: 0 var(--space-6) var(--space-6);
+  }
+}
+
+/* ==========================================
+   STATS CARDS
+   ========================================== */
+
+.card-stat {
+  background: linear-gradient(135deg, 
+    var(--color-primary-500), 
+    var(--color-primary-600));
+  color: var(--color-neutral-0);
+  text-align: center;
+  border: none;
+  
+  .stat-number {
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+    margin: 0 0 var(--space-2) 0;
+  }
+  
+  .stat-label {
+    font-size: var(--font-size-base);
+    opacity: 0.9;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+  }
+  
+  &.stat-secondary {
+    background: linear-gradient(135deg, 
+      var(--color-secondary-500), 
+      var(--color-secondary-600));
+  }
+  
+  &.stat-accent {
+    background: linear-gradient(135deg, 
+      var(--color-accent-500), 
+      var(--color-accent-600));
+  }
+}
+
+/* ==========================================
+   BLOG/CONTENT CARDS
+   ========================================== */
+
+.card-content {
+  background: var(--color-neutral-0);
+  border: 1px solid var(--color-neutral-200);
+  overflow: hidden;
+  
+  .content-image {
+    width: 100%;
+    height: 200px;
+    background: var(--color-neutral-200);
+    overflow: hidden;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--duration-300) var(--ease-out);
+    }
+  }
+  
+  .content-body {
+    padding: var(--space-6);
+    
+    .content-category {
+      display: inline-block;
+      background: var(--color-primary-100);
+      color: var(--color-primary-700);
+      padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-full);
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-semibold);
+      text-transform: uppercase;
+      letter-spacing: var(--letter-spacing-wide);
+      margin-bottom: var(--space-3);
+    }
+    
+    .content-title {
+      font-family: var(--font-family-heading);
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text-primary);
+      line-height: var(--line-height-tight);
+      margin: 0 0 var(--space-3) 0;
+    }
+    
+    .content-excerpt {
+      color: var(--color-text-secondary);
+      line-height: var(--line-height-relaxed);
+      margin: 0 0 var(--space-4) 0;
+    }
+    
+    .content-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      font-size: var(--font-size-sm);
+      color: var(--color-text-tertiary);
+      
+      .meta-date,
+      .meta-author {
+        display: flex;
+        align-items: center;
+        gap: var(--space-1);
+        
+        svg {
+          width: 14px;
+          height: 14px;
+        }
+      }
+    }
+  }
+  
+  &:hover {
+    .content-image img {
+      transform: scale(1.05);
+    }
+  }
+}
+
+/* ==========================================
+   EMPTY STATE CARDS
+   ========================================== */
+
+.card-empty {
+  background: var(--color-neutral-50);
+  border: 2px dashed var(--color-neutral-300);
+  text-align: center;
+  color: var(--color-text-secondary);
+  
+  .empty-icon {
+    width: var(--space-16);
+    height: var(--space-16);
+    margin: 0 auto var(--space-4);
+    opacity: 0.5;
+    
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  
+  .empty-title {
+    font-weight: var(--font-weight-semibold);
+    margin: 0 0 var(--space-2) 0;
+  }
+  
+  .empty-description {
+    margin: 0;
+    line-height: var(--line-height-relaxed);
+  }
+}
+
+/* ==========================================
+   RESPONSIVE ADJUSTMENTS
+   ========================================== */
+
+@media (max-width: 640px) {
+  .card-service {
+    .card-service-header {
+      .service-icon {
+        width: var(--space-10);
+        height: var(--space-10);
+        
+        svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
+      
+      .service-title {
+        font-size: var(--font-size-lg);
+      }
+    }
+    
+    .card-service-price {
+      .price-amount {
+        font-size: var(--font-size-xl);
+      }
+    }
+  }
+  
+  .card-testimonial {
+    &::before {
+      font-size: 3rem;
+      top: var(--space-3);
+      left: var(--space-4);
+    }
+    
+    .testimonial-content {
+      font-size: var(--font-size-base);
+      padding-top: var(--space-8);
+    }
+  }
+  
+  .card-pricing.pricing-popular {
+    transform: none;
+    margin-bottom: var(--space-6);
+  }
+  
+  .content-image {
+    height: 160px;
+  }
+}
+
+/* ==========================================
+   ACCESSIBILITY ENHANCEMENTS
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .card-interactive:hover {
+    transform: none;
+  }
+  
+  .card-content:hover .content-image img {
+    transform: none;
+  }
+  
+  .card-service:hover .service-icon {
+    transform: none;
+  }
+}
+
+/* High contrast support */
+@media (prefers-contrast: high) {
+  .card-base {
+    border-width: 2px;
+  }
+  
+  .card-service {
+    border-width: 3px;
+  }
+}

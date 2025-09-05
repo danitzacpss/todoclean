@@ -1,0 +1,428 @@
+/* ================================
+   TODO CLEAN - CSS VARIABLES FALLBACKS
+   Browser compatibility and fallback values
+   ================================ */
+
+/* ==========================================
+   LEGACY BROWSER SUPPORT
+   ========================================== */
+
+/* Fallbacks for browsers that don't support CSS custom properties */
+.no-css-variables {
+  /* Color fallbacks */
+  --color-primary-600: #2563eb;
+  --color-secondary-500: #10b981;
+  --color-accent-500: #f59e0b;
+  --color-neutral-0: #ffffff;
+  --color-neutral-900: #111827;
+  --color-text-primary: #111827;
+  --color-text-secondary: #6b7280;
+  --color-background-primary: #ffffff;
+  --color-border-primary: #e5e7eb;
+}
+
+/* Fallback classes for essential colors */
+.bg-primary { background-color: #2563eb; }
+.bg-secondary { background-color: #10b981; }
+.bg-accent { background-color: #f59e0b; }
+.bg-white { background-color: #ffffff; }
+.bg-gray-900 { background-color: #111827; }
+
+.text-primary { color: #2563eb; }
+.text-secondary { color: #10b981; }
+.text-accent { color: #f59e0b; }
+.text-white { color: #ffffff; }
+.text-gray-900 { color: #111827; }
+.text-gray-600 { color: #6b7280; }
+
+.border-primary { border-color: #2563eb; }
+.border-gray-200 { border-color: #e5e7eb; }
+.border-gray-300 { border-color: #d1d5db; }
+
+/* ==========================================
+   PROGRESSIVE ENHANCEMENT
+   ========================================== */
+
+/* Base styles that work without CSS custom properties */
+.btn-fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  min-height: 44px;
+  border: 2px solid transparent;
+}
+
+.btn-primary-fallback {
+  background-color: #f59e0b;
+  color: #ffffff;
+  border-color: #f59e0b;
+}
+
+.btn-primary-fallback:hover {
+  background-color: #d97706;
+  border-color: #d97706;
+  transform: translateY(-1px);
+}
+
+.btn-secondary-fallback {
+  background-color: #ffffff;
+  color: #2563eb;
+  border-color: #2563eb;
+}
+
+.btn-secondary-fallback:hover {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+.card-fallback {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.card-fallback:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Form fallbacks */
+.form-input-fallback {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 1.5;
+  transition: border-color 0.15s ease;
+  background-color: #ffffff;
+  color: #111827;
+}
+
+.form-input-fallback:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-input-fallback::placeholder {
+  color: #6b7280;
+}
+
+/* ==========================================
+   FEATURE DETECTION CLASSES
+   ========================================== */
+
+/* Classes added by JavaScript feature detection */
+
+/* CSS Grid fallback */
+.no-grid .grid-layout {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.no-grid .grid-item {
+  flex: 1 1 300px;
+  margin: 8px;
+}
+
+/* Flexbox fallback */
+.no-flexbox .flex-layout {
+  display: block;
+}
+
+.no-flexbox .flex-item {
+  display: inline-block;
+  vertical-align: top;
+}
+
+/* CSS Custom Properties fallback */
+.no-css-custom-properties .hero {
+  background: linear-gradient(135deg, #eff6ff 0%, #ecfdf5 50%, #fffbeb 100%);
+}
+
+.no-css-custom-properties .btn-primary {
+  background-color: #f59e0b;
+  color: #ffffff;
+}
+
+.no-css-custom-properties .btn-primary:hover {
+  background-color: #d97706;
+}
+
+/* Object-fit fallback */
+.no-object-fit .img-cover {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.no-object-fit .img-cover img {
+  opacity: 0;
+}
+
+/* ==========================================
+   INTERNET EXPLORER SPECIFIC
+   ========================================== */
+
+/* IE11 specific fixes */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  /* Flexbox fixes for IE11 */
+  .ie-flex-fix {
+    flex: 1 1 auto;
+  }
+  
+  /* Grid fallback for IE11 */
+  .grid-ie11 {
+    display: -ms-grid;
+  }
+  
+  /* Button height fix */
+  .btn-ie11 {
+    line-height: 1.4;
+  }
+  
+  /* Input placeholder fix */
+  .form-input-ie11::-ms-input-placeholder {
+    color: #6b7280;
+  }
+}
+
+/* ==========================================
+   PRINT FALLBACKS
+   ========================================== */
+
+@media print {
+  /* Ensure content is visible in print */
+  * {
+    background: transparent !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  /* Reset custom properties for print */
+  .print-fallback {
+    color: #000000;
+    background-color: #ffffff;
+    border-color: #000000;
+  }
+  
+  /* Button styling for print */
+  .btn-print {
+    border: 2px solid #000000;
+    padding: 8px 16px;
+    background-color: transparent;
+    color: #000000;
+  }
+  
+  /* Hide interactive elements in print */
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* ==========================================
+   ACCESSIBILITY FALLBACKS
+   ========================================== */
+
+/* High contrast mode fallbacks */
+@media (prefers-contrast: high) {
+  .high-contrast-fallback {
+    color: #000000;
+    background-color: #ffffff;
+    border: 2px solid #000000;
+  }
+  
+  .btn-high-contrast {
+    border: 3px solid currentColor;
+    background-color: transparent;
+    color: #000000;
+  }
+  
+  .btn-high-contrast:hover {
+    background-color: #000000;
+    color: #ffffff;
+  }
+}
+
+/* Reduced motion fallbacks */
+@media (prefers-reduced-motion: reduce) {
+  .reduced-motion-fallback {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  /* Keep essential transitions for usability */
+  .essential-transition {
+    transition: opacity 0.15s ease, visibility 0.15s ease;
+  }
+}
+
+/* ==========================================
+   JAVASCRIPT DISABLED FALLBACKS
+   ========================================== */
+
+/* Styles for when JavaScript is disabled */
+.no-js .js-only {
+  display: none !important;
+}
+
+.no-js .no-js-show {
+  display: block !important;
+}
+
+/* Form without JavaScript */
+.no-js .form-interactive {
+  /* Simplified form styling */
+  background-color: #f9fafb;
+  padding: 24px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+.no-js .form-interactive .form-step:not(:first-child) {
+  display: block;
+  opacity: 1;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* Navigation without JavaScript */
+.no-js .mobile-menu {
+  position: static;
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  margin-top: 16px;
+}
+
+.no-js .mobile-menu-panel {
+  transform: none;
+  box-shadow: none;
+  position: static;
+  width: 100%;
+  max-width: none;
+}
+
+.no-js .hamburger-menu {
+  display: none;
+}
+
+/* ==========================================
+   MODERNIZR INTEGRATION CLASSES
+   ========================================== */
+
+/* Classes that can be added by Modernizr.js */
+
+.webp .hero-bg {
+  background-image: url('hero.webp');
+}
+
+.no-webp .hero-bg {
+  background-image: url('hero.jpg');
+}
+
+.svg .icon-svg {
+  background-image: url('icon.svg');
+}
+
+.no-svg .icon-svg {
+  background-image: url('icon.png');
+}
+
+.fontface .custom-font {
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.no-fontface .custom-font {
+  font-family: system-ui, Arial, sans-serif;
+}
+
+/* Touch device optimizations */
+.touch .btn-touch {
+  min-height: 48px;
+  min-width: 48px;
+}
+
+.no-touch .btn-no-touch {
+  min-height: 40px;
+}
+
+/* ==========================================
+   UTILITY CLASSES FOR FALLBACKS
+   ========================================== */
+
+/* Show/hide based on feature support */
+.fallback-only {
+  display: none;
+}
+
+.no-css-custom-properties .fallback-only {
+  display: block;
+}
+
+.modern-only {
+  display: block;
+}
+
+.no-css-custom-properties .modern-only {
+  display: none;
+}
+
+/* Enhanced version for modern browsers */
+.enhanced {
+  /* Will be overridden by CSS custom properties */
+  color: #111827;
+  background-color: #ffffff;
+}
+
+/* Safe defaults */
+.safe-defaults {
+  font-family: system-ui, -apple-system, sans-serif;
+  color: #000000;
+  background-color: #ffffff;
+  line-height: 1.5;
+  font-size: 16px;
+}
+
+/* ==========================================
+   DEVELOPMENT HELPERS
+   ========================================== */
+
+/* Debug classes for development */
+.debug-grid {
+  background-image: 
+    linear-gradient(to right, rgba(255, 0, 0, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 0, 0, 0.1) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+.debug-outline * {
+  outline: 1px solid red;
+}
+
+.debug-css-vars::before {
+  content: "CSS Variables: " var(--color-primary-600, "Not Supported");
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000000;
+  color: #ffffff;
+  padding: 8px;
+  font-size: 12px;
+  z-index: 9999;
+}

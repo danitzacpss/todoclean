@@ -1,0 +1,17 @@
+dist
+build
+coverage
+node_modules
+.git
+.vscode
+.idea
+*.log
+*.lock
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+.env
+.env.local
+.env.production
+public/sw.js
+public/workbox-*.js

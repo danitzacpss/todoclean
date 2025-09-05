@@ -1,0 +1,533 @@
+/* ===================================
+   TODO CLEAN - MAIN STYLESHEET
+   Entry point for all styles - imports design system and Tailwind
+   =================================== */
+
+/* ==========================================
+   FONT IMPORTS (MUST BE FIRST)
+   ========================================== */
+
+/* Google Fonts for optimal loading performance */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* ==========================================
+   DESIGN SYSTEM IMPORTS
+   ========================================== */
+
+/* Import the complete design system */
+@import '../../design-system/main.css';
+
+/* ==========================================
+   TAILWIND CSS IMPORTS
+   ========================================== */
+
+/* Import Tailwind's base, components, and utilities */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Font face declarations for self-hosted fonts (fallback) */
+@font-face {
+  font-family: 'Inter Var';
+  src: url('/fonts/inter-var.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Open Sans Var';
+  src: url('/fonts/open-sans-var.woff2') format('woff2');
+  font-weight: 300 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ==========================================
+   CUSTOM COMPONENT STYLES
+   ========================================== */
+
+/* Toast notifications styling */
+.toast-container {
+  z-index: var(--z-index-toast);
+}
+
+/* Loading spinner component */
+.spinner {
+  @apply inline-block w-6 h-6 border-2 border-current border-t-transparent rounded-full animate-spin;
+}
+
+.spinner-sm {
+  @apply w-4 h-4 border border-current border-t-transparent;
+}
+
+.spinner-lg {
+  @apply w-8 h-8 border-4 border-current border-t-transparent;
+}
+
+/* Skeleton loading animations */
+.skeleton {
+  @apply bg-neutral-200 animate-pulse rounded;
+}
+
+.skeleton-text {
+  @apply h-4 bg-neutral-200 rounded animate-pulse;
+}
+
+.skeleton-avatar {
+  @apply w-12 h-12 bg-neutral-200 rounded-full animate-pulse;
+}
+
+/* Focus ring utility for interactive elements */
+.focus-ring-inset {
+  @apply focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500;
+}
+
+/* Gradient backgrounds */
+.gradient-primary {
+  background: linear-gradient(135deg, var(--color-primary-600) 0%, var(--color-primary-700) 100%);
+}
+
+.gradient-secondary {
+  background: linear-gradient(135deg, var(--color-secondary-500) 0%, var(--color-secondary-600) 100%);
+}
+
+.gradient-accent {
+  background: linear-gradient(135deg, var(--color-accent-500) 0%, var(--color-accent-600) 100%);
+}
+
+/* Hero gradient overlay */
+.hero-overlay {
+  background: linear-gradient(
+    135deg,
+    rgba(37, 99, 235, 0.9) 0%,
+    rgba(16, 185, 129, 0.8) 50%,
+    rgba(245, 158, 11, 0.7) 100%
+  );
+}
+
+/* Glassmorphism effect */
+.glass {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-dark {
+  backdrop-filter: blur(10px);
+  background: rgba(31, 41, 55, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ==========================================
+   ANIMATION UTILITIES
+   ========================================== */
+
+/* Fade in animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Pulse animation for WhatsApp button */
+@keyframes pulse-whatsapp {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.25);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+  }
+}
+
+.animate-pulse-whatsapp {
+  animation: pulse-whatsapp 2s infinite;
+}
+
+/* Typewriter effect for hero text */
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.typewriter {
+  overflow: hidden;
+  border-right: 2px solid var(--color-primary-600);
+  white-space: nowrap;
+  animation: typewriter 3s steps(40, end), blink 0.75s step-end infinite;
+}
+
+/* ==========================================
+   RESPONSIVE UTILITIES
+   ========================================== */
+
+/* Hide scrollbar but keep functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Custom scrollbar */
+.scrollbar-custom {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-neutral-300) var(--color-neutral-100);
+}
+
+.scrollbar-custom::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: var(--color-neutral-100);
+  border-radius: 4px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background: var(--color-neutral-300);
+  border-radius: 4px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+  background: var(--color-neutral-400);
+}
+
+/* Aspect ratio utilities for images */
+.aspect-video {
+  aspect-ratio: 16 / 9;
+}
+
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
+.aspect-4-3 {
+  aspect-ratio: 4 / 3;
+}
+
+/* Object fit utilities */
+.object-cover {
+  object-fit: cover;
+}
+
+.object-contain {
+  object-fit: contain;
+}
+
+.object-fill {
+  object-fit: fill;
+}
+
+/* ==========================================
+   ACCESSIBILITY ENHANCEMENTS
+   ========================================== */
+
+/* Enhanced focus indicators */
+.focus-visible:focus-visible {
+  outline: 3px solid var(--color-primary-500);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .btn-primary {
+    border: 2px solid currentColor;
+  }
+  
+  .card-base {
+    border: 1px solid var(--color-neutral-400);
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .animate-spin,
+  .animate-pulse,
+  .animate-bounce {
+    animation: none !important;
+  }
+}
+
+/* ==========================================
+   PRINT OPTIMIZATIONS
+   ========================================== */
+
+@media print {
+  /* Hide non-essential elements */
+  .no-print,
+  button:not(.print-show),
+  .btn-base:not(.print-show),
+  nav:not(.print-show),
+  .whatsapp-float,
+  .floating-cta {
+    display: none !important;
+  }
+  
+  /* Ensure good contrast */
+  * {
+    color: #000000 !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+  }
+  
+  /* Optimize text */
+  body {
+    font-size: 12pt !important;
+    line-height: 1.4 !important;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: #000000 !important;
+    margin-bottom: 0.5rem !important;
+    page-break-after: avoid;
+  }
+  
+  p {
+    orphans: 3;
+    widows: 3;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  /* Show URLs for important links */
+  a[href^="tel"]::after {
+    content: " (" attr(href) ")";
+    font-size: 80%;
+    color: #666 !important;
+  }
+  
+  a[href^="mailto"]::after {
+    content: " (" attr(href) ")";
+    font-size: 80%;
+    color: #666 !important;
+  }
+}
+
+/* ==========================================
+   DARK MODE PREPARATIONS
+   ========================================== */
+
+@media (prefers-color-scheme: dark) {
+  /* Override design system defaults if needed */
+  .glass {
+    background: rgba(31, 41, 55, 0.8);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .skeleton {
+    @apply bg-neutral-700;
+  }
+  
+  .skeleton-text {
+    @apply bg-neutral-700;
+  }
+  
+  .skeleton-avatar {
+    @apply bg-neutral-700;
+  }
+}
+
+/* ==========================================
+   UTILITY CLASSES
+   ========================================== */
+
+/* Text selection styling */
+::selection {
+  background: rgba(37, 99, 235, 0.3);
+  color: var(--color-neutral-900);
+}
+
+::-moz-selection {
+  background: rgba(37, 99, 235, 0.3);
+  color: var(--color-neutral-900);
+}
+
+/* Image optimization */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Smooth scrolling for better UX */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Safe area insets for mobile devices */
+@supports (padding: max(0px)) {
+  .safe-top {
+    padding-top: max(1rem, env(safe-area-inset-top));
+  }
+  
+  .safe-bottom {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+  
+  .safe-left {
+    padding-left: max(1rem, env(safe-area-inset-left));
+  }
+  
+  .safe-right {
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+}
+
+/* Container queries support */
+@container (min-width: 640px) {
+  .container-sm\:text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+}
+
+/* Custom properties for dynamic theming */
+.theme-dynamic {
+  --primary-hue: 217;
+  --primary-saturation: 91%;
+  --primary-lightness: 60%;
+  
+  --primary-color: hsl(var(--primary-hue) var(--primary-saturation) var(--primary-lightness));
+  --primary-color-light: hsl(var(--primary-hue) var(--primary-saturation) calc(var(--primary-lightness) + 10%));
+  --primary-color-dark: hsl(var(--primary-hue) var(--primary-saturation) calc(var(--primary-lightness) - 10%));
+}
+
+/* ==========================================
+   COMPONENT-SPECIFIC STYLES
+   ========================================== */
+
+/* WhatsApp floating button specific styles */
+.whatsapp-float {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: var(--z-index-modal);
+  
+  /* Ensure it doesn't interfere with safe areas */
+  bottom: max(1.5rem, env(safe-area-inset-bottom));
+  right: max(1.5rem, env(safe-area-inset-right));
+  
+  /* Smooth entrance animation */
+  animation: slideInRight 0.3s ease-out;
+}
+
+@media (max-width: 640px) {
+  .whatsapp-float {
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    right: max(1rem, env(safe-area-inset-right));
+  }
+}
+
+/* Calculator component styling */
+.calculator-step {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+.calculator-step.active {
+  @apply transform translate-x-0 opacity-100;
+}
+
+.calculator-step.prev {
+  @apply transform -translate-x-full opacity-0;
+}
+
+.calculator-step.next {
+  @apply transform translate-x-full opacity-0;
+}

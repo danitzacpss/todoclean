@@ -1,0 +1,545 @@
+/* ================================
+   TODO CLEAN - BUTTON COMPONENTS
+   All button variants with states
+   ================================ */
+
+/* ==========================================
+   BASE BUTTON STYLES
+   ========================================== */
+
+.btn-base {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  
+  /* Typography */
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-tight);
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: var(--letter-spacing-wide);
+  
+  /* Spacing */
+  padding: var(--space-3) var(--space-6);
+  min-height: var(--touch-target-min); /* 44px minimum */
+  
+  /* Visual */
+  border: 2px solid transparent;
+  border-radius: var(--radius-md);
+  background: none;
+  cursor: pointer;
+  
+  /* Transitions */
+  transition: var(--transition-button);
+  
+  /* Accessibility */
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  
+  /* Focus state */
+  &:focus-visible {
+    outline: 3px solid var(--color-primary-500);
+    outline-offset: 2px;
+  }
+  
+  /* Disabled state */
+  &:disabled,
+  &[aria-disabled="true"] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  
+  /* Loading state */
+  &[data-loading="true"] {
+    position: relative;
+    color: transparent !important;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border: 2px solid transparent;
+      border-top: 2px solid currentColor;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+  }
+}
+
+/* ==========================================
+   BUTTON SIZE VARIANTS
+   ========================================== */
+
+.btn-xs {
+  padding: var(--space-1-5) var(--space-3);
+  min-height: var(--space-8); /* 32px */
+  font-size: var(--font-size-sm);
+  gap: 0.25rem;
+}
+
+.btn-sm {
+  padding: var(--space-2) var(--space-4);
+  min-height: var(--space-10); /* 40px */
+  font-size: var(--font-size-sm);
+  gap: 0.375rem;
+}
+
+.btn-lg {
+  padding: var(--space-4) var(--space-8);
+  min-height: var(--touch-target-comfortable); /* 48px */
+  font-size: var(--font-size-lg);
+  gap: 0.75rem;
+}
+
+.btn-xl {
+  padding: var(--space-5) var(--space-10);
+  min-height: var(--touch-target-large); /* 56px */
+  font-size: var(--font-size-xl);
+  gap: 1rem;
+}
+
+/* ==========================================
+   PRIMARY BUTTON (CTA - Accent Color)
+   ========================================== */
+
+.btn-primary {
+  background-color: var(--color-accent-500);
+  color: var(--color-neutral-0);
+  box-shadow: var(--shadow-accent);
+  
+  &:hover:not(:disabled):not([aria-disabled="true"]) {
+    background-color: var(--color-accent-600);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  &:active:not(:disabled):not([aria-disabled="true"]) {
+    background-color: var(--color-accent-700);
+    transform: translateY(0);
+    box-shadow: var(--shadow-md);
+  }
+  
+  &:focus-visible {
+    outline-color: var(--color-accent-500);
+    box-shadow: var(--shadow-accent), 0 0 0 3px var(--color-accent-200);
+  }
+}
+
+/* ==========================================
+   SECONDARY BUTTON (Outline Style)
+   ========================================== */
+
+.btn-secondary {
+  background-color: var(--color-neutral-0);
+  color: var(--color-primary-600);
+  border-color: var(--color-primary-600);
+  
+  &:hover:not(:disabled):not([aria-disabled="true"]) {
+    background-color: var(--color-primary-50);
+    border-color: var(--color-primary-700);
+    color: var(--color-primary-700);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+  
+  &:active:not(:disabled):not([aria-disabled="true"]) {
+    background-color: var(--color-primary-100);
+    border-color: var(--color-primary-800);
+    color: var(--color-primary-800);
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+  }
+  
+  &:focus-visible {
+    box-shadow: 0 0 0 3px var(--color-primary-200);
+  }
+}
+
+/* ==========================================
+   WHATSAPP BUTTON (Brand Color)
+   ========================================== */
+
+.btn-whatsapp {
+  background-color: var(--color-whatsapp);
+  color: var(--color-neutral-0);
+  box-shadow: var(--shadow-whatsapp);
+  
+  &:hover:not(:disabled):not([aria-disabled="true"]) {
+    background-color: var(--color-whatsapp-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  &:active:not(:disabled):not([aria-disabled="true"]) {
+    background-color: #0d7c0d;
+    transform: translateY(0);
+    box-shadow: var(--shadow-md);
+  }
+  
+  &:focus-visible {
+    outline-color: var(--color-whatsapp);
+    box-shadow: var(--shadow-whatsapp), 0 0 0 3px rgba(37, 211, 102, 0.2);
+  }
+}
+
+/* ==========================================
+   GHOST BUTTON (Minimal Style)
+   ========================================== */
+
+.btn-ghost {
+  background-color: transparent;
+  color: var(--color-neutral-700);
+  
+  &:hover:not(:disabled):not([aria-disabled="true"]) {
+    background-color: var(--color-neutral-100);
+    color: var(--color-neutral-900);
+  }
+  
+  &:active:not(:disabled):not([aria-disabled="true"]) {
+    background-color: var(--color-neutral-200);
+    color: var(--color-neutral-900);
+  }
+  
+  &:focus-visible {
+    background-color: var(--color-neutral-50);
+    box-shadow: 0 0 0 3px var(--color-neutral-200);
+  }
+}
+
+/* ==========================================
+   SUCCESS BUTTON (Green)
+   ========================================== */
+
+.btn-success {
+  background-color: var(--color-secondary-500);
+  color: var(--color-neutral-0);
+  box-shadow: var(--shadow-secondary);
+  
+  &:hover:not(:disabled):not([aria-disabled="true"]) {
+    background-color: var(--color-secondary-600);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  &:active:not(:disabled):not([aria-disabled="true"]) {
+    background-color: var(--color-secondary-700);
+    transform: translateY(0);
+    box-shadow: var(--shadow-md);
+  }
+  
+  &:focus-visible {
+    outline-color: var(--color-secondary-500);
+    box-shadow: var(--shadow-secondary), 0 0 0 3px var(--color-secondary-200);
+  }
+}
+
+/* ==========================================
+   DANGER BUTTON (Red)
+   ========================================== */
+
+.btn-danger {
+  background-color: var(--color-error-500);
+  color: var(--color-neutral-0);
+  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.25);
+  
+  &:hover:not(:disabled):not([aria-disabled="true"]) {
+    background-color: var(--color-error-600);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  &:active:not(:disabled):not([aria-disabled="true"]) {
+    background-color: var(--color-error-700);
+    transform: translateY(0);
+    box-shadow: var(--shadow-md);
+  }
+  
+  &:focus-visible {
+    outline-color: var(--color-error-500);
+    box-shadow: 0 4px 14px rgba(239, 68, 68, 0.25), 0 0 0 3px var(--color-error-200);
+  }
+}
+
+/* ==========================================
+   ICON BUTTONS
+   ========================================== */
+
+.btn-icon {
+  padding: var(--space-3);
+  min-width: var(--touch-target-min);
+  min-height: var(--touch-target-min);
+  
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  &.btn-sm {
+    padding: var(--space-2);
+    min-width: var(--space-10);
+    min-height: var(--space-10);
+    
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+  
+  &.btn-lg {
+    padding: var(--space-4);
+    min-width: var(--touch-target-comfortable);
+    min-height: var(--touch-target-comfortable);
+    
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+/* ==========================================
+   FLOATING ACTION BUTTON
+   ========================================== */
+
+.btn-fab {
+  position: fixed;
+  bottom: var(--space-6);
+  right: var(--space-6);
+  width: var(--touch-target-large);
+  height: var(--touch-target-large);
+  padding: 0;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-lg);
+  z-index: var(--z-index-docked);
+  
+  /* WhatsApp FAB Animation */
+  &.btn-whatsapp {
+    animation: animate-pulse-whatsapp 2s infinite;
+  }
+  
+  &:hover:not(:disabled):not([aria-disabled="true"]) {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-xl);
+  }
+  
+  &:active:not(:disabled):not([aria-disabled="true"]) {
+    transform: scale(1.05);
+  }
+  
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* Mobile adjustments for FAB */
+@media (max-width: 640px) {
+  .btn-fab {
+    bottom: var(--space-4);
+    right: var(--space-4);
+  }
+}
+
+/* ==========================================
+   BUTTON GROUPS
+   ========================================== */
+
+.btn-group {
+  display: inline-flex;
+  vertical-align: middle;
+  
+  .btn-base {
+    position: relative;
+    border-radius: 0;
+    margin-left: -2px;
+    
+    &:first-child {
+      margin-left: 0;
+      border-top-left-radius: var(--radius-md);
+      border-bottom-left-radius: var(--radius-md);
+    }
+    
+    &:last-child {
+      border-top-right-radius: var(--radius-md);
+      border-bottom-right-radius: var(--radius-md);
+    }
+    
+    &:hover,
+    &:focus {
+      z-index: 1;
+    }
+  }
+}
+
+/* ==========================================
+   BUTTON WITH LOADING STATES
+   ========================================== */
+
+.btn-loading {
+  position: relative;
+  
+  .btn-loading-text {
+    transition: opacity var(--duration-150) var(--ease-out);
+  }
+  
+  .btn-loading-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity var(--duration-150) var(--ease-out);
+  }
+  
+  &[data-loading="true"] {
+    .btn-loading-text {
+      opacity: 0;
+    }
+    
+    .btn-loading-spinner {
+      opacity: 1;
+    }
+  }
+}
+
+/* ==========================================
+   RESPONSIVE BUTTON ADJUSTMENTS
+   ========================================== */
+
+@media (max-width: 640px) {
+  .btn-base {
+    min-height: var(--touch-target-comfortable); /* Comfortable touch on mobile */
+    padding: var(--space-3-5) var(--space-5);
+  }
+  
+  .btn-lg {
+    min-height: var(--touch-target-large);
+    padding: var(--space-4) var(--space-6);
+  }
+  
+  /* Stack buttons on mobile */
+  .btn-stack-mobile {
+    width: 100%;
+    margin-bottom: var(--space-3);
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+/* ==========================================
+   ACCESSIBILITY ENHANCEMENTS
+   ========================================== */
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .btn-base {
+    border-width: 3px;
+  }
+  
+  .btn-primary,
+  .btn-whatsapp,
+  .btn-success,
+  .btn-danger {
+    border-color: currentColor;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .btn-base {
+    transition: none;
+  }
+  
+  .btn-base:hover {
+    transform: none;
+  }
+  
+  .btn-fab.btn-whatsapp {
+    animation: none;
+  }
+}
+
+/* ==========================================
+   UTILITY CLASSES FOR BUTTONS
+   ========================================== */
+
+.btn-full {
+  width: 100%;
+}
+
+.btn-auto {
+  width: auto;
+}
+
+.btn-rounded {
+  border-radius: var(--radius-full);
+}
+
+.btn-square {
+  border-radius: 0;
+}
+
+.btn-no-shadow {
+  box-shadow: none !important;
+}
+
+.btn-uppercase {
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-widest);
+}
+
+/* ==========================================
+   BUTTON ANIMATIONS
+   ========================================== */
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.btn-bounce:hover {
+  animation: bounce-gentle 0.6s ease-in-out;
+}
+
+.btn-wiggle:hover {
+  animation: wiggle 1s ease-in-out;
+}
+
+/* ==========================================
+   DARK MODE SUPPORT (Future)
+   ========================================== */
+
+@media (prefers-color-scheme: dark) {
+  .btn-ghost {
+    color: var(--color-neutral-300);
+    
+    &:hover:not(:disabled):not([aria-disabled="true"]) {
+      background-color: var(--color-neutral-800);
+      color: var(--color-neutral-100);
+    }
+  }
+  
+  .btn-secondary {
+    background-color: var(--color-neutral-900);
+    color: var(--color-primary-400);
+    border-color: var(--color-primary-400);
+    
+    &:hover:not(:disabled):not([aria-disabled="true"]) {
+      background-color: var(--color-neutral-800);
+      border-color: var(--color-primary-300);
+      color: var(--color-primary-300);
+    }
+  }
+}

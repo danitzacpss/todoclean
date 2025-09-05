@@ -1,0 +1,789 @@
+/* ================================
+   TODO CLEAN - INTERACTIONS & MICROANIMATIONS
+   Detailed interaction specifications and JavaScript integration guide
+   ================================ */
+
+/* ==========================================
+   SCROLL-BASED ANIMATIONS
+   ========================================== */
+
+/* Intersection Observer Animation Classes */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.animate-on-scroll-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-on-scroll-left.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.animate-on-scroll-right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-on-scroll-right.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Staggered Animations */
+.stagger-container .animate-on-scroll:nth-child(1) { transition-delay: 0.1s; }
+.stagger-container .animate-on-scroll:nth-child(2) { transition-delay: 0.2s; }
+.stagger-container .animate-on-scroll:nth-child(3) { transition-delay: 0.3s; }
+.stagger-container .animate-on-scroll:nth-child(4) { transition-delay: 0.4s; }
+.stagger-container .animate-on-scroll:nth-child(5) { transition-delay: 0.5s; }
+.stagger-container .animate-on-scroll:nth-child(6) { transition-delay: 0.6s; }
+
+/* Counter Animation */
+.counter-animation {
+  font-family: var(--font-family-mono);
+  font-weight: var(--font-weight-bold);
+}
+
+/* ==========================================
+   BUTTON INTERACTIONS
+   ========================================== */
+
+/* Ripple Effect for Buttons */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-ripple::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn-ripple:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Button Loading State */
+.btn-loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.btn-loading .btn-text {
+  opacity: 0;
+}
+
+.btn-loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  margin-left: -10px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: button-spin 1s linear infinite;
+}
+
+@keyframes button-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Success Animation for Buttons */
+.btn-success-animation {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-success-animation::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3csvg viewBox='0 0 16 16' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='m13.854 3.646-7.5 7.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6 10.293l7.146-7.147a.5.5 0 0 1 .708.708z'/%3e%3c/svg%3e");
+  background-size: contain;
+  background-repeat: no-repeat;
+  animation: success-check 0.6s ease-in-out;
+}
+
+.btn-success-animation.show-success .btn-text {
+  opacity: 0;
+}
+
+.btn-success-animation.show-success::after {
+  opacity: 1;
+}
+
+@keyframes success-check {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+/* ==========================================
+   FORM INTERACTIONS
+   ========================================== */
+
+/* Input Focus Animation */
+.form-group-animated {
+  position: relative;
+  margin-bottom: var(--space-6);
+}
+
+.form-label-floating {
+  position: absolute;
+  top: 50%;
+  left: var(--space-4);
+  transform: translateY(-50%);
+  background-color: var(--color-surface-primary);
+  padding: 0 var(--space-2);
+  color: var(--color-text-tertiary);
+  font-size: var(--font-size-base);
+  transition: all var(--duration-200) var(--ease-out);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.form-input-animated {
+  background-color: transparent;
+  border: 2px solid var(--color-border-primary);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  font-size: var(--font-size-base);
+  width: 100%;
+  outline: none;
+  transition: border-color var(--duration-200) var(--ease-out);
+}
+
+.form-input-animated:focus,
+.form-input-animated:not(:placeholder-shown) {
+  border-color: var(--color-primary-500);
+}
+
+.form-input-animated:focus + .form-label-floating,
+.form-input-animated:not(:placeholder-shown) + .form-label-floating {
+  top: 0;
+  transform: translateY(-50%) scale(0.85);
+  color: var(--color-primary-600);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Form Validation Animations */
+.form-error-shake {
+  animation: form-shake 0.5s ease-in-out;
+}
+
+@keyframes form-shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.form-success-pulse {
+  animation: form-pulse 0.6s ease-in-out;
+}
+
+@keyframes form-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* ==========================================
+   CARD INTERACTIONS
+   ========================================== */
+
+/* Service Card Hover Effects */
+.service-card-interactive {
+  transition: all var(--duration-300) var(--ease-out);
+  transform-origin: center;
+}
+
+.service-card-interactive:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.service-card-interactive:hover .service-icon {
+  animation: service-icon-bounce 0.6s ease-in-out;
+}
+
+@keyframes service-icon-bounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-5px) scale(1.1); }
+}
+
+/* Card Selection Animation */
+.card-selectable {
+  cursor: pointer;
+  transition: all var(--duration-200) var(--ease-out);
+  position: relative;
+}
+
+.card-selectable::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(37, 99, 235, 0.1), 
+    rgba(37, 99, 235, 0.2));
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity var(--duration-200) var(--ease-out);
+}
+
+.card-selectable.selected {
+  border-color: var(--color-primary-500);
+  transform: scale(1.02);
+}
+
+.card-selectable.selected::before {
+  opacity: 1;
+}
+
+.card-selectable.selected::after {
+  content: '';
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  width: 24px;
+  height: 24px;
+  background-color: var(--color-primary-500);
+  border-radius: 50%;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='m13.854 3.646-7.5 7.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6 10.293l7.146-7.147a.5.5 0 0 1 .708.708z'/%3e%3c/svg%3e");
+  background-size: 12px;
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: selection-pop 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes selection-pop {
+  0% { transform: scale(0); opacity: 0; }
+  80% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ==========================================
+   CALCULATOR INTERACTIONS
+   ========================================== */
+
+/* Step Progression Animation */
+.calculator-step {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: all var(--duration-400) var(--ease-out);
+}
+
+.calculator-step.step-active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.calculator-step.step-exit {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+/* Progress Bar Animation */
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  background-color: var(--color-neutral-200);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-bottom: var(--space-6);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, 
+    var(--color-primary-500), 
+    var(--color-accent-500));
+  border-radius: var(--radius-full);
+  transition: width var(--duration-500) var(--ease-out);
+  position: relative;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-image: linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.2) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.2) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 30px 30px;
+  animation: progress-stripes 1s linear infinite;
+}
+
+@keyframes progress-stripes {
+  0% { background-position: 0 0; }
+  100% { background-position: 30px 0; }
+}
+
+/* Price Update Animation */
+.price-update {
+  animation: price-highlight 0.8s ease-out;
+}
+
+@keyframes price-highlight {
+  0% { 
+    background-color: var(--color-accent-100);
+    transform: scale(1);
+  }
+  50% { 
+    background-color: var(--color-accent-200);
+    transform: scale(1.05);
+  }
+  100% { 
+    background-color: transparent;
+    transform: scale(1);
+  }
+}
+
+/* ==========================================
+   NAVIGATION INTERACTIONS
+   ========================================== */
+
+/* Mobile Menu Animation */
+.mobile-menu-overlay {
+  opacity: 0;
+  transition: opacity var(--duration-300) var(--ease-out);
+}
+
+.mobile-menu-overlay.menu-open {
+  opacity: 1;
+}
+
+.mobile-menu-panel {
+  transform: translateX(-100%);
+  transition: transform var(--duration-300) var(--ease-out);
+}
+
+.mobile-menu-panel.menu-open {
+  transform: translateX(0);
+}
+
+.mobile-nav-item {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity var(--duration-200) var(--ease-out),
+              transform var(--duration-200) var(--ease-out);
+}
+
+.mobile-menu.menu-open .mobile-nav-item {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.mobile-menu.menu-open .mobile-nav-item:nth-child(1) { transition-delay: 0.1s; }
+.mobile-menu.menu-open .mobile-nav-item:nth-child(2) { transition-delay: 0.15s; }
+.mobile-menu.menu-open .mobile-nav-item:nth-child(3) { transition-delay: 0.2s; }
+.mobile-menu.menu-open .mobile-nav-item:nth-child(4) { transition-delay: 0.25s; }
+.mobile-menu.menu-open .mobile-nav-item:nth-child(5) { transition-delay: 0.3s; }
+
+/* Dropdown Menu Animation */
+.dropdown-menu {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px) scale(0.95);
+  transition: all var(--duration-200) var(--ease-out);
+}
+
+.dropdown-menu.menu-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+/* ==========================================
+   NOTIFICATION ANIMATIONS
+   ========================================== */
+
+/* Toast Notifications */
+.toast {
+  transform: translateX(100%);
+  transition: transform var(--duration-300) var(--ease-out);
+}
+
+.toast.toast-enter {
+  transform: translateX(0);
+}
+
+.toast.toast-exit {
+  transform: translateX(100%);
+}
+
+/* Success Toast Animation */
+.toast-success {
+  background-color: var(--color-secondary-50);
+  border-left: 4px solid var(--color-secondary-500);
+  color: var(--color-secondary-800);
+}
+
+.toast-success::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3csvg viewBox='0 0 16 16' fill='%2316a34a' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='m13.854 3.646-7.5 7.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6 10.293l7.146-7.147a.5.5 0 0 1 .708.708z'/%3e%3c/svg%3e");
+  background-size: contain;
+  margin-right: var(--space-3);
+  animation: toast-icon-bounce 0.6s ease-out;
+}
+
+@keyframes toast-icon-bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+/* Error Toast Animation */
+.toast-error {
+  background-color: var(--color-error-50);
+  border-left: 4px solid var(--color-error-500);
+  color: var(--color-error-800);
+}
+
+.toast-error::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3csvg viewBox='0 0 16 16' fill='%23dc2626' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/%3e%3cpath d='M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z'/%3e%3c/svg%3e");
+  background-size: contain;
+  margin-right: var(--space-3);
+  animation: toast-shake 0.5s ease-out;
+}
+
+@keyframes toast-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* ==========================================
+   WHATSAPP BUTTON INTERACTIONS
+   ========================================== */
+
+/* Floating WhatsApp Button */
+.whatsapp-float-btn {
+  position: fixed;
+  bottom: var(--space-6);
+  right: var(--space-6);
+  z-index: var(--z-index-docked);
+  animation: whatsapp-pulse 2s infinite;
+}
+
+@keyframes whatsapp-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 20px rgba(37, 211, 102, 0);
+  }
+}
+
+.whatsapp-float-btn:hover {
+  animation-play-state: paused;
+  transform: scale(1.1) !important;
+}
+
+/* WhatsApp Chat Bubble */
+.whatsapp-bubble {
+  position: relative;
+  opacity: 0;
+  transform: translateY(10px) scale(0.9);
+  transition: all var(--duration-300) var(--ease-out);
+}
+
+.whatsapp-bubble.bubble-show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.whatsapp-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  right: 20px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid var(--color-neutral-800);
+}
+
+/* ==========================================
+   LOADING STATES
+   ========================================== */
+
+/* Skeleton Loading */
+.skeleton-loader {
+  background: linear-gradient(90deg, 
+    var(--color-neutral-200) 25%, 
+    var(--color-neutral-300) 50%, 
+    var(--color-neutral-200) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s infinite;
+  border-radius: var(--radius-md);
+}
+
+@keyframes skeleton-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Page Loading Overlay */
+.page-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color-surface-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-index-modal);
+  opacity: 1;
+  transition: opacity var(--duration-300) var(--ease-out);
+}
+
+.page-loader.loader-fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loader-spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid var(--color-primary-200);
+  border-left: 4px solid var(--color-primary-600);
+  border-radius: 50%;
+  animation: loader-spin 1s linear infinite;
+}
+
+@keyframes loader-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ==========================================
+   MODAL INTERACTIONS
+   ========================================== */
+
+/* Modal Backdrop */
+.modal-backdrop {
+  opacity: 0;
+  transition: opacity var(--duration-300) var(--ease-out);
+}
+
+.modal-backdrop.modal-open {
+  opacity: 1;
+}
+
+/* Modal Content */
+.modal-content {
+  transform: scale(0.9) translateY(-20px);
+  opacity: 0;
+  transition: all var(--duration-300) var(--ease-out);
+}
+
+.modal-content.modal-open {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+/* ==========================================
+   TESTIMONIAL CAROUSEL
+   ========================================== */
+
+/* Carousel Slide Animation */
+.testimonial-slide {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: all var(--duration-500) var(--ease-out);
+}
+
+.testimonial-slide.slide-active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.testimonial-slide.slide-prev {
+  transform: translateX(-30px);
+}
+
+.testimonial-slide.slide-next {
+  transform: translateX(30px);
+}
+
+/* Carousel Dots Animation */
+.carousel-dot {
+  transform: scale(1);
+  transition: transform var(--duration-200) var(--ease-out);
+}
+
+.carousel-dot.dot-active {
+  transform: scale(1.2);
+}
+
+/* ==========================================
+   ACCESSIBILITY CONSIDERATIONS
+   ========================================== */
+
+/* Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .whatsapp-float-btn {
+    animation: none;
+  }
+  
+  .progress-fill::after {
+    animation: none;
+  }
+  
+  .skeleton-loader {
+    animation: none;
+    background: var(--color-neutral-200);
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .card-selectable.selected::before {
+    background: var(--color-primary-500);
+    opacity: 0.3;
+  }
+  
+  .btn-ripple::before {
+    background-color: var(--color-text-primary);
+  }
+}
+
+/* ==========================================
+   JAVASCRIPT INTEGRATION HELPERS
+   ========================================== */
+
+/* Data attributes for JavaScript targeting */
+[data-animate="fade-up"] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+[data-animate="fade-up"].animated {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-animate="scale-in"] {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+[data-animate="scale-in"].animated {
+  opacity: 1;
+  transform: scale(1);
+}
+
+[data-animate="slide-left"] {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+[data-animate="slide-left"].animated {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* State classes for JavaScript control */
+.js-loading { pointer-events: none; }
+.js-hidden { display: none; }
+.js-invisible { opacity: 0; visibility: hidden; }
+.js-visible { opacity: 1; visibility: visible; }
+.js-disabled { opacity: 0.5; pointer-events: none; }
+
+/* ==========================================
+   PERFORMANCE OPTIMIZATIONS
+   ========================================== */
+
+/* GPU acceleration for animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Will-change hints for better performance */
+.will-animate {
+  will-change: transform, opacity;
+}
+
+.will-animate-complete {
+  will-change: auto;
+}
