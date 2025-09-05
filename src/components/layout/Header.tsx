@@ -77,7 +77,7 @@ const Header: React.FC = () => {
       )}
       role="banner"
     >
-      <div className="container mx-auto">
+      <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <div className="flex-shrink-0">

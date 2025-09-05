@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="bg-neutral-900 text-neutral-300" role="contentinfo">
-      <div className="container mx-auto">
+      <div className="container mx-auto px-4">
         {/* Main footer content */}
         <div className="py-12 lg:py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">

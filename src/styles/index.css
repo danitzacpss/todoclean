@@ -470,6 +470,20 @@ html {
   }
 }
 
+/* Mobile-optimized container with reduced padding */
+@media (max-width: 639px) {
+  .container-mobile-compact {
+    padding-left: 0.75rem !important; /* 12px instead of 16px */
+    padding-right: 0.75rem !important;
+  }
+  
+  /* Override default container padding on mobile */
+  .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+}
+
 /* Container queries support */
 @container (min-width: 640px) {
   .container-sm\:text-lg {

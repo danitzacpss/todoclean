@@ -60,7 +60,7 @@ const HomePage: React.FC = () => {
           <div className="absolute top-1/3 left-16 w-2 h-2 bg-cyan-500/60 rounded-full" />
         </div>
 
-        <div className="container mx-auto relative z-10 py-16 lg:py-24">
+        <div className="container mx-auto px-4 relative z-10 py-16 lg:py-24">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Content Column */}
             <div className="text-center lg:text-left">
