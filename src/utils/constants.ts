@@ -404,7 +404,7 @@ export const FAQ_DATA = [
   {
     id: '1',
     question: '¿Traen sus propios productos de limpieza?',
-    answer: 'Sí, incluimos todos los productos profesionales eco-friendly en nuestros servicios. Solo necesitas tener agua disponible.',
+    answer: 'Sí, incluimos todos los productos profesionales eco-friendly durante el primer mes de contrato. Solo necesitas tener agua disponible.',
     category: 'service' as const,
     popular: true,
   },

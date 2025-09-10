@@ -172,6 +172,17 @@ const BusinessServices: React.FC = () => {
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly');
   const [openFAQ, setOpenFAQ] = useState<string | null>(null);
 
+  const handleWhatsAppContact = (frequencyType: string, officeSize: string) => {
+    const message = encodeURIComponent(
+      `¡Hola! Me interesa contratar el plan ${frequencyType} para una oficina ${officeSize.toLowerCase()}. ¿Podrían darme más información y disponibilidad?`
+    );
+    window.open(
+      `https://wa.me/${SITE_CONFIG.whatsapp}?text=${message}`,
+      '_blank',
+      'noopener,noreferrer'
+    );
+  };
+
   const handlePlanSelect = (planId: string) => {
     const plan = BUSINESS_PLANS.find(p => p.id === planId);
     if (plan) {
@@ -244,20 +255,20 @@ const BusinessServices: React.FC = () => {
                     <div className="text-sm text-neutral-600">Metros cuadrados</div>
                   </th>
                   <th className="px-6 py-4 text-center">
-                    <div className="font-semibold text-neutral-900">Semanal</div>
-                    <div className="text-sm text-teal-600 font-medium">Recomendado</div>
-                  </th>
-                  <th className="px-6 py-4 text-center">
-                    <div className="font-semibold text-neutral-900">Bi-semanal</div>
-                    <div className="text-sm text-neutral-600">Ahorro 15%</div>
+                    <div className="font-semibold text-neutral-900">Una Vez</div>
+                    <div className="text-sm text-neutral-600">Sin compromiso</div>
                   </th>
                   <th className="px-6 py-4 text-center">
                     <div className="font-semibold text-neutral-900">Mensual</div>
-                    <div className="text-sm text-neutral-600">Ahorro 25%</div>
+                    <div className="text-sm text-teal-600 font-medium">+15% de ahorro</div>
                   </th>
                   <th className="px-6 py-4 text-center">
-                    <div className="font-semibold text-neutral-900">Una Vez</div>
-                    <div className="text-sm text-neutral-600">Sin compromiso</div>
+                    <div className="font-semibold text-neutral-900">Trimestral</div>
+                    <div className="text-sm text-neutral-600">+25% de ahorro</div>
+                  </th>
+                  <th className="px-6 py-4 text-center">
+                    <div className="font-semibold text-neutral-900">Anual</div>
+                    <div className="text-sm text-neutral-600">+30% de ahorro</div>
                   </th>
                 </tr>
               </thead>
@@ -269,20 +280,47 @@ const BusinessServices: React.FC = () => {
                     <div className="text-xs text-neutral-500 mt-1">1-5 empleados</div>
                   </td>
                   <td className="px-6 py-6 text-center">
-                    <div className="text-lg font-bold text-teal-600">$80.000</div>
-                    <div className="text-xs text-neutral-500">por semana</div>
-                  </td>
-                  <td className="px-6 py-6 text-center">
-                    <div className="text-lg font-bold text-neutral-900">$136.000</div>
-                    <div className="text-xs text-neutral-500">por mes</div>
-                  </td>
-                  <td className="px-6 py-6 text-center">
-                    <div className="text-lg font-bold text-neutral-900">$60.000</div>
-                    <div className="text-xs text-neutral-500">por mes</div>
-                  </td>
-                  <td className="px-6 py-6 text-center">
-                    <div className="text-lg font-bold text-neutral-900">$90.000</div>
+                    <div className="text-lg font-bold text-neutral-900">$35.000</div>
                     <div className="text-xs text-neutral-500">servicio único</div>
+                    <button 
+                      onClick={() => handleWhatsAppContact('una vez', 'Pequeña')}
+                      className="mt-2 px-3 py-1 bg-teal-600 text-white text-xs font-medium rounded hover:bg-teal-700 transition-colors"
+                    >
+                      Contratar
+                    </button>
+                  </td>
+                  <td className="px-6 py-6 text-center">
+                    <div className="text-lg font-bold text-neutral-900">$115.500</div>
+                    <div className="text-xs text-neutral-500">por mes</div>
+                    <div className="text-xs text-teal-600 font-medium">1 limpieza/semana</div>
+                    <button 
+                      onClick={() => handleWhatsAppContact('mensual', 'Pequeña')}
+                      className="mt-2 px-3 py-1 bg-teal-600 text-white text-xs font-medium rounded hover:bg-teal-700 transition-colors"
+                    >
+                      Contratar
+                    </button>
+                  </td>
+                  <td className="px-6 py-6 text-center">
+                    <div className="text-lg font-bold text-neutral-900">$103.950</div>
+                    <div className="text-xs text-neutral-500">por mes</div>
+                    <div className="text-xs text-teal-600 font-medium">1 limpieza/semana</div>
+                    <button 
+                      onClick={() => handleWhatsAppContact('trimestral', 'Pequeña')}
+                      className="mt-2 px-3 py-1 bg-teal-600 text-white text-xs font-medium rounded hover:bg-teal-700 transition-colors"
+                    >
+                      Contratar
+                    </button>
+                  </td>
+                  <td className="px-6 py-6 text-center">
+                    <div className="text-lg font-bold text-neutral-900">$93.450</div>
+                    <div className="text-xs text-neutral-500">por mes</div>
+                    <div className="text-xs text-teal-600 font-medium">1 limpieza/semana</div>
+                    <button 
+                      onClick={() => handleWhatsAppContact('anual', 'Pequeña')}
+                      className="mt-2 px-3 py-1 bg-teal-600 text-white text-xs font-medium rounded hover:bg-teal-700 transition-colors"
+                    >
+                      Contratar
+                    </button>
                   </td>
                 </tr>
                 <tr className="hover:bg-neutral-50 transition-colors bg-teal-50/30">
@@ -295,20 +333,47 @@ const BusinessServices: React.FC = () => {
                     </div>
                   </td>
                   <td className="px-6 py-6 text-center">
-                    <div className="text-lg font-bold text-teal-600">$150.000</div>
-                    <div className="text-xs text-neutral-500">por semana</div>
-                  </td>
-                  <td className="px-6 py-6 text-center">
-                    <div className="text-lg font-bold text-neutral-900">$255.000</div>
-                    <div className="text-xs text-neutral-500">por mes</div>
-                  </td>
-                  <td className="px-6 py-6 text-center">
-                    <div className="text-lg font-bold text-neutral-900">$112.500</div>
-                    <div className="text-xs text-neutral-500">por mes</div>
-                  </td>
-                  <td className="px-6 py-6 text-center">
-                    <div className="text-lg font-bold text-neutral-900">$170.000</div>
+                    <div className="text-lg font-bold text-neutral-900">$40.000</div>
                     <div className="text-xs text-neutral-500">servicio único</div>
+                    <button 
+                      onClick={() => handleWhatsAppContact('una vez', 'Mediana')}
+                      className="mt-2 px-3 py-1 bg-teal-600 text-white text-xs font-medium rounded hover:bg-teal-700 transition-colors"
+                    >
+                      Contratar
+                    </button>
+                  </td>
+                  <td className="px-6 py-6 text-center">
+                    <div className="text-lg font-bold text-neutral-900">$132.000</div>
+                    <div className="text-xs text-neutral-500">por mes</div>
+                    <div className="text-xs text-teal-600 font-medium">1 limpieza/semana</div>
+                    <button 
+                      onClick={() => handleWhatsAppContact('mensual', 'Mediana')}
+                      className="mt-2 px-3 py-1 bg-teal-600 text-white text-xs font-medium rounded hover:bg-teal-700 transition-colors"
+                    >
+                      Contratar
+                    </button>
+                  </td>
+                  <td className="px-6 py-6 text-center">
+                    <div className="text-lg font-bold text-neutral-900">$118.800</div>
+                    <div className="text-xs text-neutral-500">por mes</div>
+                    <div className="text-xs text-teal-600 font-medium">1 limpieza/semana</div>
+                    <button 
+                      onClick={() => handleWhatsAppContact('trimestral', 'Mediana')}
+                      className="mt-2 px-3 py-1 bg-teal-600 text-white text-xs font-medium rounded hover:bg-teal-700 transition-colors"
+                    >
+                      Contratar
+                    </button>
+                  </td>
+                  <td className="px-6 py-6 text-center">
+                    <div className="text-lg font-bold text-neutral-900">$106.800</div>
+                    <div className="text-xs text-neutral-500">por mes</div>
+                    <div className="text-xs text-teal-600 font-medium">1 limpieza/semana</div>
+                    <button 
+                      onClick={() => handleWhatsAppContact('anual', 'Mediana')}
+                      className="mt-2 px-3 py-1 bg-teal-600 text-white text-xs font-medium rounded hover:bg-teal-700 transition-colors"
+                    >
+                      Contratar
+                    </button>
                   </td>
                 </tr>
                 <tr className="hover:bg-neutral-50 transition-colors">
@@ -318,20 +383,47 @@ const BusinessServices: React.FC = () => {
                     <div className="text-xs text-neutral-500 mt-1">16-30 empleados</div>
                   </td>
                   <td className="px-6 py-6 text-center">
-                    <div className="text-lg font-bold text-teal-600">$280.000</div>
-                    <div className="text-xs text-neutral-500">por semana</div>
-                  </td>
-                  <td className="px-6 py-6 text-center">
-                    <div className="text-lg font-bold text-neutral-900">$476.000</div>
-                    <div className="text-xs text-neutral-500">por mes</div>
-                  </td>
-                  <td className="px-6 py-6 text-center">
-                    <div className="text-lg font-bold text-neutral-900">$210.000</div>
-                    <div className="text-xs text-neutral-500">por mes</div>
-                  </td>
-                  <td className="px-6 py-6 text-center">
-                    <div className="text-lg font-bold text-neutral-900">$320.000</div>
+                    <div className="text-lg font-bold text-neutral-900">$45.000</div>
                     <div className="text-xs text-neutral-500">servicio único</div>
+                    <button 
+                      onClick={() => handleWhatsAppContact('una vez', 'Grande')}
+                      className="mt-2 px-3 py-1 bg-teal-600 text-white text-xs font-medium rounded hover:bg-teal-700 transition-colors"
+                    >
+                      Contratar
+                    </button>
+                  </td>
+                  <td className="px-6 py-6 text-center">
+                    <div className="text-lg font-bold text-neutral-900">$148.500</div>
+                    <div className="text-xs text-neutral-500">por mes</div>
+                    <div className="text-xs text-teal-600 font-medium">1 limpieza/semana</div>
+                    <button 
+                      onClick={() => handleWhatsAppContact('mensual', 'Grande')}
+                      className="mt-2 px-3 py-1 bg-teal-600 text-white text-xs font-medium rounded hover:bg-teal-700 transition-colors"
+                    >
+                      Contratar
+                    </button>
+                  </td>
+                  <td className="px-6 py-6 text-center">
+                    <div className="text-lg font-bold text-neutral-900">$133.650</div>
+                    <div className="text-xs text-neutral-500">por mes</div>
+                    <div className="text-xs text-teal-600 font-medium">1 limpieza/semana</div>
+                    <button 
+                      onClick={() => handleWhatsAppContact('trimestral', 'Grande')}
+                      className="mt-2 px-3 py-1 bg-teal-600 text-white text-xs font-medium rounded hover:bg-teal-700 transition-colors"
+                    >
+                      Contratar
+                    </button>
+                  </td>
+                  <td className="px-6 py-6 text-center">
+                    <div className="text-lg font-bold text-neutral-900">$120.150</div>
+                    <div className="text-xs text-neutral-500">por mes</div>
+                    <div className="text-xs text-teal-600 font-medium">1 limpieza/semana</div>
+                    <button 
+                      onClick={() => handleWhatsAppContact('anual', 'Grande')}
+                      className="mt-2 px-3 py-1 bg-teal-600 text-white text-xs font-medium rounded hover:bg-teal-700 transition-colors"
+                    >
+                      Contratar
+                    </button>
                   </td>
                 </tr>
                 <tr className="hover:bg-neutral-50 transition-colors">
@@ -341,20 +433,47 @@ const BusinessServices: React.FC = () => {
                     <div className="text-xs text-neutral-500 mt-1">30+ empleados</div>
                   </td>
                   <td className="px-6 py-6 text-center">
-                    <div className="text-lg font-bold text-teal-600">$450.000</div>
-                    <div className="text-xs text-neutral-500">por semana</div>
-                  </td>
-                  <td className="px-6 py-6 text-center">
-                    <div className="text-lg font-bold text-neutral-900">$765.000</div>
-                    <div className="text-xs text-neutral-500">por mes</div>
-                  </td>
-                  <td className="px-6 py-6 text-center">
-                    <div className="text-lg font-bold text-neutral-900">$337.500</div>
-                    <div className="text-xs text-neutral-500">por mes</div>
-                  </td>
-                  <td className="px-6 py-6 text-center">
-                    <div className="text-lg font-bold text-neutral-900">$520.000</div>
+                    <div className="text-lg font-bold text-neutral-900">$50.000</div>
                     <div className="text-xs text-neutral-500">servicio único</div>
+                    <button 
+                      onClick={() => handleWhatsAppContact('una vez', 'Corporativa')}
+                      className="mt-2 px-3 py-1 bg-teal-600 text-white text-xs font-medium rounded hover:bg-teal-700 transition-colors"
+                    >
+                      Contratar
+                    </button>
+                  </td>
+                  <td className="px-6 py-6 text-center">
+                    <div className="text-lg font-bold text-neutral-900">$165.000</div>
+                    <div className="text-xs text-neutral-500">por mes</div>
+                    <div className="text-xs text-teal-600 font-medium">1 limpieza/semana</div>
+                    <button 
+                      onClick={() => handleWhatsAppContact('mensual', 'Corporativa')}
+                      className="mt-2 px-3 py-1 bg-teal-600 text-white text-xs font-medium rounded hover:bg-teal-700 transition-colors"
+                    >
+                      Contratar
+                    </button>
+                  </td>
+                  <td className="px-6 py-6 text-center">
+                    <div className="text-lg font-bold text-neutral-900">$148.500</div>
+                    <div className="text-xs text-neutral-500">por mes</div>
+                    <div className="text-xs text-teal-600 font-medium">1 limpieza/semana</div>
+                    <button 
+                      onClick={() => handleWhatsAppContact('trimestral', 'Corporativa')}
+                      className="mt-2 px-3 py-1 bg-teal-600 text-white text-xs font-medium rounded hover:bg-teal-700 transition-colors"
+                    >
+                      Contratar
+                    </button>
+                  </td>
+                  <td className="px-6 py-6 text-center">
+                    <div className="text-lg font-bold text-neutral-900">$133.500</div>
+                    <div className="text-xs text-neutral-500">por mes</div>
+                    <div className="text-xs text-teal-600 font-medium">1 limpieza/semana</div>
+                    <button 
+                      onClick={() => handleWhatsAppContact('anual', 'Corporativa')}
+                      className="mt-2 px-3 py-1 bg-teal-600 text-white text-xs font-medium rounded hover:bg-teal-700 transition-colors"
+                    >
+                      Contratar
+                    </button>
                   </td>
                 </tr>
               </tbody>
@@ -368,12 +487,6 @@ const BusinessServices: React.FC = () => {
                 <span className="font-medium">Incluye:</span> Personal capacitado, productos profesionales, seguro de responsabilidad civil
               </div>
               <div className="flex gap-3">
-                <Link
-                  to="/cotizador"
-                  className="px-6 py-2 bg-teal-600 text-white font-medium rounded-lg hover:bg-teal-700 transition-colors"
-                >
-                  Cotizar Ahora
-                </Link>
                 <a
                   href={`https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent('¡Hola! Me interesa conocer más sobre sus servicios empresariales y obtener una cotización personalizada.')}`}
                   target="_blank"
@@ -566,7 +679,7 @@ const BusinessServices: React.FC = () => {
       </section>
 
       {/* FAQs */}
-      <section id="preguntas-frecuentes">
+      <section id="preguntas-frecuentes" className="mt-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-neutral-900 mb-4">
             Preguntas Frecuentes Empresariales

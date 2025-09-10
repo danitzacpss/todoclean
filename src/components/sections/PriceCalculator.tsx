@@ -108,6 +108,64 @@ const PriceCalculator: React.FC = () => {
     return () => clearTimeout(timer);
   }, [state.propertyType, state.squareMeters, state.frequency, state.currentStep, isNavigatingBack]);
 
+  // Calculate business prices based on BusinessServices.tsx pricing table
+  const calculateBusinessPrice = (squareMeters: number, frequency: FrequencyType): number => {
+    // Business pricing table from BusinessServices.tsx
+    const businessPricing = {
+      // Pequeña: Hasta 50m²
+      small: {
+        semanal: 80000,
+        bisemanal: 136000,
+        mensual: 60000,
+        unica: 90000
+      },
+      // Mediana: 50-150m² (Más Popular)
+      medium: {
+        semanal: 150000,
+        bisemanal: 255000,
+        mensual: 112500,
+        unica: 170000
+      },
+      // Grande: 150-300m²
+      large: {
+        semanal: 280000,
+        bisemanal: 476000,
+        mensual: 210000,
+        unica: 320000
+      },
+      // Corporativa: Más de 300m²
+      corporate: {
+        semanal: 450000,
+        bisemanal: 765000,
+        mensual: 337500,
+        unica: 520000
+      }
+    };
+
+    // Determine size category
+    let sizeCategory: keyof typeof businessPricing;
+    if (squareMeters <= 50) {
+      sizeCategory = 'small';
+    } else if (squareMeters <= 150) {
+      sizeCategory = 'medium';
+    } else if (squareMeters <= 300) {
+      sizeCategory = 'large';
+    } else {
+      sizeCategory = 'corporate';
+    }
+
+    // Map frequency to business pricing structure
+    const frequencyMap = {
+      'unica': 'unica',
+      'mensual': 'mensual',
+      'trimestral': 'mensual', // Use monthly price for trimestral
+      'anual': 'mensual' // Use monthly price for anual
+    } as const;
+
+    const priceKey = frequencyMap[frequency] as keyof typeof businessPricing.small;
+    return businessPricing[sizeCategory][priceKey];
+  };
+
   // Calculate final price
   const calculateFinalPrice = async () => {
     if (!state.propertyType || !state.squareMeters || !state.frequency) return;
@@ -115,21 +173,30 @@ const PriceCalculator: React.FC = () => {
     setIsLoading(true);
 
     try {
-      // Determine service type based on property selection
-      const selectedProperty = PROPERTY_OPTIONS.find(p => p.id === state.propertyType);
-      const serviceType = selectedProperty?.baseService || 'regular';
+      let finalPrice: number;
 
-      const calculation = calculatePrice({
-        serviceType,
-        propertyType: state.propertyType === 'local' ? 'casa' : state.propertyType,
-        squareMeters: state.squareMeters,
-        rooms: Math.ceil(state.squareMeters / 25), // Estimate rooms
-        frequency: state.frequency,
-        extras: [],
-        zone: 'A',
-      });
+      if (state.propertyType === 'oficina') {
+        // Use business pricing for offices
+        finalPrice = calculateBusinessPrice(state.squareMeters, state.frequency);
+      } else {
+        // Use residential pricing for other property types
+        const selectedProperty = PROPERTY_OPTIONS.find(p => p.id === state.propertyType);
+        const serviceType = selectedProperty?.baseService || 'regular';
 
-      setCalculatedPrice(calculation.totalPrice);
+        const calculation = calculatePrice({
+          serviceType,
+          propertyType: state.propertyType === 'local' ? 'casa' : state.propertyType,
+          squareMeters: state.squareMeters,
+          rooms: Math.ceil(state.squareMeters / 25), // Estimate rooms
+          frequency: state.frequency,
+          extras: [],
+          zone: 'A',
+        });
+
+        finalPrice = calculation.totalPrice;
+      }
+
+      setCalculatedPrice(finalPrice);
       
       // Delay for better UX
       setTimeout(() => {

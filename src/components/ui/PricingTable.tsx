@@ -114,81 +114,71 @@ const PricingTable: React.FC<PricingTableProps> = ({ className = '' }) => {
       </div>
 
       {/* Desktop Table */}
-      <div className="hidden lg:block bg-white rounded-2xl shadow-lg overflow-hidden border border-neutral-200">
+      <div className="hidden lg:block bg-white rounded-2xl shadow-xl border border-neutral-200 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full" role="table" aria-label="Tabla de precios por frecuencia">
-            <thead className="bg-neutral-50">
-              <tr>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-neutral-900" scope="col">
-                  Tamaño del Espacio
+            <thead>
+              <tr className="bg-gradient-to-r from-teal-50 to-cyan-50">
+                <th className="px-6 py-4 text-left" scope="col">
+                  <div className="font-semibold text-neutral-900">Tamaño del Espacio</div>
+                  <div className="text-sm text-neutral-600">Metros cuadrados</div>
                 </th>
                 {FREQUENCY_TYPES.map((frequency) => (
-                  <th key={frequency.id} className="px-6 py-4 text-center text-sm font-semibold text-neutral-900" scope="col">
-                    <div className="flex flex-col items-center">
-                      <div 
-                        className={`w-3 h-3 ${frequency.color} rounded-full mb-2`}
-                        aria-hidden="true"
-                      />
-                      <span>{frequency.name}</span>
-                      <span className="text-xs text-neutral-500 font-normal mt-1">
-                        {frequency.description}
-                      </span>
+                  <th key={frequency.id} className="px-6 py-4 text-center" scope="col">
+                    <div className="font-semibold text-neutral-900">{frequency.name}</div>
+                    <div className={`text-sm font-medium ${
+                      frequency.id === 'mensual' ? 'text-teal-600' : 'text-neutral-600'
+                    }`}>
+                      {frequency.id === 'mensual' ? '+15% de ahorro' : 
+                       frequency.id === 'trimestral' ? '+25% de ahorro' :
+                       frequency.id === 'anual' ? '+30% de ahorro' :
+                       frequency.description}
                     </div>
                   </th>
                 ))}
               </tr>
             </thead>
-            <tbody className="divide-y divide-neutral-200">
+            <tbody className="divide-y divide-neutral-100">
               {PRICING_TIERS.map((tier, index) => (
                 <tr 
                   key={tier.range} 
                   className={`hover:bg-neutral-50 transition-colors ${
-                    tier.popular ? 'bg-blue-50/50' : ''
+                    tier.popular ? 'bg-teal-50/30' : ''
                   }`}
                 >
-                  <th className="px-6 py-4" scope="row">
-                    <div className="flex items-center">
-                      <div>
-                        <div className="font-semibold text-neutral-900 flex items-center">
-                          {tier.size}
-                          {tier.popular && (
-                            <span className="ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                              Más Popular
-                            </span>
-                          )}
-                        </div>
-                        <div className="text-sm text-neutral-500">{tier.range}</div>
+                  <td className="px-6 py-6">
+                    <div className="font-semibold text-neutral-900">{tier.size}</div>
+                    <div className="text-sm text-neutral-600">{tier.range}</div>
+                    {tier.popular && (
+                      <div className="inline-flex items-center mt-2 px-2 py-1 bg-teal-100 text-teal-700 rounded-full text-xs font-medium">
+                        Más Popular
                       </div>
-                    </div>
-                  </th>
+                    )}
+                  </td>
                   
                   {FREQUENCY_TYPES.map((frequency) => {
                     const price = tier[frequency.id as keyof Pick<PricingTier, 'unica' | 'mensual' | 'trimestral' | 'anual'>];
                     const isQuote = price === 0;
                     
                     return (
-                      <td key={frequency.id} className="px-6 py-4 text-center">
-                        <div className="space-y-2">
-                          <div className="text-xl font-bold text-neutral-900">
-                            {isQuote ? 'Cotizar' : (
-                              <div className="flex items-baseline justify-center gap-1">
-                                <span className="text-xs text-neutral-500 font-medium uppercase tracking-wide">desde</span>
-                                <span>{formatPrice(price)}</span>
-                              </div>
-                            )}
-                          </div>
-                          <button
-                            onClick={() => handleWhatsAppContact(frequency.name, tier.size)}
-                            className={`inline-flex items-center px-3 py-1.5 text-xs font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
-                              tier.popular
-                                ? 'bg-blue-600 text-white hover:bg-blue-700'
-                                : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
-                            }`}
-                            aria-label={`${isQuote ? 'Solicitar cotización' : 'Contratar'} plan ${frequency.name} para espacio ${tier.size.toLowerCase()}`}
-                          >
-                            {isQuote ? 'Solicitar Cotización' : 'Contratar'}
-                          </button>
+                      <td key={frequency.id} className="px-6 py-6 text-center">
+                        <div className="text-lg font-bold text-neutral-900">
+                          {isQuote ? 'Cotizar' : formatPrice(price)}
                         </div>
+                        <div className="text-xs text-neutral-500">
+                          {frequency.id === 'unica' ? 'servicio único' : 'por mes'}
+                        </div>
+                        {frequency.id !== 'unica' && (
+                          <div className="text-xs text-teal-600 font-medium mt-1">
+                            1 limpieza/semana
+                          </div>
+                        )}
+                        <button
+                          onClick={() => handleWhatsAppContact(frequency.name, tier.size)}
+                          className="mt-2 px-3 py-1 bg-teal-600 text-white text-xs font-medium rounded hover:bg-teal-700 transition-colors"
+                        >
+                          Contratar
+                        </button>
                       </td>
                     );
                   })}
@@ -197,6 +187,25 @@ const PricingTable: React.FC<PricingTableProps> = ({ className = '' }) => {
             </tbody>
           </table>
         </div>
+        
+        {/* Table Footer */}
+        <div className="bg-gradient-to-r from-neutral-50 to-teal-50 px-6 py-4 border-t border-neutral-200">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="text-sm text-neutral-600">
+              <span className="font-medium">Incluye:</span> Productos profesionales, herramientas, personal capacitado y garantía de satisfacción
+            </div>
+            <div className="flex gap-3">
+              <a
+                href={`https://wa.me/56926176543?text=${encodeURIComponent('¡Hola! Me interesa conocer más sobre sus servicios de limpieza residencial y obtener una cotización personalizada.')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-2 bg-white border border-teal-600 text-teal-600 font-medium rounded-lg hover:bg-teal-50 transition-colors"
+              >
+                Consultar por WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Mobile Cards */}
@@ -204,21 +213,23 @@ const PricingTable: React.FC<PricingTableProps> = ({ className = '' }) => {
         {PRICING_TIERS.map((tier) => (
           <div 
             key={tier.range} 
-            className={`bg-white rounded-xl shadow-lg border-2 overflow-hidden ${
+            className={`bg-white rounded-xl shadow-xl border overflow-hidden ${
               tier.popular 
-                ? 'border-blue-200 ring-2 ring-blue-100' 
+                ? 'border-teal-200 ring-2 ring-teal-100' 
                 : 'border-neutral-200'
             }`}
           >
             {/* Card Header */}
-            <div className={`px-6 py-4 ${tier.popular ? 'bg-blue-50' : 'bg-neutral-50'}`}>
+            <div className={`px-6 py-4 bg-gradient-to-r ${
+              tier.popular ? 'from-teal-50 to-cyan-50' : 'from-neutral-50 to-neutral-50'
+            }`}>
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-lg font-bold text-neutral-900">{tier.size}</h3>
                   <p className="text-sm text-neutral-600">{tier.range}</p>
                 </div>
                 {tier.popular && (
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-teal-100 text-teal-700">
                     Más Popular
                   </span>
                 )}
@@ -233,28 +244,37 @@ const PricingTable: React.FC<PricingTableProps> = ({ className = '' }) => {
                 
                 return (
                   <div key={frequency.id} className="flex items-center justify-between p-4 bg-neutral-50 rounded-lg">
-                    <div className="flex items-center space-x-3">
-                      <div className={`w-3 h-3 ${frequency.color} rounded-full`} />
-                      <div>
-                        <div className="font-medium text-neutral-900">{frequency.name}</div>
-                        <div className="text-xs text-neutral-500">{frequency.description}</div>
+                    <div>
+                      <div className={`font-medium ${
+                        frequency.id === 'mensual' ? 'text-teal-600' : 'text-neutral-900'
+                      }`}>
+                        {frequency.name}
+                      </div>
+                      <div className="text-xs text-neutral-500">
+                        {frequency.id === 'mensual' ? '+15% de ahorro' : 
+                         frequency.id === 'trimestral' ? '+25% de ahorro' :
+                         frequency.id === 'anual' ? '+30% de ahorro' :
+                         frequency.description}
                       </div>
                     </div>
                     
                     <div className="text-right">
-                      <div className="text-lg font-bold text-neutral-900 mb-1">
-                        {isQuote ? 'Cotizar' : (
-                          <div className="flex items-baseline justify-end gap-1">
-                            <span className="text-xs text-neutral-500 font-medium uppercase tracking-wide">desde</span>
-                            <span>{formatPrice(price)}</span>
-                          </div>
-                        )}
+                      <div className="text-lg font-bold mb-1 text-neutral-900">
+                        {isQuote ? 'Cotizar' : formatPrice(price)}
                       </div>
+                      <div className="text-xs text-neutral-500">
+                        {frequency.id === 'unica' ? 'servicio único' : 'por mes'}
+                      </div>
+                      {frequency.id !== 'unica' && (
+                        <div className="text-xs text-teal-600 font-medium">
+                          1 limpieza/semana
+                        </div>
+                      )}
                       <button
                         onClick={() => handleWhatsAppContact(frequency.name, tier.size)}
-                        className="inline-flex items-center px-3 py-1 text-xs font-medium rounded-md bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+                        className="mt-2 px-3 py-1 bg-teal-600 text-white text-xs font-medium rounded-md hover:bg-teal-700 transition-colors"
                       >
-                        {isQuote ? 'Cotizar' : 'Contratar'}
+                        Contratar
                       </button>
                     </div>
                   </div>

@@ -19,7 +19,7 @@ const RESIDENTIAL_FAQS: FAQItem[] = [
   {
     id: '1',
     question: '¿Traen sus propios productos de limpieza?',
-    answer: 'Sí, incluimos todos los productos profesionales eco-friendly en nuestros servicios. Utilizamos productos de calidad internacional que son seguros para tu familia y mascotas. Solo necesitas tener agua disponible.'
+    answer: 'Sí, incluimos todos los productos profesionales eco-friendly durante el primer mes de contrato. Utilizamos productos de calidad internacional que son seguros para tu familia y mascotas. Solo necesitas tener agua disponible.'
   },
   {
     id: '2',
@@ -198,7 +198,7 @@ const ResidentialServices: React.FC = () => {
               <div className="flex items-center justify-between">
                 <div className="flex items-baseline gap-1">
                   <span className="text-xs text-neutral-500 font-medium uppercase tracking-wide">desde</span>
-                  <span className="text-lg font-bold text-blue-600">
+                  <span className="text-lg font-bold text-teal-600">
                     ${service.price.toLocaleString().replace(/,/g, '.')}
                   </span>
                 </div>
@@ -209,7 +209,7 @@ const ResidentialServices: React.FC = () => {
                     );
                     window.open(`https://wa.me/${SITE_CONFIG.whatsapp}?text=${message}`, '_blank');
                   }}
-                  className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors"
+                  className="px-4 py-2 bg-teal-600 text-white text-sm font-medium rounded-lg hover:bg-teal-700 transition-colors"
                 >
                   Agregar
                 </button>
@@ -220,7 +220,7 @@ const ResidentialServices: React.FC = () => {
       </section>
 
       {/* FAQs Section */}
-      <section id="preguntas-frecuentes">
+      <section id="preguntas-frecuentes" className="mt-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-neutral-900 mb-4">
             Preguntas Frecuentes

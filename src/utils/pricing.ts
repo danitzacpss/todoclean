@@ -19,6 +19,137 @@ import {
 } from './constants';
 
 // ==========================================
+// BUSINESS PRICING TABLE (EXACT MATCH)
+// ==========================================
+
+function calculateBusinessPrice(params: {
+  serviceType: ServiceType;
+  squareMeters: number;
+  rooms: number;
+  frequency: FrequencyType;
+  extras: string[];
+  zone?: ZoneType;
+}): PriceCalculation {
+  const { squareMeters, frequency, extras, zone = 'A' } = params;
+
+  // Business pricing table calculated from base prices using residential logic
+  // Base prices: Pequeña $35k, Mediana $40k, Grande $45k, Corporativa $50k
+  // Proportions from residential: Mensual 3.3x, Trimestral 2.97x, Anual 2.67x
+  const businessPrices = {
+    // Pequeña: Hasta 50m²
+    pequena: {
+      anual: Math.round(35000 * 2.67), // 93,450
+      trimestral: Math.round(35000 * 2.97), // 103,950
+      mensual: Math.round(35000 * 3.3), // 115,500
+      unica: 35000
+    },
+    // Mediana: 50-150m²
+    mediana: {
+      anual: Math.round(40000 * 2.67), // 106,800
+      trimestral: Math.round(40000 * 2.97), // 118,800
+      mensual: Math.round(40000 * 3.3), // 132,000
+      unica: 40000
+    },
+    // Grande: 150-300m²
+    grande: {
+      anual: Math.round(45000 * 2.67), // 120,150
+      trimestral: Math.round(45000 * 2.97), // 133,650
+      mensual: Math.round(45000 * 3.3), // 148,500
+      unica: 45000
+    },
+    // Corporativa: Más de 300m²
+    corporativa: {
+      anual: Math.round(50000 * 2.67), // 133,500
+      trimestral: Math.round(50000 * 2.97), // 148,500
+      mensual: Math.round(50000 * 3.3), // 165,000
+      unica: 50000
+    }
+  };
+
+  // Determine office size category
+  let sizeCategory: keyof typeof businessPrices;
+  if (squareMeters <= 50) {
+    sizeCategory = 'pequena';
+  } else if (squareMeters <= 150) {
+    sizeCategory = 'mediana';
+  } else if (squareMeters <= 300) {
+    sizeCategory = 'grande';
+  } else {
+    sizeCategory = 'corporativa';
+  }
+
+  // Map frequency to business table frequency
+  let businessFrequency: keyof typeof businessPrices.pequena;
+  switch (frequency) {
+    case 'unica':
+      businessFrequency = 'unica';
+      break;
+    case 'mensual':
+      businessFrequency = 'mensual';
+      break;
+    case 'trimestral':
+      businessFrequency = 'trimestral';
+      break;
+    case 'anual':
+      businessFrequency = 'anual';
+      break;
+    default:
+      businessFrequency = 'mensual';
+  }
+
+  // Get base price from business table
+  const basePrice = businessPrices[sizeCategory][businessFrequency];
+
+  // Calculate extras
+  let extrasTotal = 0;
+  extras.forEach(extraId => {
+    const extra = EXTRA_SERVICES.find(e => e.id === extraId);
+    if (extra) {
+      extrasTotal += extra.price;
+    }
+  });
+
+  // Apply zone surcharge
+  const zoneInfo = SERVICE_AREAS.find(area => area.zone === zone);
+  const zoneSurcharge = zoneInfo?.surcharge || 0;
+
+  const finalPrice = basePrice + extrasTotal + zoneSurcharge;
+
+  // Estimate hours based on office size
+  let estimatedHours: number;
+  switch (sizeCategory) {
+    case 'pequena':
+      estimatedHours = 3;
+      break;
+    case 'mediana':
+      estimatedHours = 4;
+      break;
+    case 'grande':
+      estimatedHours = 6;
+      break;
+    case 'corporativa':
+      estimatedHours = 8;
+      break;
+  }
+
+  return {
+    serviceType: params.serviceType,
+    propertyType: 'oficina',
+    squareMeters,
+    rooms: params.rooms,
+    frequency,
+    extras,
+    zone,
+    basePrice,
+    frequencyDiscount: 0, // Business prices already include frequency discounts
+    zoneCharge: zoneSurcharge,
+    extrasTotal,
+    totalPrice: finalPrice,
+    estimatedHours
+  };
+}
+
+// ==========================================
 // CORE PRICING CALCULATION
 // ==========================================
 
@@ -40,6 +171,18 @@ export function calculatePrice(params: {
     extras, 
     zone = 'A' 
   } = params;
+
+  // Special pricing for offices - use business table prices
+  if (propertyType === 'oficina') {
+    return calculateBusinessPrice({
+      serviceType,
+      squareMeters,
+      rooms,
+      frequency,
+      extras,
+      zone
+    });
+  }
 
   // Get base service pricing
   const servicePricing = SERVICE_PRICING[serviceType];

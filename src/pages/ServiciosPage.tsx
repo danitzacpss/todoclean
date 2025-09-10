@@ -204,7 +204,7 @@ const ServiciosPage: React.FC = () => {
         </section>
 
         {/* Bottom CTA Section - Dynamic based on active tab */}
-        <section className="relative py-16 lg:py-20 overflow-hidden">
+        <section className="relative py-8 lg:py-12 overflow-hidden">
           {activeTab === 'residential' ? (
             // Residential CTA
             <>
@@ -243,22 +243,13 @@ const ServiciosPage: React.FC = () => {
                     Únete a más de 350 clientes satisfechos. Servicios desde $30.000 con limpieza completa en 3 horas.
                   </p>
                   
-                  {/* CTA Buttons with enhanced design matching reference */}
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-                    <Link
-                      to="/cotizador"
-                      className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-700 hover:to-teal-700 text-white font-semibold rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300 border-0"
-                    >
-                      <span className="flex items-center gap-2">
-                        ⚡ Calcular Precio
-                      </span>
-                    </Link>
-                    
+                  {/* CTA Button with enhanced design matching reference */}
+                  <div className="flex justify-center mb-12">
                     <a
                       href={`https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent('¡Hola! Me interesa conocer más sobre sus servicios de limpieza desde $30.000.')}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center px-8 py-4 bg-white border-2 border-cyan-600 hover:bg-cyan-50 text-cyan-700 font-semibold rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300"
+                      className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-700 hover:to-teal-700 text-white font-semibold rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300"
                     >
                       <span className="flex items-center gap-2">
                         💬 Contactar WhatsApp
@@ -322,22 +313,13 @@ const ServiciosPage: React.FC = () => {
                     Nuestros servicios especializados garantizan un ambiente productivo y profesional.
                   </p>
                   
-                  {/* CTA Buttons with enhanced design */}
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-                    <Link
-                      to="/cotizador"
-                      className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-700 hover:to-teal-700 text-white font-semibold rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300 border-0"
-                    >
-                      <span className="flex items-center gap-2">
-                        Solicitar Cotización
-                      </span>
-                    </Link>
-                    
+                  {/* CTA Button */}
+                  <div className="flex justify-center mb-12">
                     <a
                       href={`https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent('¡Hola! Me interesa conocer más sobre sus servicios empresariales de limpieza. ¿Podrían enviarme información detallada?')}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center px-8 py-4 bg-white border-2 border-cyan-600 hover:bg-cyan-50 text-cyan-700 font-semibold rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300"
+                      className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-700 hover:to-teal-700 text-white font-semibold rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300"
                     >
                       <span className="flex items-center gap-2">
                         Contactar por WhatsApp
