@@ -10,6 +10,7 @@ import { Helmet } from 'react-helmet-async';
 // Import layout components
 import Layout from './components/layout/Layout';
 import Loading from './components/ui/Loading';
+import ScrollToTop from './components/ScrollToTop';
 
 // Import context providers
 import { AppProvider } from './contexts/AppContext';
@@ -50,9 +51,6 @@ function RouteAnalytics() {
   useEffect(() => {
     // Track page views with analytics
     trackPageView(location.pathname, document.title);
-    
-    // Scroll to top on route change
-    window.scrollTo({ top: 0, behavior: 'smooth' });
     
     // Update page focus for screen readers
     const mainContent = document.getElementById('main-content');
@@ -114,6 +112,9 @@ function App() {
 
           {/* Route analytics tracker */}
           <RouteAnalytics />
+          
+          {/* Scroll to top on route changes */}
+          <ScrollToTop />
 
           {/* Main application routes */}
           <Suspense fallback={<PageLoadingFallback />}>

@@ -88,38 +88,11 @@ const Header: React.FC = () => {
               aria-label="Todo Clean Chillán - Inicio"
             >
               {/* Logo */}
-              <svg
-                width="200"
-                height="80"
-                viewBox="0 0 200 80"
-                className="h-10 w-auto"
-                aria-label="Todo Clean - Servicio de Limpieza Profesional"
-              >
-                {/* Casa */}
-                <g fill="none" stroke="#4FB3D9" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round">
-                  {/* Techo triangular */}
-                  <path d="M25 35 L40 20 L55 35" />
-                  {/* Paredes */}
-                  <path d="M25 35 L25 55 L55 55 L55 35" />
-                  {/* Base */}
-                  <path d="M20 55 L60 55" />
-                </g>
-                
-                {/* Estrella de 4 puntas */}
-                <g fill="#4FB3D9">
-                  <path d="M40 28 L42 32 L46 30 L44 34 L48 36 L44 38 L46 42 L42 40 L40 44 L38 40 L34 42 L36 38 L32 36 L36 34 L34 30 L38 32 Z" />
-                </g>
-                
-                {/* Texto Todo */}
-                <text x="75" y="32" fontFamily="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" fontSize="24" fontWeight="700" fill="#4A5568" letterSpacing="-0.5px">
-                  Todo
-                </text>
-                
-                {/* Texto Clean */}
-                <text x="75" y="55" fontFamily="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" fontSize="24" fontWeight="700" fill="#4FB3D9" letterSpacing="-0.5px">
-                  Clean
-                </text>
-              </svg>
+              <img
+                src="/Documentation/Todo Clean.png"
+                alt="Todo Clean - Servicio de Limpieza Profesional"
+                className="h-16 w-auto"
+              />
             </Link>
           </div>
 

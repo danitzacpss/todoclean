@@ -23,12 +23,15 @@ const Footer: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {/* Company Info */}
             <div className="lg:col-span-2">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center text-white font-bold text-lg">
-                  TC
-                </div>
+              <div className="flex items-center gap-4 mb-6">
+                {/* Logo */}
+                <img
+                  src="/Documentation/Todo Clean.png"
+                  alt="Todo Clean - Servicio de Limpieza Profesional"
+                  className="h-16 w-auto flex-shrink-0"
+                />
                 <div>
-                  <div className="font-heading font-bold text-xl text-white">
+                  <div className="text-lg font-semibold text-white mb-1">
                     Todo Clean Chillán
                   </div>
                   <div className="text-sm text-primary-400">
@@ -60,16 +63,6 @@ const Footer: React.FC = () => {
                 </PhoneButton>
               </div>
 
-              {/* Business hours */}
-              <div className="text-sm">
-                <h4 className="font-semibold text-white mb-2">Horarios de Atención</h4>
-                <p className="text-neutral-400">
-                  Lunes a Sábado: {SITE_CONFIG.businessHours?.monday?.open || '9:00'} - {SITE_CONFIG.businessHours?.saturday?.close || '18:00'}
-                </p>
-                <p className="text-neutral-400">
-                  Domingo: {SITE_CONFIG.businessHours?.sunday?.open || '10:00'} - {SITE_CONFIG.businessHours?.sunday?.close || '16:00'}
-                </p>
-              </div>
             </div>
 
             {/* Navigation Links */}
@@ -81,6 +74,12 @@ const Footer: React.FC = () => {
                     <Link
                       to={route.path}
                       className="text-neutral-400 hover:text-white transition-colors duration-200 focus:text-white focus:outline-none focus:underline"
+                      onClick={() => {
+                        // Scroll to top after navigation
+                        setTimeout(() => {
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }, 100);
+                      }}
                     >
                       {route.name}
                     </Link>
@@ -89,55 +88,50 @@ const Footer: React.FC = () => {
               </ul>
             </div>
 
-            {/* Services & Legal */}
+            {/* Services & Business Hours */}
             <div>
               <h4 className="font-semibold text-white mb-4">Servicios</h4>
               <ul className="space-y-2 mb-6">
                 <li>
-                  <Link
-                    to="/servicios/residencial"
+                  <a
+                    href="/servicios"
                     className="text-neutral-400 hover:text-white transition-colors duration-200 focus:text-white focus:outline-none focus:underline"
+                    onClick={() => {
+                      // Scroll to top after navigation
+                      setTimeout(() => {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }, 100);
+                    }}
                   >
-                    Limpieza Residencial
-                  </Link>
+                    Servicios Residenciales
+                  </a>
                 </li>
                 <li>
-                  <Link
-                    to="/servicios/empresarial"
+                  <a
+                    href="/servicios"
                     className="text-neutral-400 hover:text-white transition-colors duration-200 focus:text-white focus:outline-none focus:underline"
+                    onClick={() => {
+                      // Scroll to top after navigation
+                      setTimeout(() => {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }, 100);
+                    }}
                   >
-                    Limpieza Empresarial
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/cotizador"
-                    className="text-neutral-400 hover:text-white transition-colors duration-200 focus:text-white focus:outline-none focus:underline"
-                  >
-                    Cotizador Online
-                  </Link>
+                    Servicios Empresariales
+                  </a>
                 </li>
               </ul>
 
-              <h4 className="font-semibold text-white mb-4">Legal</h4>
-              <ul className="space-y-2">
-                <li>
-                  <Link
-                    to="/politica-privacidad"
-                    className="text-neutral-400 hover:text-white transition-colors duration-200 focus:text-white focus:outline-none focus:underline"
-                  >
-                    Política de Privacidad
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/terminos-condiciones"
-                    className="text-neutral-400 hover:text-white transition-colors duration-200 focus:text-white focus:outline-none focus:underline"
-                  >
-                    Términos y Condiciones
-                  </Link>
-                </li>
-              </ul>
+              {/* Business hours */}
+              <div className="text-sm">
+                <h4 className="font-semibold text-white mb-2">Horarios de Atención</h4>
+                <p className="text-neutral-400">
+                  Lunes a Sábado: {SITE_CONFIG.businessHours?.monday?.open || '9:00'} - {SITE_CONFIG.businessHours?.saturday?.close || '18:00'}
+                </p>
+                <p className="text-neutral-400">
+                  Domingo: {SITE_CONFIG.businessHours?.sunday?.open || '10:00'} - {SITE_CONFIG.businessHours?.sunday?.close || '16:00'}
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -163,9 +157,7 @@ const Footer: React.FC = () => {
                   aria-label="Síguenos en Instagram"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987s11.987-5.367 11.987-11.987C24.004 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.49-3.342-1.297-.894-.808-1.297-1.953-1.297-3.342V8.547c0-1.297.49-2.448 1.297-3.342C6.001 4.311 7.152 3.908 8.449 3.908h3.802c1.297 0 2.448.49 3.342 1.297.894.808 1.297 1.953 1.297 3.342v3.802c0 1.297-.49 2.448-1.297 3.342-.894.894-2.045 1.297-3.342 1.297H8.449z"/>
-                    <path d="M12.049 7.435c-2.534 0-4.614 2.08-4.614 4.614s2.08 4.614 4.614 4.614 4.614-2.08 4.614-4.614-2.08-4.614-4.614-4.614zm0 6.55c-1.071 0-1.936-.865-1.936-1.936s.865-1.936 1.936-1.936 1.936.865 1.936 1.936-.865 1.936-1.936 1.936z"/>
-                    <path d="M16.967 6.302c-.593 0-1.071.478-1.071 1.071s.478 1.071 1.071 1.071 1.071-.478 1.071-1.071-.478-1.071-1.071-1.071z"/>
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                   </svg>
                 </a>
               )}

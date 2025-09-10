@@ -111,27 +111,6 @@ const SobreNosotrosPage: React.FC = () => {
       </Helmet>
       
       <div className="min-h-screen bg-gradient-to-br from-neutral-50 to-blue-50/30">
-        {/* Breadcrumbs */}
-        <nav className="bg-white border-b border-neutral-200" aria-label="Breadcrumb">
-          <div className="container mx-auto px-4 py-3">
-            <ol className="flex items-center space-x-2 text-sm">
-              <li>
-                <Link 
-                  to="/" 
-                  className="text-neutral-600 hover:text-blue-600 transition-colors"
-                >
-                  Inicio
-                </Link>
-              </li>
-              <li className="flex items-center">
-                <svg className="w-4 h-4 text-neutral-400 mx-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-                </svg>
-                <span className="text-neutral-900 font-medium">Sobre Nosotros</span>
-              </li>
-            </ol>
-          </div>
-        </nav>
 
         {/* Hero Section */}
         <section className="py-16">

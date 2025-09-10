@@ -12,7 +12,7 @@ import { trackEvent } from '@/utils/analytics';
 
 // Extended schema for contact form with additional fields
 const extendedContactFormSchema = contactFormSchema.extend({
-  servicio: z.enum(['regular', 'profunda', 'postobra', 'empresarial', 'otro']).optional(),
+  servicio: z.enum(['residencial', 'empresarial', 'otro']).optional(),
   telefono: z.string().optional(),
   terminos: z.boolean().refine((val) => val === true, {
     message: 'Debes aceptar los términos y condiciones'
@@ -132,9 +132,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 
   const getServiceName = (serviceKey: string): string => {
     const serviceNames: Record<string, string> = {
-      regular: 'Limpieza Regular',
-      profunda: 'Limpieza Profunda', 
-      postobra: 'Limpieza Post-Obra',
+      residencial: 'Servicios Residenciales',
       empresarial: 'Servicios Empresariales',
       otro: 'Otro servicio'
     };
@@ -241,11 +239,9 @@ export const ContactForm: React.FC<ContactFormProps> = ({
             aria-describedby="servicio-help"
           >
             <option value="">Selecciona un servicio</option>
-            <option value="regular">Limpieza Regular (desde $35.000)</option>
-            <option value="profunda">Limpieza Profunda (desde $55.000)</option>
-            <option value="postobra">Limpieza Post-Obra (desde $80.000)</option>
+            <option value="residencial">Servicios Residenciales</option>
             <option value="empresarial">Servicios Empresariales</option>
-            <option value="otro">Otro servicio</option>
+            <option value="otro">Otro</option>
           </select>
           <p id="servicio-help" className="mt-1 text-sm text-neutral-500">
             Nos ayuda a preparar mejor tu cotización

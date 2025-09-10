@@ -3,7 +3,7 @@
 // Overview of all cleaning services with tabs navigation
 // ===================================
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { SITE_CONFIG } from '@/utils/constants';
@@ -35,6 +35,49 @@ const TABS: TabProps[] = [
 const ServiciosPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'residential' | 'business'>('residential');
 
+  // Handle URL hash to set active tab
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash === '#empresariales') {
+        setActiveTab('business');
+        // Scroll to tabs section after setting the tab
+        setTimeout(() => {
+          const tabsElement = document.getElementById('servicios-tabs');
+          if (tabsElement) {
+            tabsElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 100);
+      } else if (hash === '#residencial') {
+        setActiveTab('residential');
+        // Scroll to tabs section
+        setTimeout(() => {
+          const tabsElement = document.getElementById('servicios-tabs');
+          if (tabsElement) {
+            tabsElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 100);
+      } else if (hash === '') {
+        // No hash means came from header navigation - scroll to top
+        setActiveTab('residential');
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 100);
+      }
+    };
+
+    // Check hash on initial load
+    handleHashChange();
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashChange);
+
+    // Cleanup listener
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
+
   return (
     <>
       <Helmet>
@@ -54,27 +97,6 @@ const ServiciosPage: React.FC = () => {
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-br from-neutral-50 to-blue-50/30">
-        {/* Breadcrumbs */}
-        <nav className="bg-white border-b border-neutral-200" aria-label="Breadcrumb">
-          <div className="container mx-auto px-4 py-3">
-            <ol className="flex items-center space-x-2 text-sm">
-              <li>
-                <Link 
-                  to="/" 
-                  className="text-neutral-600 hover:text-blue-600 transition-colors"
-                >
-                  Inicio
-                </Link>
-              </li>
-              <li className="flex items-center">
-                <svg className="w-4 h-4 text-neutral-400 mx-2" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-                </svg>
-                <span className="text-neutral-900 font-medium">Servicios</span>
-              </li>
-            </ol>
-          </div>
-        </nav>
 
         {/* Hero Section */}
         <section className="py-16">
@@ -150,7 +172,7 @@ const ServiciosPage: React.FC = () => {
         </section>
 
         {/* Tab Navigation */}
-        <section className="pb-12">
+        <section className="pb-12" id="servicios-tabs">
           <div className="container mx-auto px-4">
             {/* Sticky Tab Bar */}
             <div className="bg-white rounded-2xl shadow-lg border border-neutral-200 mb-8 sticky top-20 z-10">
@@ -158,7 +180,15 @@ const ServiciosPage: React.FC = () => {
                 {TABS.map((tab) => (
                   <button
                     key={tab.id}
-                    onClick={() => setActiveTab(tab.id)}
+                    onClick={() => {
+                      setActiveTab(tab.id);
+                      // Update URL hash when clicking tabs
+                      if (tab.id === 'business') {
+                        window.history.replaceState(null, '', '/servicios#empresariales');
+                      } else {
+                        window.history.replaceState(null, '', '/servicios');
+                      }
+                    }}
                     className={`flex-1 p-6 text-left transition-all duration-300 first:rounded-l-2xl last:rounded-r-2xl md:first:rounded-tr-none md:last:rounded-tl-none md:first:rounded-bl-2xl md:last:rounded-br-2xl ${
                       activeTab === tab.id
                         ? 'bg-teal-600 text-white shadow-lg'
