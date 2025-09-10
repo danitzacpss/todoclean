@@ -5,6 +5,7 @@
 
 import React, { useState, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 import { 
   MapPinIcon, 
   ClockIcon, 
@@ -207,260 +208,230 @@ const CoberturaPage: React.FC = () => {
         <link rel="canonical" href={`${SITE_CONFIG.url}/cobertura`} />
       </Helmet>
       
-      <div className="min-h-screen bg-white coverage-page">
-        {/* Hero Section */}
-        <section className="relative overflow-hidden hero">
-          {/* Removed background elements for cleaner design */}
+      <div className="min-h-screen bg-gradient-to-br from-neutral-50 to-blue-50/30 coverage-page">
+        {/* Breadcrumbs */}
+        <nav className="bg-white border-b border-neutral-200" aria-label="Breadcrumb">
+          <div className="container mx-auto px-4 py-3">
+            <ol className="flex items-center space-x-2 text-sm">
+              <li>
+                <Link 
+                  to="/" 
+                  className="text-neutral-600 hover:text-blue-600 transition-colors"
+                >
+                  Inicio
+                </Link>
+              </li>
+              <li className="flex items-center">
+                <svg className="w-4 h-4 text-neutral-400 mx-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                </svg>
+                <span className="text-neutral-900 font-medium">Cobertura</span>
+              </li>
+            </ol>
+          </div>
+        </nav>
 
-          <div className="container mx-auto px-4 relative z-10 py-12 lg:py-16 hero-container">
-            <div className="grid lg:grid-cols-2 gap-12 items-center hero-content">
-              {/* Content Column */}
-              <div className="text-center lg:text-left hero-text">
-                {/* Premium badge */}
-                <div className="inline-flex items-center gap-2 bg-cyan-50 border border-cyan-200 rounded-full px-4 py-2 mb-6 hero-badge">
+        {/* Combined Hero and Search Section */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <div className="grid lg:grid-cols-2 gap-12 items-start">
+              {/* Left Column - Areas de Cobertura */}
+              <div className="text-center lg:text-left">
+                <div className="inline-flex items-center gap-2 bg-cyan-50 border border-cyan-200 rounded-full px-3 py-1 mb-3">
                   <div className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse" />
                   <span className="text-sm font-medium text-cyan-700">Cobertura Garantizada</span>
                 </div>
                 
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-heading mb-8 leading-tight hero-headline">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
                   <span className="block text-gray-900">Áreas de</span>
-                  <span className="block bg-gradient-to-r from-cyan-600 via-teal-600 to-cyan-700 bg-clip-text text-transparent highlight">
+                  <span className="block bg-gradient-to-r from-cyan-600 via-teal-600 to-cyan-700 bg-clip-text text-transparent">
                     Cobertura
                   </span>
-                  <span className="block text-gray-700 text-3xl md:text-4xl lg:text-5xl mt-2">
+                  <span className="block text-gray-700 text-2xl md:text-3xl lg:text-4xl">
                     en Chillán y alrededores
                   </span>
                 </h1>
                 
-                <p className="text-lg md:text-xl mb-10 text-gray-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed hero-subheadline">
-                  Brindamos servicios en
-                  <span className="block font-bold text-gray-900 mt-1">
-                    Chillán y comunas cercanas
-                  </span>
+                <p className="text-lg md:text-xl text-gray-600 mb-6 leading-relaxed">
+                  Brindamos servicios en <span className="font-bold text-gray-900">Chillán y comunas cercanas</span>
                   <span className="block text-base text-cyan-600 mt-2 font-medium">
                     ✨ Con diferentes zonas de precio y tiempos de respuesta
                   </span>
                 </p>
 
-                {/* Quick stats */}
-                <div className="grid grid-cols-3 gap-4 mb-8 hero-actions">
-                  <div className="group">
-                    <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 text-center hover:bg-cyan-50 hover:border-cyan-200 transition-all duration-300 group-hover:scale-105">
-                      <div className="w-10 h-10 bg-gradient-to-br from-cyan-500 to-teal-600 rounded-lg flex items-center justify-center mx-auto mb-2">
-                        <MapPinIcon className="w-5 h-5 text-white" />
-                      </div>
-                      <div className="text-lg font-bold text-gray-900">{SERVICE_AREAS ? SERVICE_AREAS.length : 0}</div>
-                      <div className="text-sm text-gray-600">Zonas</div>
+                <div className="grid grid-cols-3 gap-4">
+                  <div className="bg-white border border-gray-200 rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition-shadow">
+                    <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-teal-600 rounded-xl flex items-center justify-center mx-auto mb-3">
+                      <MapPinIcon className="w-6 h-6 text-white" />
                     </div>
+                    <div className="text-2xl font-bold text-gray-900 mb-1">{SERVICE_AREAS ? SERVICE_AREAS.length : 0}</div>
+                    <div className="text-sm text-gray-600">Zonas</div>
                   </div>
                   
-                  <div className="group">
-                    <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 text-center hover:bg-cyan-50 hover:border-cyan-200 transition-all duration-300 group-hover:scale-105">
-                      <div className="w-10 h-10 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-lg flex items-center justify-center mx-auto mb-2">
-                        <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                      <div className="text-lg font-bold text-gray-900">{allCommunes.length > 0 ? `${allCommunes.length}+` : '0'}</div>
-                      <div className="text-sm text-gray-600">Comunas</div>
+                  <div className="bg-white border border-gray-200 rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition-shadow">
+                    <div className="w-12 h-12 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-xl flex items-center justify-center mx-auto mb-3">
+                      <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                      </svg>
                     </div>
+                    <div className="text-2xl font-bold text-gray-900 mb-1">{allCommunes.length > 0 ? `${allCommunes.length}+` : '0'}</div>
+                    <div className="text-sm text-gray-600">Comunas</div>
                   </div>
                   
-                  <div className="group">
-                    <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 text-center hover:bg-cyan-50 hover:border-cyan-200 transition-all duration-300 group-hover:scale-105">
-                      <div className="w-10 h-10 bg-gradient-to-br from-cyan-600 to-teal-500 rounded-lg flex items-center justify-center mx-auto mb-2">
-                        <ClockIcon className="w-5 h-5 text-white" />
-                      </div>
-                      <div className="text-lg font-bold text-gray-900">24h</div>
-                      <div className="text-sm text-gray-600">Respuesta</div>
+                  <div className="bg-white border border-gray-200 rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition-shadow">
+                    <div className="w-12 h-12 bg-gradient-to-br from-cyan-600 to-teal-500 rounded-xl flex items-center justify-center mx-auto mb-3">
+                      <ClockIcon className="w-6 h-6 text-white" />
                     </div>
+                    <div className="text-2xl font-bold text-gray-900 mb-1">24h</div>
+                    <div className="text-sm text-gray-600">Respuesta</div>
                   </div>
                 </div>
               </div>
 
-              {/* Information Card Column - Replacing image with clean information card */}
-              <div className="relative">
-                <div className="bg-white rounded-2xl shadow-md p-8 border border-gray-100">
-                  <div className="mb-6">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4">Zonas de Cobertura</h3>
-                    <p className="text-gray-600 mb-6">Nuestro servicio está disponible en Chillán y comunas cercanas con diferentes tiempos de respuesta según la ubicación.</p>
-                    
-                    <div className="space-y-4">
-                      {SERVICE_AREAS.slice(0, 3).map((area, index) => (
-                        <div key={index} className="flex items-center p-3 border border-gray-100 rounded-lg hover:bg-gray-50 transition-colors">
-                          <div className="w-3 h-3 rounded-full mr-3" style={{ backgroundColor: area.color }} />
-                          <div>
-                            <h4 className="font-medium text-gray-900">{area.name}</h4>
-                            <p className="text-sm text-gray-500">{area.description}</p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
+              {/* Right Column - Busca tu dirección */}
+              <div>
+                <div className="text-center mb-6">
+                  <div className="inline-flex items-center gap-2 bg-cyan-50 border border-cyan-200 rounded-full px-4 py-2 mb-4">
+                    <div className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse"></div>
+                    <span className="text-sm font-medium text-cyan-700">Búsqueda Inteligente</span>
                   </div>
                   
-                  <div className="border-t border-gray-100 pt-6">
-                    <div className="flex justify-between items-center">
-                      <div className="text-sm text-gray-500">Ver todas las zonas</div>
-                      <Button variant="outline" size="sm" onClick={() => scrollToSection('map-section')}>
-                        <MapPinIcon className="w-4 h-4 mr-2" />
-                        Ver mapa
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Address Search */}
-        <section className="py-10 bg-white relative overflow-hidden services-section">
-          {/* Removed decorative elements for cleaner design */}
-          
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-2xl mx-auto">
-              <div className="text-center mb-6">
-                {/* Premium badge */}
-                <div className="inline-flex items-center gap-2 bg-cyan-50 border border-cyan-200 rounded-full px-4 py-2 mb-6">
-                  <div className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse"></div>
-                  <span className="text-sm font-medium text-cyan-700">Búsqueda Inteligente</span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    Busca tu dirección
+                  </h2>
+                  <p className="text-lg text-gray-600">
+                    Ingresa tu dirección para conocer la zona de servicio, recargos y tiempo de respuesta
+                  </p>
                 </div>
                 
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                  Busca tu dirección
-                </h2>
-                <p className="text-lg text-gray-600 max-w-xl mx-auto">
-                  Ingresa tu dirección para conocer la zona de servicio, recargos y tiempo de respuesta
-                </p>
-              </div>
-              
-              <Card className="p-6">
-                <div className="space-y-4">
-                  <div className="relative">
-                    <input
-                      type="text"
-                      value={searchAddress}
-                      onChange={(e) => setSearchAddress(e.target.value)}
-                      onKeyPress={(e) => e.key === 'Enter' && handleAddressSearch()}
-                      placeholder="Ej: Av. Libertad 123, Centro, Chillán"
-                      className="w-full pl-12 pr-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
-                      disabled={isSearching}
-                    />
-                    <MagnifyingGlassIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-neutral-400" />
-                    
-                    {/* Search suggestions */}
-                    {filteredSuggestions.length > 0 && searchAddress.trim() && (
-                      <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-neutral-200 rounded-lg shadow-lg z-10">
-                        {filteredSuggestions.map((suggestion, index) => (
-                          <button
-                            key={index}
-                            onClick={() => {
-                              setSearchAddress(suggestion);
-                              handleAddressSearch();
-                            }}
-                            className="w-full text-left px-4 py-2 hover:bg-neutral-50 first:rounded-t-lg last:rounded-b-lg border-b border-neutral-100 last:border-b-0"
-                          >
-                            {suggestion}
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                  
-                  <Button 
-                    onClick={handleAddressSearch}
-                    disabled={!searchAddress.trim() || isSearching}
-                    className="w-full"
-                    size="lg"
-                  >
-                    {isSearching ? (
-                      <>
-                        <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                        Buscando...
-                      </>
-                    ) : (
-                      <>
-                        <MagnifyingGlassIcon className="w-5 h-5 mr-2" />
-                        Buscar zona
-                      </>
-                    )}
-                  </Button>
-                </div>
-                
-                {/* Search Result */}
-                {searchResult && (
-                  <div className="mt-6 p-4 rounded-lg border-l-4" style={{ 
-                    borderLeftColor: searchResult?.color || '#000000',
-                    backgroundColor: searchResult?.found ? '#f0fdf4' : '#fef2f2'
-                  }}>
-                    <div className="flex items-start space-x-3">
-                      {searchResult.found ? (
-                        <CheckCircleIcon className="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5" />
-                      ) : (
-                        <ExclamationCircleIcon className="w-6 h-6 text-red-600 flex-shrink-0 mt-0.5" />
-                      )}
+                <Card className="p-6">
+                  <div className="space-y-4">
+                    <div className="relative">
+                      <input
+                        type="text"
+                        value={searchAddress}
+                        onChange={(e) => setSearchAddress(e.target.value)}
+                        onKeyPress={(e) => e.key === 'Enter' && handleAddressSearch()}
+                        placeholder="Ej: Av. Libertad 123, Centro, Chillán"
+                        className="w-full pl-12 pr-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
+                        disabled={isSearching}
+                      />
+                      <MagnifyingGlassIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-neutral-400" />
                       
-                      <div className="flex-1">
+                      {/* Search suggestions */}
+                      {filteredSuggestions.length > 0 && searchAddress.trim() && (
+                        <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-neutral-200 rounded-lg shadow-lg z-10">
+                          {filteredSuggestions.map((suggestion, index) => (
+                            <button
+                              key={index}
+                              onClick={() => {
+                                setSearchAddress(suggestion);
+                                handleAddressSearch();
+                              }}
+                              className="w-full text-left px-4 py-2 hover:bg-neutral-50 first:rounded-t-lg last:rounded-b-lg border-b border-neutral-100 last:border-b-0"
+                            >
+                              {suggestion}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    
+                    <Button 
+                      onClick={handleAddressSearch}
+                      disabled={!searchAddress.trim() || isSearching}
+                      className="w-full"
+                      size="lg"
+                    >
+                      {isSearching ? (
+                        <>
+                          <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          </svg>
+                          Buscando...
+                        </>
+                      ) : (
+                        <>
+                          <MagnifyingGlassIcon className="w-5 h-5 mr-2" />
+                          Buscar zona
+                        </>
+                      )}
+                    </Button>
+                  </div>
+                  
+                  {/* Search Result */}
+                  {searchResult && (
+                    <div className="mt-6 p-4 rounded-lg border-l-4" style={{ 
+                      borderLeftColor: searchResult?.color || '#000000',
+                      backgroundColor: searchResult?.found ? '#f0fdf4' : '#fef2f2'
+                    }}>
+                      <div className="flex items-start space-x-3">
                         {searchResult.found ? (
-                          <>
-                            <h3 className="font-semibold text-green-900 mb-2">
-                              ¡Tu zona está cubierta! - {searchResult.zoneName}
-                            </h3>
-                            <div className="space-y-2 text-sm">
-                              <div className="flex items-center space-x-2">
-                                <CurrencyDollarIcon className="w-4 h-4 text-green-700" />
-                                <span className="text-green-800">
-                                  <strong>Recargo:</strong> {formatSurcharge(searchResult.surcharge)}
-                                </span>
+                          <CheckCircleIcon className="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5" />
+                        ) : (
+                          <ExclamationCircleIcon className="w-6 h-6 text-red-600 flex-shrink-0 mt-0.5" />
+                        )}
+                        
+                        <div className="flex-1">
+                          {searchResult.found ? (
+                            <>
+                              <h3 className="font-semibold text-green-900 mb-2">
+                                ¡Tu zona está cubierta! - {searchResult.zoneName}
+                              </h3>
+                              <div className="space-y-2 text-sm">
+                                <div className="flex items-center space-x-2">
+                                  <CurrencyDollarIcon className="w-4 h-4 text-green-700" />
+                                  <span className="text-green-800">
+                                    <strong>Recargo:</strong> {formatSurcharge(searchResult.surcharge)}
+                                  </span>
+                                </div>
+                                <div className="flex items-center space-x-2">
+                                  <ClockIcon className="w-4 h-4 text-green-700" />
+                                  <span className="text-green-800">
+                                    <strong>Tiempo de respuesta:</strong> {searchResult.responseTime}
+                                  </span>
+                                </div>
                               </div>
-                              <div className="flex items-center space-x-2">
-                                <ClockIcon className="w-4 h-4 text-green-700" />
-                                <span className="text-green-800">
-                                  <strong>Tiempo de respuesta:</strong> {searchResult.responseTime}
-                                </span>
+                              <div className="mt-4">
+                                <Button 
+                                  size="sm" 
+                                  onClick={() => handleWhatsAppContact(searchResult.zoneName)}
+                                >
+                                  Solicitar servicio
+                                </Button>
                               </div>
-                            </div>
-                            <div className="mt-4">
+                            </>
+                          ) : (
+                            <>
+                              <h3 className="font-semibold text-red-900 mb-2">
+                                Zona no encontrada o fuera de cobertura
+                              </h3>
+                              <p className="text-sm text-red-800 mb-4">
+                                No hemos podido identificar tu zona. Contáctanos para verificar si brindamos servicio en tu área.
+                              </p>
                               <Button 
                                 size="sm" 
-                                onClick={() => handleWhatsAppContact(searchResult.zoneName)}
+                                variant="outline"
+                                className="border-red-300 text-red-700 hover:bg-red-50"
+                                onClick={() => handleWhatsAppContact()}
                               >
-                                Solicitar servicio
+                                Consultar por WhatsApp
                               </Button>
-                            </div>
-                          </>
-                        ) : (
-                          <>
-                            <h3 className="font-semibold text-red-900 mb-2">
-                              Zona no encontrada o fuera de cobertura
-                            </h3>
-                            <p className="text-sm text-red-800 mb-4">
-                              No hemos podido identificar tu zona. Contáctanos para verificar si brindamos servicio en tu área.
-                            </p>
-                            <Button 
-                              size="sm" 
-                              variant="outline"
-                              className="border-red-300 text-red-700 hover:bg-red-50"
-                              onClick={() => handleWhatsAppContact()}
-                            >
-                              Consultar por WhatsApp
-                            </Button>
-                          </>
-                        )}
+                            </>
+                          )}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                )}
-              </Card>
+                  )}
+                </Card>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Coverage Zones */}
-        <section id="map-section" className="py-10 relative overflow-hidden differentiators-section">
+        <section id="map-section" className="relative overflow-hidden differentiators-section py-10">
           {/* Subtle Background Elements */}
           <div className="absolute inset-0">
             {/* Subtle color accents */}
@@ -571,8 +542,8 @@ const CoberturaPage: React.FC = () => {
 
         {/* CTA Section */}
         <section className="relative py-16 lg:py-20 overflow-hidden testimonials-section">
-          {/* Background consistent with hero - subtle white background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-neutral-50 to-white"></div>
+          {/* Background consistent with main page */}
+          <div className="absolute inset-0"></div>
           
           {/* Clean Decorative Elements */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -627,10 +598,10 @@ const CoberturaPage: React.FC = () => {
                   size="lg" 
                   variant="outline"
                   className="bg-white border-2 border-cyan-600 hover:bg-cyan-50 text-cyan-700 shadow-lg transform hover:scale-105 transition-all duration-300"
-                  onClick={() => window.location.href = '/cotizador'}
+                  onClick={() => window.location.href = '/servicios'}
                 >
                   <span className="flex items-center gap-2">
-                    ⚡ Cotizar Servicio
+                    🔍 Ver Servicios
                   </span>
                 </Button>
               </div>

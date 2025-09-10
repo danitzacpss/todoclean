@@ -1,72 +1,17 @@
 /* Estilos específicos para la página de cobertura */
 
-/* Estilos compartidos con la página de inicio para mantener consistencia */
-.coverage-page .hero {
-  position: relative;
-  overflow: hidden;
-  background: var(--color-background-primary);
-}
-
-.coverage-page .hero-container {
-  position: relative;
-  z-index: 1;
-}
-
-.coverage-page .hero-content {
-  display: grid;
-  align-items: center;
-}
-
-.coverage-page .hero-text {
-  display: flex;
-  flex-direction: column;
-}
-
-.coverage-page .hero-badge {
-  display: inline-flex;
-  align-items: center;
-  transition: all 0.3s ease;
-}
-
-.coverage-page .hero-badge:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 150, 199, 0.15);
-}
-
-.coverage-page .hero-headline {
-  font-weight: 700;
-  line-height: 1.2;
-}
-
-.coverage-page .hero-headline .highlight {
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  display: inline-block;
-}
-
-.coverage-page .hero-subheadline {
-  margin-bottom: 2rem;
-  line-height: 1.6;
-}
-
-.coverage-page .hero-actions {
-  display: grid;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
+/* Eliminamos el CSS personalizado para que funcione igual que ServiciosPage */
 
 /* Estilos específicos para la sección de servicios */
 .coverage-page .services-section {
   position: relative;
-  padding: 4rem 0;
+  padding: 0.25rem 0 !important;
   overflow: hidden;
 }
 
 /* Estilos específicos para la sección de diferenciadores */
 .coverage-page .differentiators-section {
   position: relative;
-  padding: 4rem 0;
   overflow: hidden;
 }
 
