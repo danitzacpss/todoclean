@@ -84,8 +84,35 @@ const ServiciosPage: React.FC = () => {
             </h1>
             <p className="text-xl text-neutral-600 mb-8 max-w-3xl mx-auto">
               Ofrecemos servicios profesionales de limpieza con estándares americanos, 
-              precios transparentes y garantía de satisfacción 100%.
+              precios transparentes desde $30.000 y garantía de satisfacción 100%.
             </p>
+            
+            {/* Duration and Service Info */}
+            <div className="bg-gradient-to-r from-cyan-50 to-blue-50 rounded-2xl p-6 max-w-4xl mx-auto mb-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                <div className="flex flex-col items-center">
+                  <div className="w-12 h-12 bg-cyan-100 rounded-full flex items-center justify-center mb-2">
+                    <span className="text-2xl">⏱️</span>
+                  </div>
+                  <h3 className="font-semibold text-neutral-900 mb-1">Duración Optimizada</h3>
+                  <p className="text-sm text-neutral-600">3 horas de limpieza profunda</p>
+                </div>
+                <div className="flex flex-col items-center">
+                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-2">
+                    <span className="text-2xl">💰</span>
+                  </div>
+                  <h3 className="font-semibold text-neutral-900 mb-1">Precios Actualizados</h3>
+                  <p className="text-sm text-neutral-600">Desde $30.000 según superficie</p>
+                </div>
+                <div className="flex flex-col items-center">
+                  <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mb-2">
+                    <span className="text-2xl">📋</span>
+                  </div>
+                  <h3 className="font-semibold text-neutral-900 mb-1">Planes Flexibles</h3>
+                  <p className="text-sm text-neutral-600">Mensual, trimestral y anual</p>
+                </div>
+              </div>
+            </div>
             
             {/* Key Features */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
@@ -183,8 +210,30 @@ const ServiciosPage: React.FC = () => {
               ¿Listo para experimentar la diferencia?
             </h2>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Únete a más de 350 clientes satisfechos que confían en nuestros servicios.
+              Obtén tu cotización personalizada desde $30.000 y programa tu servicio de 3 horas hoy mismo.
             </p>
+            
+            {/* Updated pricing highlights */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 max-w-3xl mx-auto mb-8">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div>
+                  <div className="text-2xl font-bold text-white">$30.000</div>
+                  <div className="text-sm text-blue-100">Hasta 50m²</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-white">$35.000</div>
+                  <div className="text-sm text-blue-100">50-100m²</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-white">$40.000</div>
+                  <div className="text-sm text-blue-100">100-150m²</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-white">$45.000</div>
+                  <div className="text-sm text-blue-100">Más de 150m²</div>
+                </div>
+              </div>
+            </div>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
@@ -198,7 +247,7 @@ const ServiciosPage: React.FC = () => {
               </Link>
               
               <a
-                href={`https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent('¡Hola! Me interesa conocer más sobre sus servicios de limpieza.')}`}
+                href={`https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent('¡Hola! Me interesa conocer más sobre sus servicios de limpieza con los nuevos precios desde $30.000')}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-8 py-4 bg-green-500 text-white font-semibold rounded-xl hover:bg-green-600 transition-colors shadow-lg"
