@@ -3,7 +3,7 @@
 // Root component with routing and global providers
 // ===================================
 
-import React, { Suspense, lazy, useEffect } from 'react';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
@@ -172,7 +172,7 @@ function WhatsAppFloat() {
   const hiddenRoutes = ['/contacto', '/cotizador'];
   const shouldShow = !hiddenRoutes.includes(location.pathname);
   
-  const [isVisible, setIsVisible] = React.useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     // Show after a delay to avoid interfering with page load

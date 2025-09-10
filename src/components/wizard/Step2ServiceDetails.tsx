@@ -111,9 +111,12 @@ const Step2ServiceDetails: React.FC<Step2ServiceDetailsProps> = ({
   const getEstimatedPrice = (serviceType: ServiceType, frequency: FrequencyType) => {
     if (!formData.squareMeters) return null;
     
-    const servicePricing = SERVICE_PRICING[serviceType];
+    const servicePricing = SERVICE_PRICING[serviceType as keyof typeof SERVICE_PRICING];
+    if (!servicePricing) return null;
+    
     const basePrice = servicePricing.basePrice + (formData.squareMeters * servicePricing.pricePerSqm);
-    const discount = FREQUENCY_DISCOUNTS[frequency]?.discount || 0;
+    const frequencyData = FREQUENCY_DISCOUNTS[frequency as keyof typeof FREQUENCY_DISCOUNTS];
+    const discount = frequencyData?.discount || 0;
     const finalPrice = basePrice - (basePrice * discount);
     
     return Math.round(finalPrice);
@@ -156,7 +159,7 @@ const Step2ServiceDetails: React.FC<Step2ServiceDetailsProps> = ({
         <div className="space-y-3">
           {serviceTypes.map((service) => {
             const isSelected = formData.serviceType === service.id;
-            const servicePricing = SERVICE_PRICING[service.id];
+            const servicePricing = SERVICE_PRICING[service.id as keyof typeof SERVICE_PRICING];
             const estimatedPrice = formData.squareMeters ? 
               getEstimatedPrice(service.id, formData.frequency || 'quincenal') : null;
             
@@ -191,7 +194,10 @@ const Step2ServiceDetails: React.FC<Step2ServiceDetailsProps> = ({
                   {estimatedPrice && (
                     <div className="text-right">
                       <div className="text-lg font-bold text-primary-600">
-                        {formatPrice(estimatedPrice)}
+                        <div className="flex items-baseline justify-end gap-1">
+                          <span className="text-xs text-primary-400 font-medium uppercase tracking-wide">desde</span>
+                          <span>{formatPrice(estimatedPrice)}</span>
+                        </div>
                       </div>
                       <div className="text-xs text-neutral-500">aprox.</div>
                     </div>
@@ -213,18 +219,20 @@ const Step2ServiceDetails: React.FC<Step2ServiceDetailsProps> = ({
                     {service.description}
                   </p>
                   <div className="text-xs text-neutral-500">
-                    Duración: {formatHours(servicePricing.minHours)} - {formatHours(servicePricing.maxHours)}
+                    Duración: {servicePricing ? formatHours(servicePricing.minHours) : ''} - {servicePricing ? formatHours(servicePricing.maxHours) : ''}
                   </div>
                 </div>
 
                 {/* What's included preview */}
-                <div className="text-xs text-neutral-600">
-                  <span className="font-medium">Incluye:</span>
-                  <span className="ml-1">
-                    {servicePricing.includes.slice(0, 2).join(', ')}
-                    {servicePricing.includes.length > 2 && `, +${servicePricing.includes.length - 2} más`}
-                  </span>
-                </div>
+                {servicePricing && (
+                  <div className="text-xs text-neutral-600">
+                    <span className="font-medium">Incluye:</span>
+                    <span className="ml-1">
+                      {servicePricing.includes.slice(0, 2).join(', ')}
+                      {servicePricing.includes.length > 2 && `, +${servicePricing.includes.length - 2} más`}
+                    </span>
+                  </div>
+                )}
 
                 {/* Selection indicator */}
                 <div className={cn(
@@ -291,7 +299,10 @@ const Step2ServiceDetails: React.FC<Step2ServiceDetailsProps> = ({
                     'text-sm font-medium',
                     isSelected ? 'text-primary-600' : 'text-neutral-600'
                   )}>
-                    {formatPrice(estimatedPrice)}
+                    <div className="flex items-baseline gap-1">
+                      <span className="text-xs opacity-75 font-medium uppercase tracking-wide">desde</span>
+                      <span>{formatPrice(estimatedPrice)}</span>
+                    </div>
                   </div>
                 )}
                 <div className={cn(
@@ -395,7 +406,7 @@ const Step2ServiceDetails: React.FC<Step2ServiceDetailsProps> = ({
           onChange={handleDateChange}
           label="¿Cuándo te gustaría agendar? (opcional)"
           placeholder="Selecciona una fecha preferida"
-          error={allErrors.preferredDate}
+          error={allErrors.preferredDate || undefined}
         />
         <p className="mt-1 text-xs text-neutral-500">
           Si no seleccionas fecha, nos contactaremos contigo para coordinar

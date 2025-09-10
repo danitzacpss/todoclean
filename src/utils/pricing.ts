@@ -47,16 +47,65 @@ export function calculatePrice(params: {
     throw new Error(`Invalid service type: ${serviceType}`);
   }
 
-  // Calculate base price: base + (sqm * price per sqm)
-  const basePrice = servicePricing.basePrice + (squareMeters * servicePricing.pricePerSqm);
+  // Calculate base price with new logic
+  // For spaces under 50m2, use base price. For larger spaces, add per sqm charge
+  let basePrice;
+  if (squareMeters <= 50) {
+    basePrice = servicePricing.basePrice;
+  } else {
+    const extraMeters = squareMeters - 50;
+    basePrice = servicePricing.basePrice + (extraMeters * servicePricing.pricePerSqm);
+  }
 
   // Apply property type multiplier
   const propertyMultiplier = getPropertyMultiplier(propertyType);
   const adjustedBasePrice = basePrice * propertyMultiplier;
 
-  // Apply frequency discount
+  // Special pricing logic for frequency-based pricing
+  // Base prices: Una vez $30k, Mensual $99k, Trimestral $89k, Anual $80k
+  let finalPrice;
+  if (frequency === 'unica') {
+    finalPrice = adjustedBasePrice;
+  } else {
+    // For subscription plans, calculate based on target monthly prices
+    // Precios objetivo para espacios <50m² según especificaciones
+    const targetPrices = {
+      mensual: 99000,   // Precio mensual para espacios <50m²
+      trimestral: 89000, // Precio mensual trimestral para espacios <50m²
+      anual: 80000      // Precio mensual anual para espacios <50m²
+    };
+    
+    const targetPrice = targetPrices[frequency as keyof typeof targetPrices];
+    if (targetPrice) {
+      if (squareMeters <= 50) {
+        // For base size, use target price
+        finalPrice = targetPrice;
+      } else {
+        // For larger spaces, calculate based on one-time price ranges with same proportions
+        let oneTimePrice;
+        if (squareMeters <= 100) {
+          oneTimePrice = 35000; // 50-100m²
+        } else if (squareMeters <= 150) {
+          oneTimePrice = 40000; // 100-150m²
+        } else {
+          oneTimePrice = 45000; // >150m²
+        }
+        
+        // Apply same proportion as <50m² (mensual: 3.3x, trimestral: 2.97x, anual: 2.67x)
+        const baseOneTimePrice = 30000; // <50m² one-time price
+        const proportion = targetPrice / baseOneTimePrice;
+        finalPrice = oneTimePrice * proportion;
+      }
+    } else {
+      // Fallback to base calculation
+      const sizeFactor = squareMeters <= 50 ? 1 : (squareMeters / 50);
+      finalPrice = adjustedBasePrice * sizeFactor;
+    }
+  }
+
+  // Legacy discount calculation for display purposes
   const frequencyDiscount = FREQUENCY_DISCOUNTS[frequency]?.discount || 0;
-  const discountAmount = adjustedBasePrice * frequencyDiscount;
+  const discountAmount = frequency === 'unica' ? 0 : (adjustedBasePrice - finalPrice);
 
   // Calculate zone surcharge
   const serviceArea = SERVICE_AREAS.find(area => area.zone === zone);
@@ -256,7 +305,7 @@ export function getFrequencyComparison(
       discount: data.discount,
       formattedDiscount: formatDiscount(data.discount),
       savings: discountAmount,
-      recommended: frequency === 'quincenal', // Most popular option
+      recommended: frequency === 'mensual', // Most popular option
     };
   });
 }
@@ -293,13 +342,13 @@ export function getServiceRecommendations(
 
   // Frequency recommendation
   if (propertyType === 'oficina' || propertyType === 'local') {
-    recommendedFrequency = 'semanal';
+    recommendedFrequency = 'mensual';
   } else if (squareMeters > 150) {
-    recommendedFrequency = 'quincenal';
+    recommendedFrequency = 'trimestral';
   } else if (squareMeters < 60) {
-    recommendedFrequency = 'quincenal';
+    recommendedFrequency = 'mensual';
   } else {
-    recommendedFrequency = 'quincenal'; // Most popular
+    recommendedFrequency = 'mensual'; // Most popular
   }
 
   return {
@@ -334,9 +383,9 @@ export function generateQuoteSummary(calculation: PriceCalculation): {
 
   const frequencyNames = {
     unica: 'servicio único',
-    semanal: 'servicio semanal',
-    quincenal: 'servicio quincenal',
-    mensual: 'servicio mensual',
+    mensual: 'precio por mes (1 limpieza semanal por 1 mes)',
+    trimestral: 'precio por mes (1 limpieza semanal por 3 meses)',
+    anual: 'precio por mes (1 limpieza semanal por 1 año)',
   };
 
   const title = serviceNames[calculation.serviceType];

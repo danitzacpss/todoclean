@@ -7,7 +7,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import clsx from 'clsx';
 import { SITE_CONFIG, NAVIGATION_ROUTES } from '@/utils/constants';
-import Button, { WhatsAppButton, PhoneButton } from '@/components/ui/Button';
+import Button from '@/components/ui/Button';
+import { WhatsAppButton, PhoneButton } from '@/components/ui/Button';
 
 // ==========================================
 // HEADER COMPONENT

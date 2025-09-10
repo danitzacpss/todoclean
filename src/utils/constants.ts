@@ -46,8 +46,8 @@ export const SITE_CONFIG: SiteConfig = {
 
 export const SERVICE_PRICING: ServicePricing = {
   regular: {
-    basePrice: 35000,
-    pricePerSqm: 500,
+    basePrice: 30000, // Precio base para menos de 50m2
+    pricePerSqm: 100, // Recargo por m2 adicional (50-100m²=$35k, 100-150m²=$40k, >150m²=$45k)
     minHours: 3,
     maxHours: 4,
     description: 'Limpieza de mantención semanal o quincenal',
@@ -61,8 +61,8 @@ export const SERVICE_PRICING: ServicePricing = {
     ],
   },
   profunda: {
-    basePrice: 55000,
-    pricePerSqm: 700,
+    basePrice: 30000, // Mismo precio base para todos los servicios
+    pricePerSqm: 150, // Recargo mayor para limpieza profunda (ajustado proporcionalmente)
     minHours: 4,
     maxHours: 6,
     description: 'Limpieza detallada y desinfección completa',
@@ -77,8 +77,8 @@ export const SERVICE_PRICING: ServicePricing = {
     ],
   },
   postobra: {
-    basePrice: 80000,
-    pricePerSqm: 1000,
+    basePrice: 30000, // Mismo precio base
+    pricePerSqm: 250, // Recargo mayor para post-obra (ajustado proporcionalmente)
     minHours: 6,
     maxHours: 8,
     description: 'Limpieza post-construcción y mudanzas',
@@ -98,26 +98,31 @@ export const SERVICE_PRICING: ServicePricing = {
 // FREQUENCY DISCOUNTS
 // ==========================================
 
+// Precios base establecidos:
+// - Una vez: $30.000 (sin descuento)
+// - Mensual: $99.000 (equivale a ~17% descuento sobre precio base ajustado)
+// - Trimestral: $89.000 (equivale a ~25% descuento sobre precio base ajustado) 
+// - Anual: $80.000 (equivale a ~33% descuento sobre precio base ajustado)
 export const FREQUENCY_DISCOUNTS: FrequencyDiscount = {
   unica: {
     discount: 0,
     label: 'Una vez',
     description: 'Servicio único sin compromiso',
   },
-  semanal: {
-    discount: 0.15,
-    label: 'Semanal',
-    description: '15% descuento - Mantén tu hogar siempre limpio',
-  },
-  quincenal: {
-    discount: 0.10,
-    label: 'Quincenal',
-    description: '10% descuento - Equilibrio perfecto',
-  },
   mensual: {
-    discount: 0.05,
-    label: 'Mensual', 
-    description: '5% descuento - Limpieza profunda mensual',
+    discount: 0.17, // + de 17% descuento
+    label: 'Mensual',
+    description: '+ de 17% descuento - Precio por mes, 1 limpieza semanal por 1 mes',
+  },
+  trimestral: {
+    discount: 0.25, // + de 25% descuento
+    label: 'Trimestral',
+    description: '+ de 25% descuento - Precio por mes, 1 limpieza semanal por 3 meses',
+  },
+  anual: {
+    discount: 0.33, // + de 33% descuento
+    label: 'Anual',
+    description: '+ de 33% descuento - Precio por mes, 1 limpieza semanal por 1 año',
   },
 };
 

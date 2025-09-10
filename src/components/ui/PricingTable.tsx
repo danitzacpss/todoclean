@@ -71,7 +71,7 @@ const SERVICE_TYPES = [
     id: 'postConstruction',
     name: 'Post-Obra',
     description: 'Después de construcción',
-    duration: '6-8 horas',
+    duration: '3 horas',
     color: 'bg-orange-500',
   },
 ];
@@ -158,7 +158,12 @@ const PricingTable: React.FC<PricingTableProps> = ({ className = '' }) => {
                       <td key={service.id} className="px-6 py-4 text-center">
                         <div className="space-y-2">
                           <div className="text-xl font-bold text-neutral-900">
-                            {isQuote ? 'Cotizar' : formatPrice(price)}
+                            {isQuote ? 'Cotizar' : (
+                              <div className="flex items-baseline justify-center gap-1">
+                                <span className="text-xs text-neutral-500 font-medium uppercase tracking-wide">desde</span>
+                                <span>{formatPrice(price)}</span>
+                              </div>
+                            )}
                           </div>
                           <button
                             onClick={() => handleWhatsAppContact(service.name, tier.size)}
@@ -226,7 +231,12 @@ const PricingTable: React.FC<PricingTableProps> = ({ className = '' }) => {
                     
                     <div className="text-right">
                       <div className="text-lg font-bold text-neutral-900 mb-1">
-                        {isQuote ? 'Cotizar' : formatPrice(price)}
+                        {isQuote ? 'Cotizar' : (
+                          <div className="flex items-baseline justify-end gap-1">
+                            <span className="text-xs text-neutral-500 font-medium uppercase tracking-wide">desde</span>
+                            <span>{formatPrice(price)}</span>
+                          </div>
+                        )}
                       </div>
                       <button
                         onClick={() => handleWhatsAppContact(service.name, tier.size)}

@@ -210,6 +210,11 @@ const PriceBreakdown: React.FC<PriceBreakdownProps> = ({
                 {formatPrice(calculation.totalPrice)}
               </div>
               <div className="text-xs text-neutral-500">CLP</div>
+              {calculation.frequency !== 'unica' && (
+                <div className="text-xs text-neutral-400 mt-1">
+                  Precio mensual • 1 limpieza semanal
+                </div>
+              )}
             </div>
           </div>
         </div>

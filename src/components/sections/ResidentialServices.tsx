@@ -196,9 +196,12 @@ const ResidentialServices: React.FC = () => {
                 </div>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-lg font-bold text-blue-600">
-                  ${service.price.toLocaleString()}
-                </span>
+                <div className="flex items-baseline gap-1">
+                  <span className="text-xs text-neutral-500 font-medium uppercase tracking-wide">desde</span>
+                  <span className="text-lg font-bold text-blue-600">
+                    ${service.price.toLocaleString()}
+                  </span>
+                </div>
                 <button 
                   onClick={() => {
                     const message = encodeURIComponent(

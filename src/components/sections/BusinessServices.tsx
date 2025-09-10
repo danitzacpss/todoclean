@@ -300,10 +300,13 @@ const BusinessServices: React.FC = () => {
                   </h3>
                   
                   <div className="mb-4">
-                    <span className="text-4xl font-bold text-neutral-900">
-                      ${(billingCycle === 'yearly' ? Math.round(plan.yearlyPrice / 12) : plan.price).toLocaleString()}
-                    </span>
-                    <span className="text-neutral-600">/mes</span>
+                    <div className="flex items-baseline justify-center gap-2">
+                      <span className="text-sm text-neutral-500 font-medium uppercase tracking-wide">desde</span>
+                      <span className="text-4xl font-bold text-neutral-900">
+                        ${(billingCycle === 'yearly' ? Math.round(plan.yearlyPrice / 12) : plan.price).toLocaleString()}
+                      </span>
+                      <span className="text-neutral-600">/mes</span>
+                    </div>
                   </div>
                   
                   {billingCycle === 'yearly' && plan.discount && (

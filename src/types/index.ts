@@ -9,7 +9,7 @@
 
 export type ServiceType = 'regular' | 'profunda' | 'postobra';
 export type PropertyType = 'casa' | 'departamento' | 'oficina' | 'local';
-export type FrequencyType = 'unica' | 'semanal' | 'quincenal' | 'mensual';
+export type FrequencyType = 'unica' | 'mensual' | 'trimestral' | 'anual';
 export type ZoneType = 'A' | 'B' | 'C';
 
 export interface PriceCalculation {
@@ -28,7 +28,7 @@ export interface PriceCalculation {
   estimatedHours: number;
 }
 
-export interface ServicePricing {
+export type ServicePricing = {
   [key in ServiceType]: {
     basePrice: number;
     pricePerSqm: number;
@@ -39,7 +39,7 @@ export interface ServicePricing {
   };
 }
 
-export interface FrequencyDiscount {
+export type FrequencyDiscount = {
   [key in FrequencyType]: {
     discount: number;
     label: string;
@@ -365,11 +365,7 @@ export interface AppError {
   timestamp: string;
 }
 
-export type ErrorBoundaryState = {
-  hasError: boolean;
-  error?: Error;
-  errorInfo?: React.ErrorInfo;
-};
+
 
 // ==========================================
 // HOOK TYPES

@@ -53,7 +53,8 @@ const CALCULATOR_STEPS: CalculatorStep[] = [
 const PROPERTY_OPTIONS = [
   { id: 'casa', name: 'Casa/Depto', icon: '🏠', baseService: 'regular' as ServiceType },
   { id: 'oficina', name: 'Oficina', icon: '🏢', baseService: 'regular' as ServiceType },
-  { id: 'local', name: 'Post-Obra', icon: '🔨', baseService: 'postobra' as ServiceType },
+  // Temporalmente oculto
+  // { id: 'local', name: 'Post-Obra', icon: '🔨', baseService: 'postobra' as ServiceType },
 ];
 
 const SQUARE_METER_OPTIONS = [
@@ -65,9 +66,9 @@ const SQUARE_METER_OPTIONS = [
 
 const FREQUENCY_OPTIONS = [
   { id: 'unica', label: 'Una vez', description: 'Sin compromiso' },
-  { id: 'semanal', label: 'Semanal', description: '15% descuento' },
-  { id: 'quincenal', label: 'Quincenal', description: '10% descuento' },
-  { id: 'mensual', label: 'Mensual', description: '5% descuento' },
+  { id: 'mensual', label: 'Mensual', description: '+ de 17% descuento' },
+  { id: 'trimestral', label: 'Trimestral', description: '+ de 25% descuento' },
+  { id: 'anual', label: 'Anual', description: '+ de 33% descuento' },
 ];
 
 // ==========================================
@@ -243,7 +244,7 @@ Frecuencia: ${frequencyName}`;
         Selecciona el tipo de espacio a limpiar
       </p>
       
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-lg mx-auto">
         {PROPERTY_OPTIONS.map((option) => (
           <button
             key={option.id}
@@ -385,7 +386,13 @@ Frecuencia: ${frequencyName}`;
         <div className="text-3xl font-bold text-cyan-600 mb-1">
           {calculatedPrice ? formatPrice(calculatedPrice) : '$0'}
         </div>
-        <div className="text-sm text-gray-600 mb-3">CLP</div>
+        <div className="text-sm text-gray-600 mb-1">CLP</div>
+        {state.frequency !== 'unica' && (
+          <div className="text-xs text-gray-500 mb-3 bg-gray-50 rounded-lg p-2">
+            <p className="font-medium">💡 Precio mensual</p>
+            <p>Servicio: 1 limpieza semanal</p>
+          </div>
+        )}
         
         <div className="text-gray-600 mb-3 text-xs">
           <p className="mb-1">
@@ -441,7 +448,7 @@ Frecuencia: ${frequencyName}`;
             Calculadora de Precios Instantánea
           </h2>
           <p className="text-gray-600">
-            Conoce tu precio exacto en solo 30 segundos
+            Conoce tu precio aproximado en solo 30 segundos
           </p>
         </div>
 
@@ -451,7 +458,7 @@ Frecuencia: ${frequencyName}`;
             {/* Duration Badge */}
             <div className="absolute top-2 right-2">
               <div className="bg-neutral-100 text-neutral-700 px-2 py-1 rounded-full text-xs font-medium">
-                6-8h
+                3h
               </div>
             </div>
 
