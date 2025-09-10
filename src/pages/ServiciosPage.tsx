@@ -84,7 +84,7 @@ const ServiciosPage: React.FC = () => {
             </h1>
             <p className="text-xl text-neutral-600 mb-8 max-w-3xl mx-auto">
               Ofrecemos servicios profesionales de limpieza con estándares americanos, 
-              precios transparentes y garantía de satisfacción 100%.
+              precios desde $30.000 y garantía de satisfacción 100%.
             </p>
             
             {/* Key Features */}
@@ -115,8 +115,8 @@ const ServiciosPage: React.FC = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
                 </div>
-                <h3 className="font-semibold text-neutral-900 mb-2">Servicio Rápido</h3>
-                <p className="text-neutral-600 text-sm">Respuesta en menos de 24 horas</p>
+                <h3 className="font-semibold text-neutral-900 mb-2">Servicio Eficiente</h3>
+                <p className="text-neutral-600 text-sm">Limpieza completa en 3 horas</p>
               </div>
             </div>
           </div>
@@ -134,7 +134,7 @@ const ServiciosPage: React.FC = () => {
                     onClick={() => setActiveTab(tab.id)}
                     className={`flex-1 p-6 text-left transition-all duration-300 first:rounded-l-2xl last:rounded-r-2xl md:first:rounded-tr-none md:last:rounded-tl-none md:first:rounded-bl-2xl md:last:rounded-br-2xl ${
                       activeTab === tab.id
-                        ? 'bg-blue-600 text-white shadow-lg'
+                        ? 'bg-teal-600 text-white shadow-lg'
                         : 'bg-white text-neutral-600 hover:bg-neutral-50'
                     }`}
                     aria-pressed={activeTab === tab.id}
@@ -148,7 +148,7 @@ const ServiciosPage: React.FC = () => {
                           {tab.label}
                         </h3>
                         <p className={`text-sm ${
-                          activeTab === tab.id ? 'text-blue-100' : 'text-neutral-500'
+                          activeTab === tab.id ? 'text-teal-100' : 'text-neutral-500'
                         }`}>
                           {tab.description}
                         </p>
@@ -176,46 +176,173 @@ const ServiciosPage: React.FC = () => {
           </div>
         </section>
 
-        {/* Bottom CTA Section */}
-        <section className="py-16 bg-gradient-to-r from-blue-600 to-blue-700">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold text-white mb-4">
-              ¿Listo para experimentar la diferencia?
-            </h2>
-            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Únete a más de 350 clientes satisfechos que confían en nuestros servicios.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/cotizador"
-                className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-600 font-semibold rounded-xl hover:bg-neutral-50 transition-colors shadow-lg"
-              >
-                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                </svg>
-                Calcular Precio
-              </Link>
+        {/* Bottom CTA Section - Dynamic based on active tab */}
+        <section className="relative py-16 lg:py-20 overflow-hidden">
+          {activeTab === 'residential' ? (
+            // Residential CTA
+            <>
+              {/* Background consistent with hero - subtle white background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-neutral-50 to-white"></div>
               
-              <a
-                href={`https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent('¡Hola! Me interesa conocer más sobre sus servicios de limpieza.')}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-8 py-4 bg-green-500 text-white font-semibold rounded-xl hover:bg-green-600 transition-colors shadow-lg"
-              >
-                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.287" />
-                </svg>
-                Contactar WhatsApp
-              </a>
-            </div>
-          </div>
+              {/* Clean Decorative Elements */}
+              <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                {/* Minimal accent points */}
+                <div className="absolute top-24 right-1/3 w-2 h-2 bg-cyan-500 rounded-full opacity-30"></div>
+                <div className="absolute bottom-40 left-1/4 w-1.5 h-1.5 bg-teal-500 rounded-full opacity-25"></div>
+                <div className="absolute top-16 left-20 w-1.5 h-1.5 bg-cyan-400 rounded-full opacity-30"></div>
+                
+                {/* Enhanced geometric shapes - more visible */}
+                <div className="absolute top-20 right-24 w-8 h-8 border-2 border-cyan-300 rounded opacity-50 rotate-12"></div>
+                <div className="absolute bottom-28 left-24 w-10 h-10 border-2 border-teal-300 rounded-full opacity-40"></div>
+                <div className="absolute top-1/4 right-20 w-6 h-6 border-2 border-blue-300 opacity-45 rotate-45"></div>
+              </div>
+              
+              <div className="container mx-auto px-4 relative z-10">
+                <div className="max-w-4xl mx-auto text-center">
+                  {/* Premium badge */}
+                  <div className="inline-flex items-center gap-2 bg-cyan-50 border border-cyan-200 rounded-full px-4 py-2 mb-6">
+                    <div className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse"></div>
+                    <span className="text-sm font-medium text-cyan-700">Servicio Premium Garantizado</span>
+                  </div>
+                  
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+                    <span className="text-gray-900">¿Listo para experimentar</span>
+                    <span className="block bg-gradient-to-r from-cyan-600 via-teal-600 to-cyan-700 bg-clip-text text-transparent">
+                      la diferencia?
+                    </span>
+                  </h2>
+                  
+                  <p className="text-lg md:text-xl text-gray-600 mb-4 max-w-3xl mx-auto leading-relaxed">
+                    Únete a más de 350 clientes satisfechos. Servicios desde $30.000 con limpieza completa en 3 horas.
+                  </p>
+                  
+                  {/* CTA Buttons with enhanced design matching reference */}
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                    <Link
+                      to="/cotizador"
+                      className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-700 hover:to-teal-700 text-white font-semibold rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300 border-0"
+                    >
+                      <span className="flex items-center gap-2">
+                        ⚡ Calcular Precio
+                      </span>
+                    </Link>
+                    
+                    <a
+                      href={`https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent('¡Hola! Me interesa conocer más sobre sus servicios de limpieza desde $30.000.')}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center px-8 py-4 bg-white border-2 border-cyan-600 hover:bg-cyan-50 text-cyan-700 font-semibold rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300"
+                    >
+                      <span className="flex items-center gap-2">
+                        💬 Contactar WhatsApp
+                      </span>
+                    </a>
+                  </div>
+                  
+                  {/* Trust indicators with consistent design */}
+                  <div className="flex flex-wrap justify-center items-center gap-8 text-gray-600">
+                    <div className="flex items-center gap-2 group">
+                      <div className="w-3 h-3 bg-cyan-500 rounded-full group-hover:scale-110 transition-transform duration-300"></div>
+                      <span className="text-sm font-medium">Sin compromiso</span>
+                    </div>
+                    <div className="flex items-center gap-2 group">
+                      <div className="w-3 h-3 bg-teal-500 rounded-full group-hover:scale-110 transition-transform duration-300"></div>
+                      <span className="text-sm font-medium">Cotización gratuita</span>
+                    </div>
+                    <div className="flex items-center gap-2 group">
+                      <div className="w-3 h-3 bg-cyan-600 rounded-full group-hover:scale-110 transition-transform duration-300"></div>
+                      <span className="text-sm font-medium">Respuesta inmediata</span>
+                    </div>
+                    <div className="flex items-center gap-2 group">
+                      <div className="w-3 h-3 bg-teal-600 rounded-full group-hover:scale-110 transition-transform duration-300"></div>
+                      <span className="text-sm font-medium">Garantía 100%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </>
+          ) : (
+            // Business CTA - Matching the reference design exactly
+            <>
+              {/* Background with decorative elements like the reference */}
+              <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100"></div>
+              
+              {/* Decorative background elements */}
+              <div className="absolute inset-0 overflow-hidden">
+                <div className="absolute top-10 right-10 w-32 h-32 bg-cyan-100/30 rounded-full blur-xl"></div>
+                <div className="absolute bottom-10 left-10 w-24 h-24 bg-teal-100/40 rounded-full blur-lg"></div>
+                <div className="absolute top-1/2 right-1/4 w-16 h-16 bg-blue-100/20 rounded-full blur-md"></div>
+                <div className="absolute bottom-1/4 right-1/3 w-20 h-20 bg-cyan-50/50 rounded-full blur-lg"></div>
+              </div>
+              
+              <div className="container mx-auto px-4 relative z-10">
+                <div className="max-w-4xl mx-auto text-center">
+                  {/* Premium badge */}
+                  <div className="inline-flex items-center gap-2 bg-cyan-50 border border-cyan-200 rounded-full px-4 py-2 mb-6">
+                    <div className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse"></div>
+                    <span className="text-sm font-medium text-cyan-700">Servicio Premium Garantizado</span>
+                  </div>
+                  
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+                    <span className="text-gray-900">Impulsa la Productividad de</span>
+                    <span className="block bg-gradient-to-r from-cyan-600 via-teal-600 to-cyan-700 bg-clip-text text-transparent">
+                      tu Empresa
+                    </span>
+                  </h2>
+                  
+                  <p className="text-lg md:text-xl text-gray-600 mb-4 max-w-3xl mx-auto leading-relaxed">
+                    Optimiza el rendimiento de tu equipo con espacios de trabajo impecables. 
+                    Nuestros servicios especializados garantizan un ambiente productivo y profesional.
+                  </p>
+                  
+                  {/* CTA Buttons with enhanced design */}
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                    <Link
+                      to="/cotizador"
+                      className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-700 hover:to-teal-700 text-white font-semibold rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300 border-0"
+                    >
+                      <span className="flex items-center gap-2">
+                        Solicitar Cotización
+                      </span>
+                    </Link>
+                    
+                    <a
+                      href={`https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent('¡Hola! Me interesa conocer más sobre sus servicios empresariales de limpieza. ¿Podrían enviarme información detallada?')}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center px-8 py-4 bg-white border-2 border-cyan-600 hover:bg-cyan-50 text-cyan-700 font-semibold rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300"
+                    >
+                      <span className="flex items-center gap-2">
+                        Contactar por WhatsApp
+                      </span>
+                    </a>
+                  </div>
+                  
+                  {/* Business Trust indicators */}
+                  <div className="flex flex-wrap justify-center items-center gap-8 text-gray-600">
+                    <div className="flex items-center gap-2 group">
+                      <div className="w-3 h-3 bg-cyan-500 rounded-full group-hover:scale-110 transition-transform duration-300"></div>
+                      <span className="text-sm font-medium">Visita comercial gratuita</span>
+                    </div>
+                    <div className="flex items-center gap-2 group">
+                      <div className="w-3 h-3 bg-teal-500 rounded-full group-hover:scale-110 transition-transform duration-300"></div>
+                      <span className="text-sm font-medium">Propuesta personalizada</span>
+                    </div>
+                    <div className="flex items-center gap-2 group">
+                      <div className="w-3 h-3 bg-cyan-600 rounded-full group-hover:scale-110 transition-transform duration-300"></div>
+                      <span className="text-sm font-medium">Contratos flexibles</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
         </section>
 
         {/* Back to Top Button */}
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="fixed bottom-6 right-6 w-12 h-12 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-colors z-20"
+          className="fixed bottom-6 right-6 w-12 h-12 bg-teal-600 text-white rounded-full shadow-lg hover:bg-teal-700 transition-colors z-20"
           aria-label="Volver arriba"
         >
           <svg className="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">

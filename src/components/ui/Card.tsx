@@ -340,7 +340,7 @@ export const StatsCard = forwardRef<
         )}
         
         <div className="text-3xl font-bold text-neutral-900">
-          {typeof value === 'number' ? value.toLocaleString() : value}
+          {typeof value === 'number' ? value.toLocaleString().replace(/,/g, '.') : value}
         </div>
         
         <div className="text-sm text-neutral-600">

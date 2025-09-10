@@ -239,11 +239,11 @@ export function validatePricingParams(params: {
 // ==========================================
 
 export function formatPrice(price: number): string {
-  return `$${price.toLocaleString('es-CL')}`;
+  return `$${price.toLocaleString('es-CL').replace(/,/g, '.')}`;
 }
 
 export function formatPriceWithCurrency(price: number): string {
-  return `$${price.toLocaleString('es-CL')} CLP`;
+  return `$${price.toLocaleString('es-CL').replace(/,/g, '.')} CLP`;
 }
 
 export function formatDiscount(discount: number): string {

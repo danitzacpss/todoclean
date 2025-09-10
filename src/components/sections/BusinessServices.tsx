@@ -100,16 +100,6 @@ const BUSINESS_BENEFITS = [
     description: 'Una sola factura mensual con todos los servicios detallados y respaldo tributario completo.',
   },
   {
-    icon: '💻',
-    title: 'Portal Empresarial',
-    description: 'Plataforma web para programar, modificar servicios y generar reportes en tiempo real.',
-  },
-  {
-    icon: '🔄',
-    title: 'Reemplazo Garantizado',
-    description: 'Personal de respaldo disponible para mantener continuidad del servicio sin interrupciones.',
-  },
-  {
     icon: '📊',
     title: 'Auditorías de Calidad',
     description: 'Supervisiones mensuales con checklist detallado y plan de mejora continua.',
@@ -118,11 +108,6 @@ const BUSINESS_BENEFITS = [
     icon: '🏥',
     title: 'Certificado COVID-19',
     description: 'Protocolos sanitarios certificados y documentación para auditorías de seguridad.',
-  },
-  {
-    icon: '🎯',
-    title: 'SLA Garantizado',
-    description: 'Acuerdos de nivel de servicio con penalidades por incumplimiento y bonos por excelencia.',
   },
 ];
 
@@ -237,135 +222,254 @@ const BusinessServices: React.FC = () => {
         </div>
       </section>
 
-      {/* Pricing Plans */}
+      {/* Pricing Table */}
       <section>
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-neutral-900 mb-4">
-            Planes Corporativos
+            Tabla de Precios Empresariales
           </h2>
           <p className="text-lg text-neutral-600 mb-8">
-            Soluciones escalables diseñadas para empresas de todos los tamaños
+            Precios transparentes según el tamaño de tu oficina y frecuencia de servicio
           </p>
+        </div>
+
+        {/* Business Pricing Table */}
+        <div className="bg-white rounded-2xl shadow-xl border border-neutral-200 overflow-hidden mb-12">
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="bg-gradient-to-r from-teal-50 to-cyan-50">
+                  <th className="px-6 py-4 text-left">
+                    <div className="font-semibold text-neutral-900">Tamaño de Oficina</div>
+                    <div className="text-sm text-neutral-600">Metros cuadrados</div>
+                  </th>
+                  <th className="px-6 py-4 text-center">
+                    <div className="font-semibold text-neutral-900">Semanal</div>
+                    <div className="text-sm text-teal-600 font-medium">Recomendado</div>
+                  </th>
+                  <th className="px-6 py-4 text-center">
+                    <div className="font-semibold text-neutral-900">Bi-semanal</div>
+                    <div className="text-sm text-neutral-600">Ahorro 15%</div>
+                  </th>
+                  <th className="px-6 py-4 text-center">
+                    <div className="font-semibold text-neutral-900">Mensual</div>
+                    <div className="text-sm text-neutral-600">Ahorro 25%</div>
+                  </th>
+                  <th className="px-6 py-4 text-center">
+                    <div className="font-semibold text-neutral-900">Una Vez</div>
+                    <div className="text-sm text-neutral-600">Sin compromiso</div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-neutral-100">
+                <tr className="hover:bg-neutral-50 transition-colors">
+                  <td className="px-6 py-6">
+                    <div className="font-semibold text-neutral-900">Pequeña</div>
+                    <div className="text-sm text-neutral-600">Hasta 50m²</div>
+                    <div className="text-xs text-neutral-500 mt-1">1-5 empleados</div>
+                  </td>
+                  <td className="px-6 py-6 text-center">
+                    <div className="text-lg font-bold text-teal-600">$80.000</div>
+                    <div className="text-xs text-neutral-500">por semana</div>
+                  </td>
+                  <td className="px-6 py-6 text-center">
+                    <div className="text-lg font-bold text-neutral-900">$136.000</div>
+                    <div className="text-xs text-neutral-500">por mes</div>
+                  </td>
+                  <td className="px-6 py-6 text-center">
+                    <div className="text-lg font-bold text-neutral-900">$60.000</div>
+                    <div className="text-xs text-neutral-500">por mes</div>
+                  </td>
+                  <td className="px-6 py-6 text-center">
+                    <div className="text-lg font-bold text-neutral-900">$90.000</div>
+                    <div className="text-xs text-neutral-500">servicio único</div>
+                  </td>
+                </tr>
+                <tr className="hover:bg-neutral-50 transition-colors bg-teal-50/30">
+                  <td className="px-6 py-6">
+                    <div className="font-semibold text-neutral-900">Mediana</div>
+                    <div className="text-sm text-neutral-600">50-150m²</div>
+                    <div className="text-xs text-neutral-500 mt-1">6-15 empleados</div>
+                    <div className="inline-flex items-center mt-2 px-2 py-1 bg-teal-100 text-teal-700 rounded-full text-xs font-medium">
+                      Más Popular
+                    </div>
+                  </td>
+                  <td className="px-6 py-6 text-center">
+                    <div className="text-lg font-bold text-teal-600">$150.000</div>
+                    <div className="text-xs text-neutral-500">por semana</div>
+                  </td>
+                  <td className="px-6 py-6 text-center">
+                    <div className="text-lg font-bold text-neutral-900">$255.000</div>
+                    <div className="text-xs text-neutral-500">por mes</div>
+                  </td>
+                  <td className="px-6 py-6 text-center">
+                    <div className="text-lg font-bold text-neutral-900">$112.500</div>
+                    <div className="text-xs text-neutral-500">por mes</div>
+                  </td>
+                  <td className="px-6 py-6 text-center">
+                    <div className="text-lg font-bold text-neutral-900">$170.000</div>
+                    <div className="text-xs text-neutral-500">servicio único</div>
+                  </td>
+                </tr>
+                <tr className="hover:bg-neutral-50 transition-colors">
+                  <td className="px-6 py-6">
+                    <div className="font-semibold text-neutral-900">Grande</div>
+                    <div className="text-sm text-neutral-600">150-300m²</div>
+                    <div className="text-xs text-neutral-500 mt-1">16-30 empleados</div>
+                  </td>
+                  <td className="px-6 py-6 text-center">
+                    <div className="text-lg font-bold text-teal-600">$280.000</div>
+                    <div className="text-xs text-neutral-500">por semana</div>
+                  </td>
+                  <td className="px-6 py-6 text-center">
+                    <div className="text-lg font-bold text-neutral-900">$476.000</div>
+                    <div className="text-xs text-neutral-500">por mes</div>
+                  </td>
+                  <td className="px-6 py-6 text-center">
+                    <div className="text-lg font-bold text-neutral-900">$210.000</div>
+                    <div className="text-xs text-neutral-500">por mes</div>
+                  </td>
+                  <td className="px-6 py-6 text-center">
+                    <div className="text-lg font-bold text-neutral-900">$320.000</div>
+                    <div className="text-xs text-neutral-500">servicio único</div>
+                  </td>
+                </tr>
+                <tr className="hover:bg-neutral-50 transition-colors">
+                  <td className="px-6 py-6">
+                    <div className="font-semibold text-neutral-900">Corporativa</div>
+                    <div className="text-sm text-neutral-600">Más de 300m²</div>
+                    <div className="text-xs text-neutral-500 mt-1">30+ empleados</div>
+                  </td>
+                  <td className="px-6 py-6 text-center">
+                    <div className="text-lg font-bold text-teal-600">$450.000</div>
+                    <div className="text-xs text-neutral-500">por semana</div>
+                  </td>
+                  <td className="px-6 py-6 text-center">
+                    <div className="text-lg font-bold text-neutral-900">$765.000</div>
+                    <div className="text-xs text-neutral-500">por mes</div>
+                  </td>
+                  <td className="px-6 py-6 text-center">
+                    <div className="text-lg font-bold text-neutral-900">$337.500</div>
+                    <div className="text-xs text-neutral-500">por mes</div>
+                  </td>
+                  <td className="px-6 py-6 text-center">
+                    <div className="text-lg font-bold text-neutral-900">$520.000</div>
+                    <div className="text-xs text-neutral-500">servicio único</div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           
-          {/* Billing Toggle */}
-          <div className="inline-flex items-center bg-neutral-100 rounded-xl p-1 mb-8">
-            <button
-              onClick={() => setBillingCycle('monthly')}
-              className={`px-6 py-2 rounded-lg font-medium transition-all ${
-                billingCycle === 'monthly'
-                  ? 'bg-white text-neutral-900 shadow-sm'
-                  : 'text-neutral-600'
-              }`}
-            >
-              Mensual
-            </button>
-            <button
-              onClick={() => setBillingCycle('yearly')}
-              className={`px-6 py-2 rounded-lg font-medium transition-all ${
-                billingCycle === 'yearly'
-                  ? 'bg-white text-neutral-900 shadow-sm'
-                  : 'text-neutral-600'
-              }`}
-            >
-              Anual
-              <span className="ml-2 inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700">
-                Ahorra hasta 20%
-              </span>
-            </button>
+          {/* Table Footer */}
+          <div className="bg-gradient-to-r from-neutral-50 to-teal-50 px-6 py-4 border-t border-neutral-200">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+              <div className="text-sm text-neutral-600">
+                <span className="font-medium">Incluye:</span> Personal capacitado, productos profesionales, seguro de responsabilidad civil
+              </div>
+              <div className="flex gap-3">
+                <Link
+                  to="/cotizador"
+                  className="px-6 py-2 bg-teal-600 text-white font-medium rounded-lg hover:bg-teal-700 transition-colors"
+                >
+                  Cotizar Ahora
+                </Link>
+                <a
+                  href={`https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent('¡Hola! Me interesa conocer más sobre sus servicios empresariales y obtener una cotización personalizada.')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-2 bg-white border border-teal-600 text-teal-600 font-medium rounded-lg hover:bg-teal-50 transition-colors"
+                >
+                  Consultar por WhatsApp
+                </a>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Plans Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {BUSINESS_PLANS.map((plan) => (
-            <div
-              key={plan.id}
-              className={`relative bg-white rounded-2xl border-2 overflow-hidden transition-all hover:shadow-xl ${
-                plan.popular
-                  ? 'border-blue-500 shadow-lg scale-105'
-                  : 'border-neutral-200 hover:border-blue-300'
-              }`}
-            >
-              {plan.popular && (
-                <div className="absolute top-0 left-0 right-0 bg-blue-500 text-white text-center py-2 text-sm font-semibold">
-                  MÁS POPULAR
-                </div>
-              )}
-              
-              <div className={`p-8 ${plan.popular ? 'pt-16' : ''}`}>
-                {/* Plan Header */}
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-neutral-900 mb-2">
-                    {plan.name}
-                  </h3>
-                  
-                  <div className="mb-4">
-                    <div className="flex items-baseline justify-center gap-2">
-                      <span className="text-sm text-neutral-500 font-medium uppercase tracking-wide">desde</span>
-                      <span className="text-4xl font-bold text-neutral-900">
-                        ${(billingCycle === 'yearly' ? Math.round(plan.yearlyPrice / 12) : plan.price).toLocaleString()}
-                      </span>
-                      <span className="text-neutral-600">/mes</span>
-                    </div>
-                  </div>
-                  
-                  {billingCycle === 'yearly' && plan.discount && (
-                    <div className="inline-flex items-center px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium mb-4">
-                      <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a1.994 1.994 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
-                      </svg>
-                      Ahorro anual {plan.discount}
-                    </div>
-                  )}
-                  
-                  {/* Plan Details */}
-                  <div className="grid grid-cols-2 gap-4 text-sm text-neutral-600 mb-6">
-                    <div>
-                      <div className="font-medium text-neutral-900">Frecuencia</div>
-                      <div>{plan.frequency}</div>
-                    </div>
-                    <div>
-                      <div className="font-medium text-neutral-900">Horas</div>
-                      <div>{plan.hoursPerVisit}</div>
-                    </div>
-                    <div>
-                      <div className="font-medium text-neutral-900">Insumos</div>
-                      <div>{plan.supplies}</div>
-                    </div>
-                    <div>
-                      <div className="font-medium text-neutral-900">Ahorro</div>
-                      <div>{plan.discount || 'Precio base'}</div>
-                    </div>
+        {/* Additional Business Services */}
+        <section className="bg-gradient-to-r from-neutral-50 to-teal-50/50 rounded-2xl p-8 mb-12">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-neutral-900 mb-4">
+              Servicios Adicionales Empresariales
+            </h2>
+            <p className="text-lg text-neutral-600">
+              Complementa tu limpieza corporativa con estos servicios especializados
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                name: 'Limpieza Post-Obra',
+                price: 25000,
+                description: 'Remoción de polvo y residuos',
+                icon: '🏗️'
+              },
+              {
+                name: 'Desinfección COVID-19',
+                price: 15000,
+                description: 'Protocolo sanitario certificado',
+                icon: '🦠'
+              },
+              {
+                name: 'Limpieza de Alfombras',
+                price: 8000,
+                description: 'Shampoo profesional por m²',
+                icon: '🏢'
+              },
+              {
+                name: 'Ventanas Exteriores',
+                price: 12000,
+                description: 'Limpieza completa por fuera',
+                icon: '🪟'
+              },
+              {
+                name: 'Encerado de Pisos',
+                price: 18000,
+                description: 'Tratamiento y brillo profesional',
+                icon: '✨'
+              },
+              {
+                name: 'Limpieza de Cocina Industrial',
+                price: 35000,
+                description: 'Desengrase y sanitización',
+                icon: '🍽️'
+              },
+            ].map((service, index) => (
+              <div key={index} className="bg-white rounded-xl p-6 shadow-sm border border-neutral-200">
+                <div className="flex items-center mb-4">
+                  <span className="text-2xl mr-3">{service.icon}</span>
+                  <div>
+                    <h3 className="font-semibold text-neutral-900">{service.name}</h3>
+                    <p className="text-sm text-neutral-600">{service.description}</p>
                   </div>
                 </div>
-
-                {/* Features */}
-                <ul className="space-y-3 mb-8">
-                  {plan.features.map((feature, index) => (
-                    <li key={index} className="flex items-start">
-                      <svg className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                      </svg>
-                      <span className="text-neutral-700 text-sm">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* CTA Button */}
-                <button
-                  onClick={() => handlePlanSelect(plan.id)}
-                  className={`w-full py-4 px-6 rounded-xl font-semibold transition-colors ${
-                    plan.popular
-                      ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-lg'
-                      : 'bg-neutral-100 text-neutral-900 hover:bg-neutral-200'
-                  }`}
-                >
-                  Solicitar Cotización
-                </button>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-xs text-neutral-500 font-medium uppercase tracking-wide">desde</span>
+                    <span className="text-lg font-bold text-teal-600">
+                      ${service.price.toLocaleString().replace(/,/g, '.')}
+                    </span>
+                  </div>
+                  <button 
+                    onClick={() => {
+                      const message = encodeURIComponent(
+                        `¡Hola! Me interesa agregar el servicio de ${service.name} a mi limpieza empresarial.`
+                      );
+                      window.open(`https://wa.me/${SITE_CONFIG.whatsapp}?text=${message}`, '_blank');
+                    }}
+                    className="px-4 py-2 bg-teal-600 text-white text-sm font-medium rounded-lg hover:bg-teal-700 transition-colors"
+                  >
+                    Agregar
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Plans Grid section has been hidden */}
 
         {/* Enterprise Contact */}
         <div className="text-center mt-12 p-8 bg-gradient-to-r from-gray-50 to-blue-50 rounded-2xl">
@@ -462,7 +566,7 @@ const BusinessServices: React.FC = () => {
       </section>
 
       {/* FAQs */}
-      <section>
+      <section id="preguntas-frecuentes">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-neutral-900 mb-4">
             Preguntas Frecuentes Empresariales
@@ -503,10 +607,42 @@ const BusinessServices: React.FC = () => {
             </div>
           ))}
         </div>
+
+        {/* FAQ Bottom CTA */}
+        <div className="text-center mt-8 p-6 bg-blue-50 rounded-xl">
+          <h3 className="text-lg font-semibold text-neutral-900 mb-2">
+            ¿No encuentras respuesta a tu pregunta?
+          </h3>
+          <p className="text-neutral-600 mb-4">
+            Nuestro equipo está listo para ayudarte con cualquier consulta específica.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <a
+              href={`https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent('¡Hola! Tengo algunas preguntas sobre sus servicios empresariales.')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center px-6 py-3 bg-green-500 text-white font-medium rounded-lg hover:bg-green-600 transition-colors"
+            >
+              <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.287" />
+              </svg>
+              Preguntar por WhatsApp
+            </a>
+            <Link
+              to="/contacto"
+              className="inline-flex items-center justify-center px-6 py-3 bg-white text-blue-600 font-medium rounded-lg border border-blue-200 hover:bg-neutral-50 transition-colors"
+            >
+              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 7.89a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              Formulario de Contacto
+            </Link>
+          </div>
+        </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-8 text-center text-white">
+      {/* Final CTA - Hidden as requested */}
+      {/* <section className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-8 text-center text-white">
         <h2 className="text-3xl font-bold mb-4">
           ¡Impulsa la Productividad de tu Empresa!
         </h2>
@@ -540,7 +676,7 @@ const BusinessServices: React.FC = () => {
             Solicitar Propuesta
           </a>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };

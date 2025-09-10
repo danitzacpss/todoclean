@@ -269,7 +269,7 @@ export const WHATSAPP_MESSAGES = {
 
 Detalles de mi cotización:
 ${details}
-Precio estimado: $${price.toLocaleString()} CLP
+Precio estimado: $${price.toLocaleString().replace(/,/g, '.')} CLP
 
 ¿Podríamos coordinar una visita?`,
 

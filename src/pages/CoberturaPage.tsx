@@ -124,7 +124,7 @@ const CoberturaPage: React.FC = () => {
 
   const formatSurcharge = (surcharge: number): string => {
     if (surcharge === 0) return 'Sin recargo';
-    return `+$${surcharge.toLocaleString()} CLP`;
+    return `+$${surcharge.toLocaleString().replace(/,/g, '.')} CLP`;
   };
 
   const getZoneIcon = (zone: string) => {
