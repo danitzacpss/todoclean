@@ -183,7 +183,7 @@ const QuoteWizard: React.FC<QuoteWizardProps> = ({
   }, []);
 
   return (
-    <div className={cn('max-w-4xl mx-auto', className)}>
+    <div className={cn('max-w-full sm:max-w-4xl mx-auto', className)}>
       {/* Progress Navigation */}
       <WizardNavigation
         steps={steps}

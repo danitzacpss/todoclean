@@ -107,7 +107,7 @@ const PricingTable: React.FC<PricingTableProps> = ({ className = '' }) => {
         <h2 className="text-3xl font-bold text-neutral-900 mb-4">
           Precios Transparentes por Frecuencia
         </h2>
-        <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+        <p className="text-lg text-neutral-600 max-w-full sm:max-w-2xl mx-auto">
           Precios claros sin sorpresas. Todos nuestros planes incluyen productos, 
           herramientas y garantía de satisfacción.
         </p>

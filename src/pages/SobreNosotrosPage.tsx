@@ -114,12 +114,12 @@ const SobreNosotrosPage: React.FC = () => {
 
         {/* Hero Section */}
         <section className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
+          <div className="container mx-auto px-1 sm:px-4 lg:px-8">
+            <div className="max-w-full sm:max-w-4xl mx-auto text-center">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-neutral-900 leading-tight">
                 Sobre Todo Clean
               </h1>
-              <p className="text-lg md:text-xl text-neutral-600 mb-12 max-w-2xl mx-auto">
+              <p className="text-lg md:text-xl text-neutral-600 mb-12 max-w-full sm:max-w-2xl mx-auto">
                 Limpieza profesional con estándares americanos y corazón chillanejo
               </p>
               
@@ -146,7 +146,7 @@ const SobreNosotrosPage: React.FC = () => {
 
         {/* Mission & Vision */}
         <section className="py-16">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-1 sm:px-4 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-8 items-stretch">
               <div className="bg-white rounded-2xl p-8 shadow-lg">
                 <h2 className="text-3xl font-bold text-neutral-900 mb-6">
@@ -183,7 +183,7 @@ const SobreNosotrosPage: React.FC = () => {
 
         {/* Timeline */}
         <section className="py-16">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-1 sm:px-4 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-neutral-900 mb-4">
                 Nuestra Historia
@@ -193,7 +193,7 @@ const SobreNosotrosPage: React.FC = () => {
               </p>
             </div>
             
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-full sm:max-w-4xl mx-auto">
               <div className="relative">
                 {/* Timeline line */}
                 <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-primary-200" />
@@ -221,7 +221,7 @@ const SobreNosotrosPage: React.FC = () => {
 
         {/* Team */}
         <section className="py-16 bg-neutral-50">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-1 sm:px-4 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-neutral-900 mb-4">
                 Nuestro Equipo
@@ -231,7 +231,7 @@ const SobreNosotrosPage: React.FC = () => {
               </p>
             </div>
             
-            <div className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-6 max-w-full sm:max-w-2xl mx-auto">
               {team.map((member, index) => (
                 <Card key={index} className="p-6 text-center">
                   <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -256,7 +256,7 @@ const SobreNosotrosPage: React.FC = () => {
               <p className="text-neutral-600 mb-4">
                 <strong>Características de nuestro equipo:</strong>
               </p>
-              <div className="grid md:grid-cols-3 gap-4 max-w-2xl mx-auto">
+              <div className="grid md:grid-cols-3 gap-4 max-w-full sm:max-w-2xl mx-auto">
                 <div className="text-sm text-neutral-600">
                   ✓ Verificación de antecedentes
                 </div>
@@ -273,7 +273,7 @@ const SobreNosotrosPage: React.FC = () => {
 
         {/* Certifications */}
         <section className="py-16">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-1 sm:px-4 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-neutral-900 mb-4">
                 Certificaciones y Garantías
@@ -306,7 +306,7 @@ const SobreNosotrosPage: React.FC = () => {
 
         {/* Values */}
         <section className="py-16 bg-primary-50">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-1 sm:px-4 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-neutral-900 mb-4">
                 Nuestros Valores
@@ -339,8 +339,8 @@ const SobreNosotrosPage: React.FC = () => {
 
         {/* CTA Section */}
         <section className="relative py-16 overflow-hidden">
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-4xl mx-auto text-center">
+          <div className="container mx-auto px-1 sm:px-4 lg:px-8 relative z-10">
+            <div className="max-w-full sm:max-w-4xl mx-auto text-center">
               {/* Badge */}
               <div className="inline-flex items-center gap-2 bg-teal-50 border border-teal-200 rounded-full px-4 py-2 mb-6">
                 <div className="w-2 h-2 bg-teal-500 rounded-full animate-pulse"></div>
@@ -354,11 +354,11 @@ const SobreNosotrosPage: React.FC = () => {
                 </span>
               </h2>
               
-              <p className="text-lg md:text-xl text-gray-600 mb-4 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-lg md:text-xl text-gray-600 mb-4 max-w-full sm:max-w-3xl mx-auto leading-relaxed">
                 Contáctanos para confirmar disponibilidad y obtener una cotización personalizada
               </p>
               
-              <p className="text-base text-teal-600 mb-10 max-w-2xl mx-auto font-medium">
+              <p className="text-base text-teal-600 mb-10 max-w-full sm:max-w-2xl mx-auto font-medium">
                 ✨ Servicio garantizado en todas nuestras zonas de cobertura
               </p>
               

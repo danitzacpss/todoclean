@@ -264,7 +264,7 @@ export const FAQSkeleton: React.FC<{
 export const CoverageMapSkeleton: React.FC<{ className?: string }> = ({ className }) => (
   <div className={cn('space-y-6', className)}>
     {/* Search bar */}
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-full sm:max-w-2xl mx-auto">
       <Skeleton height="44px" />
     </div>
     

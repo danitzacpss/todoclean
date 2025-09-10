@@ -147,7 +147,7 @@ const ProcessStepComponent: React.FC<ProcessStepProps> = ({
 
         {/* Content */}
         <div className="text-center mb-6">
-          <h3 className="text-2xl font-bold text-neutral-900 mb-1">
+          <h3 className="text-lg sm:text-2xl font-bold text-neutral-900 mb-1">
             {title}
           </h3>
           <p className="text-accent-600 font-semibold mb-3">
@@ -224,7 +224,7 @@ const ProcessSection: React.FC = () => {
           <div className="absolute top-20 left-1/4 w-6 h-6 border-2 border-teal-300 opacity-45 rotate-12"></div>
         </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-1 sm:px-4 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
           <motion.div
@@ -236,10 +236,10 @@ const ProcessSection: React.FC = () => {
             <span className="inline-block text-accent-600 font-semibold text-sm uppercase tracking-wider mb-2">
               Proceso Simple
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold font-heading text-neutral-900 mb-4">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold font-heading text-neutral-900 mb-4">
               Tu Hogar Limpio en 3 Pasos
             </h2>
-            <p className="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-sm sm:text-xl text-neutral-600 max-w-full sm:max-w-3xl mx-auto leading-relaxed">
               Un proceso diseñado para tu comodidad. Sin complicaciones, sin sorpresas, solo resultados excepcionales
             </p>
           </motion.div>

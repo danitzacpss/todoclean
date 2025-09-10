@@ -311,19 +311,19 @@ Frecuencia: ${frequencyName}`;
         Selecciona el tipo de espacio a limpiar
       </p>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-lg mx-auto">
+      <div className="grid grid-cols-2 gap-2 sm:gap-4">
         {PROPERTY_OPTIONS.map((option) => (
           <button
             key={option.id}
             onClick={() => setState(prev => ({ ...prev, propertyType: option.id as PropertyType }))}
-            className={`p-3 rounded-xl border-2 transition-all duration-300 hover:scale-105 shadow-sm ${
+            className={`p-2 sm:p-4 rounded-xl border-2 transition-all duration-300 hover:scale-105 shadow-sm ${
               state.propertyType === option.id
                 ? 'border-cyan-500 bg-cyan-50 shadow-lg'
                 : 'border-gray-200 bg-white hover:border-gray-300 hover:shadow-md'
             }`}
           >
-            <div className="text-xl mb-1">{option.icon}</div>
-            <div className={`font-semibold text-xs ${
+            <div className="text-lg sm:text-xl mb-1">{option.icon}</div>
+            <div className={`font-semibold text-xs sm:text-sm ${
               state.propertyType === option.id ? 'text-cyan-700' : 'text-gray-700'
             }`}>{option.name}</div>
           </button>
@@ -346,18 +346,18 @@ Frecuencia: ${frequencyName}`;
         Selecciona el tamaño de tu espacio
       </p>
       
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
+      <div className="grid grid-cols-2 gap-2 sm:gap-4">
         {SQUARE_METER_OPTIONS.map((option) => (
           <button
             key={option.id}
             onClick={() => setState(prev => ({ ...prev, squareMeters: option.value }))}
-            className={`p-4 rounded-xl border-2 transition-all duration-300 hover:scale-105 shadow-sm ${
+            className={`p-2 sm:p-4 rounded-xl border-2 transition-all duration-300 hover:scale-105 shadow-sm ${
               state.squareMeters === option.value
                 ? 'border-cyan-500 bg-cyan-50 shadow-lg'
                 : 'border-gray-200 bg-white hover:border-gray-300 hover:shadow-md'
             }`}
           >
-            <div className={`font-semibold text-xs ${
+            <div className={`font-semibold text-xs sm:text-sm ${
               state.squareMeters === option.value ? 'text-cyan-700' : 'text-gray-700'
             }`}>{option.label}</div>
           </button>
@@ -388,21 +388,21 @@ Frecuencia: ${frequencyName}`;
         Elige la frecuencia que más te convenga
       </p>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
+      <div className="grid grid-cols-1 gap-2 sm:gap-4">
         {FREQUENCY_OPTIONS.map((option) => (
           <button
             key={option.id}
             onClick={() => setState(prev => ({ ...prev, frequency: option.id as FrequencyType }))}
-            className={`p-3 rounded-xl border-2 transition-all duration-300 hover:scale-105 text-center shadow-sm ${
+            className={`p-3 sm:p-4 rounded-xl border-2 transition-all duration-300 hover:scale-105 text-center shadow-sm ${
               state.frequency === option.id
                 ? 'border-cyan-500 bg-cyan-50 shadow-lg'
                 : 'border-gray-200 bg-white hover:border-gray-300 hover:shadow-md'
             }`}
           >
-            <div className={`font-semibold mb-1 ${
+            <div className={`font-semibold mb-1 text-sm sm:text-base ${
               state.frequency === option.id ? 'text-cyan-700' : 'text-gray-700'
             }`}>{option.label}</div>
-            <div className={`text-xs ${
+            <div className={`text-xs sm:text-sm ${
               state.frequency === option.id ? 'text-cyan-600' : 'text-gray-500'
             }`}>{option.description}</div>
           </button>
@@ -445,12 +445,12 @@ Frecuencia: ${frequencyName}`;
       exit={{ opacity: 0, scale: 0.9 }}
       className="text-center"
     >
-      <div className="bg-gradient-to-br from-cyan-50 to-teal-50 border border-cyan-200 rounded-2xl p-4 max-w-md mx-auto mb-4 shadow-lg">
+      <div className="bg-gradient-to-br from-cyan-50 to-teal-50 border border-cyan-200 rounded-2xl p-4 sm:p-6 mb-4 shadow-lg">
         <div className="text-3xl mb-2">🎉</div>
-        <h3 className="text-lg font-bold text-gray-900 mb-2">
+        <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
           ¡Tu cotización está lista!
         </h3>
-        <div className="text-3xl font-bold text-cyan-600 mb-1">
+        <div className="text-xl sm:text-3xl font-bold text-cyan-600 mb-1">
           {calculatedPrice ? formatPrice(calculatedPrice) : '$0'}
         </div>
         <div className="text-sm text-gray-600 mb-1">CLP</div>
@@ -461,7 +461,7 @@ Frecuencia: ${frequencyName}`;
           </div>
         )}
         
-        <div className="text-gray-600 mb-3 text-xs">
+        <div className="text-gray-600 mb-3 text-xs sm:text-sm">
           <p className="mb-1">
             <span className="font-semibold text-gray-700">Tipo:</span> {PROPERTY_OPTIONS.find(p => p.id === state.propertyType)?.name}
           </p>
@@ -474,12 +474,12 @@ Frecuencia: ${frequencyName}`;
         </div>
       </div>
 
-      <div className="flex flex-col sm:flex-row gap-2 justify-center mb-3">
+      <div className="flex flex-col sm:flex-row gap-3 sm:gap-2 justify-center mb-3">
         <WhatsAppButton
           size="sm"
           message={generateWhatsAppMessage()}
           trackingSource="calculator"
-          className="bg-cyan-600 hover:bg-cyan-700 text-sm"
+          className="bg-cyan-600 hover:bg-cyan-700 text-sm w-full sm:w-auto"
         >
           Agendar Ahora
         </WhatsAppButton>
@@ -487,7 +487,7 @@ Frecuencia: ${frequencyName}`;
           variant="outline"
           size="sm"
           onClick={() => window.location.href = '/cotizador'}
-          className="border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 text-sm"
+          className="border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 text-sm w-full sm:w-auto"
         >
           Personalizar
         </Button>
@@ -508,20 +508,20 @@ Frecuencia: ${frequencyName}`;
 
   return (
     <section className="relative bg-gradient-to-br from-neutral-50 via-blue-50/30 to-neutral-50 py-4 pb-16">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-1 sm:px-4 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-8">
-          <h2 className="text-4xl md:text-5xl font-bold font-heading mb-1 text-gray-900">
+          <h2 className="text-xl sm:text-3xl lg:text-4xl font-bold font-heading mb-2 text-gray-900">
             Calculadora de Precios Instantánea
           </h2>
-          <p className="text-gray-600">
+          <p className="text-sm sm:text-base text-gray-600">
             Conoce tu precio aproximado en solo 30 segundos
           </p>
         </div>
 
         {/* Calculator Card Container */}
-        <div className="max-w-2xl mx-auto">
-          <div className="relative bg-white rounded-2xl shadow-xl p-4 border-2 border-neutral-200 transition-all duration-300">
+        <div className="max-w-full sm:max-w-lg md:max-w-2xl mx-auto">
+          <div className="relative bg-white rounded-2xl shadow-xl p-4 sm:p-6 md:p-8 border-2 border-neutral-200 transition-all duration-300">
             {/* Duration Badge */}
             <div className="absolute top-2 right-2">
               <div className="bg-neutral-100 text-neutral-700 px-2 py-1 rounded-full text-xs font-medium">

@@ -299,7 +299,7 @@ window.addEventListener('unhandledrejection', (event) => {
 if (typeof window !== 'undefined') {
   // Warn about very small viewports
   const checkViewport = () => {
-    if (window.innerWidth < 320) {
+    if (window.innerWidth < 280) {
       console.warn('⚠️ Viewport muy pequeño detectado. La experiencia podría ser limitada.');
     }
   };

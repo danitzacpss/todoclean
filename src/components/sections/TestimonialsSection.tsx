@@ -55,7 +55,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
       <div className="text-accent-400 text-4xl mb-4">"</div>
 
       {/* Comment */}
-      <blockquote className="text-neutral-700 text-lg leading-relaxed mb-6 italic">
+      <blockquote className="text-neutral-700 text-sm sm:text-lg leading-relaxed mb-6 italic">
         {testimonial.comment}
       </blockquote>
 
@@ -179,7 +179,7 @@ const TestimonialsSection: React.FC = () => {
         <div className="absolute bottom-28 left-20 w-10 h-10 border-2 border-teal-300 rounded-full opacity-40"></div>
         <div className="absolute top-36 right-16 w-6 h-6 border-2 border-blue-300 opacity-45 rotate-12"></div>
       </div>
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-1 sm:px-4 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
           <motion.div
@@ -191,10 +191,10 @@ const TestimonialsSection: React.FC = () => {
             <span className="inline-block text-accent-600 font-semibold text-sm uppercase tracking-wider mb-2">
               Testimonios Reales
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold font-heading text-neutral-900 mb-4">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold font-heading text-neutral-900 mb-4">
               Lo que Dicen Nuestros Clientes
             </h2>
-            <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
+            <p className="text-sm sm:text-xl text-neutral-600 max-w-full sm:max-w-2xl mx-auto">
               Más de 500 familias confían en Todo Clean para mantener sus hogares impecables
             </p>
           </motion.div>
@@ -323,7 +323,7 @@ const TestimonialsSection: React.FC = () => {
         >
           <div className="bg-white rounded-2xl shadow-lg p-8 max-w-md mx-auto">
             <div className="text-4xl mb-4">⭐</div>
-            <h3 className="text-xl font-bold text-neutral-900 mb-2">
+            <h3 className="text-lg sm:text-xl font-bold text-neutral-900 mb-2">
               4.8 de 5 estrellas
             </h3>
             <p className="text-neutral-600 mb-4">

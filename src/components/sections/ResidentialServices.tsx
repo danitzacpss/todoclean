@@ -60,7 +60,7 @@ const FAQAccordion: React.FC<FAQAccordionProps> = ({ faqs }) => {
       {faqs.map((faq) => (
         <div key={faq.id} className="bg-white border border-neutral-200 rounded-xl overflow-hidden shadow-sm">
           <button
-            className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-neutral-50 transition-colors"
+            className="w-full px-3 sm:px-6 py-4 text-left flex items-center justify-between hover:bg-neutral-50 transition-colors"
             onClick={() => setOpenFAQ(openFAQ === faq.id ? null : faq.id)}
             aria-expanded={openFAQ === faq.id}
           >
@@ -78,7 +78,7 @@ const FAQAccordion: React.FC<FAQAccordionProps> = ({ faqs }) => {
           </button>
           
           {openFAQ === faq.id && (
-            <div className="px-6 pb-4 text-neutral-600 border-t border-neutral-100 bg-neutral-50">
+            <div className="px-3 sm:px-6 pb-4 text-neutral-600 border-t border-neutral-100 bg-neutral-50">
               <div className="pt-4">
                 {faq.answer}
               </div>
@@ -105,13 +105,13 @@ const ResidentialServices: React.FC = () => {
           Servicios Residenciales
         </h1>
         
-        <p className="text-xl text-neutral-600 max-w-3xl mx-auto mb-8">
+        <p className="text-xl text-neutral-600 max-w-full sm:max-w-3xl mx-auto mb-8">
           Transforma tu hogar en un espacio impecable con nuestros servicios profesionales de limpieza. 
           Desde limpieza regular hasta servicios post-obra, tenemos la solución perfecta para ti.
         </p>
 
         {/* Quick Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-2xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-full sm:max-w-2xl mx-auto">
           <div className="text-center p-4">
             <div className="text-2xl font-bold text-blue-600">350+</div>
             <div className="text-sm text-neutral-600">Clientes Satisfechos</div>
@@ -187,7 +187,7 @@ const ResidentialServices: React.FC = () => {
               icon: '🏠'
             },
           ].map((service, index) => (
-            <div key={index} className="bg-white rounded-xl p-6 shadow-sm border border-neutral-200">
+            <div key={index} className="bg-white rounded-xl p-3 sm:p-6 shadow-sm border border-neutral-200">
               <div className="flex items-center mb-4">
                 <span className="text-2xl mr-3">{service.icon}</span>
                 <div>
@@ -225,17 +225,17 @@ const ResidentialServices: React.FC = () => {
           <h2 className="text-3xl font-bold text-neutral-900 mb-4">
             Preguntas Frecuentes
           </h2>
-          <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+          <p className="text-lg text-neutral-600 max-w-full sm:max-w-2xl mx-auto">
             Resolvemos las dudas más comunes sobre nuestros servicios residenciales
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-full sm:max-w-4xl mx-auto">
           <FAQAccordion faqs={RESIDENTIAL_FAQS} />
         </div>
 
         {/* FAQ Bottom CTA */}
-        <div className="text-center mt-8 p-6 bg-blue-50 rounded-xl">
+        <div className="text-center mt-8 p-3 sm:p-6 bg-blue-50 rounded-xl">
           <h3 className="text-lg font-semibold text-neutral-900 mb-2">
             ¿No encuentras respuesta a tu pregunta?
           </h3>

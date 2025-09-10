@@ -75,7 +75,7 @@ const CotizadorPage: React.FC = () => {
       <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-primary-50/30 to-neutral-50">
         {/* Hero Section */}
         <section className="relative py-16 lg:py-24">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-1 sm:px-4 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -86,7 +86,7 @@ const CotizadorPage: React.FC = () => {
                 Calculadora de Precios
                 <span className="block text-primary-600 mt-2">Avanzada</span>
               </h1>
-              <p className="text-xl text-neutral-600 max-w-3xl mx-auto mb-8">
+              <p className="text-xl text-neutral-600 max-w-full sm:max-w-3xl mx-auto mb-8">
                 Obtén una cotización detallada y transparente para tu servicio de limpieza. 
                 Proceso paso a paso, precios claros y sin sorpresas.
               </p>
@@ -124,7 +124,7 @@ const CotizadorPage: React.FC = () => {
 
         {/* Calculator Section */}
         <section className="pb-16 lg:pb-24">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-1 sm:px-4 lg:px-8">
             <CalculatorProvider>
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -139,7 +139,7 @@ const CotizadorPage: React.FC = () => {
 
         {/* Benefits Section */}
         <section className="py-16 bg-white border-t border-neutral-200">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-1 sm:px-4 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -150,7 +150,7 @@ const CotizadorPage: React.FC = () => {
               <h2 className="text-3xl font-bold text-neutral-900 mb-4">
                 ¿Por qué usar nuestra calculadora?
               </h2>
-              <p className="text-neutral-600 max-w-2xl mx-auto">
+              <p className="text-neutral-600 max-w-full sm:max-w-2xl mx-auto">
                 Desarrollada especialmente para ofrecerte la cotización más precisa y transparente del mercado
               </p>
             </motion.div>
@@ -201,7 +201,7 @@ const CotizadorPage: React.FC = () => {
 
         {/* Trust Section */}
         <section className="py-16 bg-gradient-to-r from-primary-50 to-primary-100">
-          <div className="container mx-auto px-4 text-center">
+          <div className="container mx-auto px-1 sm:px-4 lg:px-8 text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -235,7 +235,7 @@ const CotizadorPage: React.FC = () => {
 
         {/* CTA Section */}
         <section className="py-16">
-          <div className="container mx-auto px-4 text-center">
+          <div className="container mx-auto px-1 sm:px-4 lg:px-8 text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -245,7 +245,7 @@ const CotizadorPage: React.FC = () => {
               <h2 className="text-3xl font-bold text-neutral-900 mb-4">
                 ¿Tienes preguntas?
               </h2>
-              <p className="text-neutral-600 mb-8 max-w-2xl mx-auto">
+              <p className="text-neutral-600 mb-8 max-w-full sm:max-w-2xl mx-auto">
                 Nuestro equipo está disponible para ayudarte con cualquier consulta sobre nuestros servicios o tu cotización
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

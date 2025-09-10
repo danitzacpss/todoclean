@@ -208,7 +208,7 @@ const ServicesSection: React.FC = () => {
         <div className="absolute bottom-20 right-1/3 w-10 h-10 border-2 border-blue-300 rounded-full opacity-40"></div>
         <div className="absolute top-16 left-1/3 w-6 h-6 border-2 border-teal-300 opacity-45 rotate-12"></div>
       </div>
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-1 sm:px-4 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
           <motion.div
@@ -220,7 +220,7 @@ const ServicesSection: React.FC = () => {
             <h2 className="text-4xl md:text-5xl font-bold font-heading text-neutral-900 mb-4">
               Plan de Aseo Profesional
             </h2>
-            <div className="text-xl text-neutral-600 max-w-2xl mx-auto">
+            <div className="text-xl text-neutral-600 max-w-full sm:max-w-2xl mx-auto">
               <p>Tu espacio limpio, fresco y listo para rendir ✨</p>
               <p>1 vez por semana - 3 horas de limpieza profunda</p>
             </div>
@@ -260,7 +260,7 @@ const ServicesSection: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <div className="bg-white rounded-2xl shadow-lg p-8 max-w-2xl mx-auto">
+          <div className="bg-white rounded-2xl shadow-lg p-8 max-w-full sm:max-w-2xl mx-auto">
             <h3 className="text-2xl font-bold text-neutral-900 mb-4">
               ¡Contrata hoy mismo tu plan y deja tu espacio impecable con Todo Clean!
             </h3>

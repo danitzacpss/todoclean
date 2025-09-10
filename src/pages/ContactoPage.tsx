@@ -41,8 +41,8 @@ const ContactoPage: React.FC = () => {
 
         {/* Hero Section */}
         <section className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
+          <div className="container mx-auto px-1 sm:px-4 lg:px-8">
+            <div className="max-w-full sm:max-w-4xl mx-auto text-center">
               {/* Badge */}
               <div className="inline-flex items-center gap-2 bg-teal-50 border border-teal-200 rounded-full px-4 py-2 mb-6">
                 <div className="w-2 h-2 bg-teal-500 rounded-full animate-pulse"></div>
@@ -53,7 +53,7 @@ const ContactoPage: React.FC = () => {
                 Contáctanos
               </h1>
               
-              <p className="text-lg md:text-xl text-neutral-600 mb-12 max-w-2xl mx-auto">
+              <p className="text-lg md:text-xl text-neutral-600 mb-12 max-w-full sm:max-w-2xl mx-auto">
                 Respuesta garantizada en menos de 2 horas
               </p>
               
@@ -89,7 +89,7 @@ const ContactoPage: React.FC = () => {
 
         {/* Main Content */}
         <section className="py-16 md:py-24">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-1 sm:px-4 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
               {/* Contact Form */}
               <div className="space-y-8">
@@ -299,8 +299,8 @@ const ContactoPage: React.FC = () => {
 
         {/* CTA Section */}
         <section className="relative py-16 overflow-hidden">
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-4xl mx-auto text-center">
+          <div className="container mx-auto px-1 sm:px-4 lg:px-8 relative z-10">
+            <div className="max-w-full sm:max-w-4xl mx-auto text-center">
               {/* Badge */}
               <div className="inline-flex items-center gap-2 bg-teal-50 border border-teal-200 rounded-full px-4 py-2 mb-6">
                 <div className="w-2 h-2 bg-teal-500 rounded-full animate-pulse"></div>
@@ -314,11 +314,11 @@ const ContactoPage: React.FC = () => {
                 </span>
               </h2>
               
-              <p className="text-lg md:text-xl text-gray-600 mb-4 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-lg md:text-xl text-gray-600 mb-4 max-w-full sm:max-w-3xl mx-auto leading-relaxed">
                 Usa nuestro cotizador automático y obtén tu precio al instante
               </p>
               
-              <p className="text-base text-teal-600 mb-10 max-w-2xl mx-auto font-medium">
+              <p className="text-base text-teal-600 mb-10 max-w-full sm:max-w-2xl mx-auto font-medium">
                 ✨ Respuesta garantizada en tiempo real
               </p>
               

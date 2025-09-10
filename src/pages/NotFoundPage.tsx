@@ -117,8 +117,8 @@ const NotFoundPage: React.FC = () => {
       <div className="min-h-screen bg-gradient-to-br from-neutral-50 to-primary-50/30">
         {/* Hero Section */}
         <section className="py-16 md:py-24">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
+          <div className="container mx-auto px-1 sm:px-4 lg:px-8">
+            <div className="max-w-full sm:max-w-4xl mx-auto text-center">
               {/* 404 Illustration */}
               <div className="mb-8">
                 <div className="relative inline-block">
@@ -176,8 +176,8 @@ const NotFoundPage: React.FC = () => {
         {/* URL Suggestions */}
         {suggestions.length > 0 && (
           <section className="py-8 bg-amber-50">
-            <div className="container mx-auto px-4">
-              <div className="max-w-2xl mx-auto text-center">
+            <div className="container mx-auto px-1 sm:px-4 lg:px-8">
+              <div className="max-w-full sm:max-w-2xl mx-auto text-center">
                 <h2 className="text-lg font-semibold text-amber-900 mb-4">
                   ¿Tal vez buscabas alguno de estos?
                 </h2>
@@ -201,8 +201,8 @@ const NotFoundPage: React.FC = () => {
 
         {/* Search Section */}
         <section className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="max-w-2xl mx-auto">
+          <div className="container mx-auto px-1 sm:px-4 lg:px-8">
+            <div className="max-w-full sm:max-w-2xl mx-auto">
               <Card className="p-8">
                 <div className="text-center mb-6">
                   <MagnifyingGlassIcon className="w-12 h-12 text-primary-600 mx-auto mb-4" />
@@ -234,7 +234,7 @@ const NotFoundPage: React.FC = () => {
 
         {/* Popular Services */}
         <section className="py-16 bg-neutral-50">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-1 sm:px-4 lg:px-8">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-12">
                 <h2 className="text-3xl font-bold text-neutral-900 mb-4">
@@ -276,8 +276,8 @@ const NotFoundPage: React.FC = () => {
 
         {/* Navigation Links */}
         <section className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
+          <div className="container mx-auto px-1 sm:px-4 lg:px-8">
+            <div className="max-w-full sm:max-w-4xl mx-auto">
               <div className="text-center mb-12">
                 <h2 className="text-3xl font-bold text-neutral-900 mb-4">
                   Mapa del sitio
@@ -316,8 +316,8 @@ const NotFoundPage: React.FC = () => {
 
         {/* Help Section */}
         <section className="py-16 bg-primary-900 text-white">
-          <div className="container mx-auto px-4 text-center">
-            <div className="max-w-3xl mx-auto">
+          <div className="container mx-auto px-1 sm:px-4 lg:px-8 text-center">
+            <div className="max-w-full sm:max-w-3xl mx-auto">
               <h2 className="text-3xl font-bold mb-6">
                 ¿Sigues sin encontrar lo que buscas?
               </h2>

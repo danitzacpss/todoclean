@@ -207,13 +207,13 @@ const BusinessServices: React.FC = () => {
           Servicios Empresariales
         </h1>
         
-        <p className="text-xl text-neutral-600 max-w-3xl mx-auto mb-8">
+        <p className="text-xl text-neutral-600 max-w-full sm:max-w-3xl mx-auto mb-8">
           Soluciones integrales de limpieza para empresas, oficinas, clínicas y locales comerciales. 
           Mantenga su espacio profesional con estándares de excelencia.
         </p>
 
         {/* Enterprise Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-full sm:max-w-4xl mx-auto">
           <div className="text-center p-4">
             <div className="text-2xl font-bold text-blue-600">50+</div>
             <div className="text-sm text-neutral-600">Empresas Activas</div>
@@ -689,7 +689,7 @@ const BusinessServices: React.FC = () => {
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto space-y-4">
+        <div className="max-w-full sm:max-w-4xl mx-auto space-y-4">
           {BUSINESS_FAQS.map((faq) => (
             <div key={faq.id} className="bg-white border border-neutral-200 rounded-xl overflow-hidden shadow-sm">
               <button
@@ -759,7 +759,7 @@ const BusinessServices: React.FC = () => {
         <h2 className="text-3xl font-bold mb-4">
           ¡Impulsa la Productividad de tu Empresa!
         </h2>
-        <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+        <p className="text-xl text-blue-100 mb-8 max-w-full sm:max-w-2xl mx-auto">
           Un entorno limpio y profesional mejora la moral del equipo, 
           impresiona a los clientes y reduce las enfermedades laborales.
         </p>

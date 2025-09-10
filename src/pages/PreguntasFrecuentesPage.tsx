@@ -112,8 +112,8 @@ const PreguntasFrecuentesPage: React.FC = () => {
         {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-primary-900 to-primary-700 text-white py-16 md:py-24">
           <div className="absolute inset-0 bg-black/20" />
-          <div className="relative container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
+          <div className="relative container mx-auto px-1 sm:px-4 lg:px-8">
+            <div className="max-w-full sm:max-w-4xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
                 Preguntas frecuentes
               </h1>
@@ -122,7 +122,7 @@ const PreguntasFrecuentesPage: React.FC = () => {
               </p>
               
               {/* Search Bar */}
-              <div className="max-w-2xl mx-auto relative">
+              <div className="max-w-full sm:max-w-2xl mx-auto relative">
                 <input
                   type="text"
                   value={searchTerm}
@@ -138,8 +138,8 @@ const PreguntasFrecuentesPage: React.FC = () => {
 
         {/* Category Filter */}
         <section className="py-8 bg-neutral-50">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
+          <div className="container mx-auto px-1 sm:px-4 lg:px-8">
+            <div className="max-w-full sm:max-w-4xl mx-auto">
               <div className="flex flex-wrap gap-2 justify-center">
                 {categories.map((category) => {
                   const Icon = category.icon;
@@ -175,8 +175,8 @@ const PreguntasFrecuentesPage: React.FC = () => {
 
         {/* FAQ Section */}
         <section className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
+          <div className="container mx-auto px-1 sm:px-4 lg:px-8">
+            <div className="max-w-full sm:max-w-4xl mx-auto">
               {filteredFAQs.length === 0 ? (
                 <Card className="p-8 text-center">
                   <QuestionMarkCircleIcon className="w-16 h-16 text-neutral-400 mx-auto mb-4" />
@@ -288,8 +288,8 @@ const PreguntasFrecuentesPage: React.FC = () => {
 
         {/* CTA Final */}
         <section className="py-16 bg-primary-900 text-white">
-          <div className="container mx-auto px-4 text-center">
-            <div className="max-w-3xl mx-auto">
+          <div className="container mx-auto px-1 sm:px-4 lg:px-8 text-center">
+            <div className="max-w-full sm:max-w-3xl mx-auto">
               <h2 className="text-3xl font-bold mb-6">
                 ¿Tienes alguna pregunta?
               </h2>

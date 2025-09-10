@@ -99,7 +99,7 @@ const ServiceCompare: React.FC<ServiceCompareProps> = ({ className = '' }) => {
         <h2 className="text-3xl font-bold text-neutral-900 mb-4">
           ¿Qué Incluye Cada Servicio?
         </h2>
-        <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+        <p className="text-lg text-neutral-600 max-w-full sm:max-w-2xl mx-auto">
           Comparación detallada para que sepas exactamente qué incluye cada tipo de limpieza.
         </p>
       </div>

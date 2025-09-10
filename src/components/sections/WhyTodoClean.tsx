@@ -147,7 +147,7 @@ const WhyTodoClean: React.FC = () => {
         <div className="absolute top-40 right-12 w-6 h-6 border-2 border-blue-300/45 rotate-12" />
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-1 sm:px-4 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
           <motion.div
@@ -162,7 +162,7 @@ const WhyTodoClean: React.FC = () => {
             <h2 className="text-4xl md:text-5xl font-bold font-heading text-neutral-900 mb-4">
               ¿Por Qué Todo Clean?
             </h2>
-            <p className="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-neutral-600 max-w-full sm:max-w-3xl mx-auto leading-relaxed">
               Más de 500 hogares confían en nosotros. Conoce los estándares que nos hacen únicos en Chillán
             </p>
           </motion.div>
@@ -194,7 +194,7 @@ const WhyTodoClean: React.FC = () => {
             <h3 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-cyan-700 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
                 Números que Hablan por Nosotros
               </h3>
-              <p className="text-base text-gray-700 mb-10 max-w-2xl mx-auto font-medium">
+              <p className="text-base text-gray-700 mb-10 max-w-full sm:max-w-2xl mx-auto font-medium">
                   La confianza de nuestros clientes se refleja en estos resultados
                 </p>
             

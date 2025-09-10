@@ -49,18 +49,18 @@ const HomePage: React.FC = () => {
       <section className="relative bg-white overflow-hidden">
         {/* Subtle Background Elements */}
         <div className="absolute inset-0">
-          {/* Subtle color accents */}
-          <div className="absolute top-20 left-10 w-32 h-32 bg-cyan-100/40 rounded-full blur-2xl" />
-          <div className="absolute bottom-32 left-20 w-24 h-24 bg-teal-100/30 rounded-full blur-xl" />
-          <div className="absolute top-40 right-1/3 w-16 h-16 bg-cyan-200/20 rounded-full blur-lg" />
+          {/* Subtle color accents - responsive positioning */}
+          <div className="absolute top-20 left-4 sm:left-10 w-24 sm:w-32 h-24 sm:h-32 bg-cyan-100/40 rounded-full blur-2xl" />
+          <div className="absolute bottom-32 left-8 sm:left-20 w-20 sm:w-24 h-20 sm:h-24 bg-teal-100/30 rounded-full blur-xl" />
+          <div className="absolute top-40 right-1/4 sm:right-1/3 w-12 sm:w-16 h-12 sm:h-16 bg-cyan-200/20 rounded-full blur-lg" />
           
-          {/* Geometric details */}
-          <div className="absolute top-16 right-20 w-8 h-8 border border-cyan-300/30 rotate-45" />
-          <div className="absolute bottom-20 left-32 w-4 h-4 bg-teal-400/40 rounded-full" />
-          <div className="absolute top-1/3 left-16 w-2 h-2 bg-cyan-500/60 rounded-full" />
+          {/* Geometric details - hidden on mobile for cleaner look */}
+          <div className="hidden sm:block absolute top-16 right-20 w-8 h-8 border border-cyan-300/30 rotate-45" />
+          <div className="hidden sm:block absolute bottom-20 left-32 w-4 h-4 bg-teal-400/40 rounded-full" />
+          <div className="absolute top-1/3 left-8 sm:left-16 w-2 h-2 bg-cyan-500/60 rounded-full" />
         </div>
 
-        <div className="container mx-auto px-4 relative z-10 py-16 lg:py-24">
+        <div className="container mx-auto px-1 sm:px-6 lg:px-8 relative z-10 py-16 lg:py-24">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Content Column */}
             <div className="text-center lg:text-left">
@@ -80,7 +80,7 @@ const HomePage: React.FC = () => {
                 </span>
               </h1>
               
-              <p className="text-lg md:text-xl mb-10 text-gray-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+              <p className="text-lg md:text-xl mb-10 text-gray-600 max-w-none sm:max-w-full sm:max-w-2xl mx-auto lg:mx-0 leading-relaxed">
                 Transformamos tu hogar con
                 <span className="block font-bold text-gray-900 mt-1">
                   estándares americanos de limpieza
@@ -115,8 +115,8 @@ const HomePage: React.FC = () => {
                 </WhatsAppButton>
               </div>
 
-              {/* Trust Badges */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {/* Trust Badges - better mobile layout */}
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 <div className="group">
                   <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 text-center hover:bg-cyan-50 hover:border-cyan-200 transition-all duration-300 group-hover:scale-105">
                     <div className="w-10 h-10 bg-gradient-to-br from-cyan-500 to-teal-600 rounded-lg flex items-center justify-center mx-auto mb-2">
@@ -261,19 +261,19 @@ const HomePage: React.FC = () => {
         
         {/* Clean Decorative Elements */}
          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-           {/* Minimal accent points */}
-           <div className="absolute top-24 right-1/3 w-2 h-2 bg-cyan-500 rounded-full opacity-30"></div>
-           <div className="absolute bottom-40 left-1/4 w-1.5 h-1.5 bg-teal-500 rounded-full opacity-25"></div>
-           <div className="absolute top-16 left-20 w-1.5 h-1.5 bg-cyan-400 rounded-full opacity-30"></div>
+           {/* Minimal accent points - responsive positioning */}
+           <div className="absolute top-24 right-1/4 sm:right-1/3 w-2 h-2 bg-cyan-500 rounded-full opacity-30"></div>
+           <div className="absolute bottom-40 left-1/6 sm:left-1/4 w-1.5 h-1.5 bg-teal-500 rounded-full opacity-25"></div>
+           <div className="absolute top-16 left-8 sm:left-20 w-1.5 h-1.5 bg-cyan-400 rounded-full opacity-30"></div>
            
-           {/* Enhanced geometric shapes - more visible */}
-           <div className="absolute top-20 right-24 w-8 h-8 border-2 border-cyan-300 rounded opacity-50 rotate-12"></div>
-           <div className="absolute bottom-28 left-24 w-10 h-10 border-2 border-teal-300 rounded-full opacity-40"></div>
-           <div className="absolute top-1/4 right-20 w-6 h-6 border-2 border-blue-300 opacity-45 rotate-45"></div>
+           {/* Enhanced geometric shapes - hidden on mobile for cleaner look */}
+           <div className="hidden sm:block absolute top-20 right-24 w-8 h-8 border-2 border-cyan-300 rounded opacity-50 rotate-12"></div>
+           <div className="hidden sm:block absolute bottom-28 left-24 w-10 h-10 border-2 border-teal-300 rounded-full opacity-40"></div>
+           <div className="hidden md:block absolute top-1/4 right-20 w-6 h-6 border-2 border-blue-300 opacity-45 rotate-45"></div>
          </div>
         
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
+        <div className="container mx-auto px-1 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-full sm:max-w-4xl mx-auto text-center">
             {/* Premium badge */}
             <div className="inline-flex items-center gap-2 bg-cyan-50 border border-cyan-200 rounded-full px-4 py-2 mb-6">
               <div className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse"></div>
@@ -287,11 +287,11 @@ const HomePage: React.FC = () => {
               </span>
             </h2>
             
-            <p className="text-lg md:text-xl text-gray-600 mb-4 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-600 mb-4 max-w-none sm:max-w-full sm:max-w-3xl mx-auto leading-relaxed">
               Obtén tu cotización gratuita en menos de 30 segundos
             </p>
             
-            <p className="text-base text-cyan-600 mb-10 max-w-2xl mx-auto font-medium">
+            <p className="text-base text-cyan-600 mb-10 max-w-none sm:max-w-full sm:max-w-2xl mx-auto font-medium">
               ✨ Únete a los +500 hogares que ya disfrutan de un hogar impecable sin esfuerzo
             </p>
             
@@ -320,8 +320,8 @@ const HomePage: React.FC = () => {
               </WhatsAppButton>
             </div>
             
-            {/* Trust indicators with consistent design */}
-            <div className="flex flex-wrap justify-center items-center gap-8 text-gray-600">
+            {/* Trust indicators with consistent design - better mobile spacing */}
+            <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-6 text-gray-600">
               <div className="flex items-center gap-2 group">
                 <div className="w-3 h-3 bg-cyan-500 rounded-full group-hover:scale-110 transition-transform duration-300"></div>
                 <span className="text-sm font-medium">Sin compromiso</span>

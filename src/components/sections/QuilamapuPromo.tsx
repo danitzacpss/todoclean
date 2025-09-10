@@ -99,7 +99,7 @@ const QuilamapuPromo: React.FC = () => {
           </motion.div>
         </div>
 
-        <div className="container mx-auto px-4 py-8 relative z-10">
+        <div className="container mx-auto px-1 sm:px-4 lg:px-8 py-8 relative z-10">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
             {/* Left Side - Promotion Content */}
             <div className="flex-1 text-center lg:text-left">
