@@ -118,18 +118,18 @@ function App() {
           {/* Main application routes */}
           <Suspense fallback={<PageLoadingFallback />}>
             <Routes>
-              {/* Main layout routes */}
-              <Route path='/' element={<Layout />}>
+              {/* Main layout routes with Layout wrapper */}
+              <Route element={<Layout />}>
                 {/* Home page */}
-                <Route index element={<HomePage />} />
+                <Route path='/' element={<HomePage />} />
                 
                 {/* Services pages */}
                 <Route path='servicios' element={<ServiciosPage />} />
                 <Route path='servicios/residencial' element={<ServiciosResidencialPage />} />
                 <Route path='servicios/empresarial' element={<ServiciosEmpresarialPage />} />
                 
-                {/* Calculator page */}
-                <Route path='cotizador' element={<CotizadorPage />} />
+                {/* Calculator page - TEMPORARILY HIDDEN */}
+                {/* <Route path='cotizador' element={<CotizadorPage />} /> */}
                 
                 {/* Coverage page */}
                 <Route path='cobertura' element={<CoberturaPage />} />

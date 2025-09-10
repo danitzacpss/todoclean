@@ -26,9 +26,6 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
-        servicios: resolve(__dirname, 'servicios.html'),
-        cotizador: resolve(__dirname, 'cotizador.html'),
-        cobertura: resolve(__dirname, 'cobertura.html'),
       },
       
       output: {

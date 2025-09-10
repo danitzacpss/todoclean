@@ -111,6 +111,7 @@ export interface ServiceArea {
   surcharge: number;
   responseTime: string; // e.g., "24 horas"
   color: string;
+  description: string;
   coordinates?: [number, number][];
 }
 

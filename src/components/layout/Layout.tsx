@@ -12,7 +12,7 @@ import Footer from './Footer';
 // MAIN LAYOUT COMPONENT
 // ==========================================
 
-const Layout: React.FC = () => {
+const Layout = () => {
   return (
     <div className="min-h-screen flex flex-col bg-neutral-0">
       {/* Skip to main content link for accessibility */}

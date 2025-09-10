@@ -206,6 +206,7 @@ export const SERVICE_AREAS: ServiceArea[] = [
     surcharge: 0,
     responseTime: '24 horas',
     color: '#22c55e', // green
+    description: 'Servicio rápido sin recargo adicional',
     coordinates: [
       [-36.595, -72.115],
       [-36.585, -72.085],
@@ -225,6 +226,7 @@ export const SERVICE_AREAS: ServiceArea[] = [
     surcharge: 5000,
     responseTime: '48 horas',
     color: '#f59e0b', // amber
+    description: 'Servicio con recargo moderado',
     coordinates: [
       [-36.575, -72.125],
       [-36.565, -72.065],
@@ -245,6 +247,7 @@ export const SERVICE_AREAS: ServiceArea[] = [
     surcharge: 10000,
     responseTime: '72 horas',
     color: '#f97316', // orange
+    description: 'Servicio con recargo adicional',
     coordinates: [
       [-36.555, -72.135],
       [-36.545, -72.045],
@@ -486,11 +489,12 @@ export const NAVIGATION_ROUTES = [
       },
     ],
   },
-  {
-    name: 'Cotizador',
-    path: '/cotizador',
-    description: 'Calculadora detallada de precios paso a paso',
-  },
+  // TEMPORARILY HIDDEN - Cotizador
+  // {
+  //   name: 'Cotizador',
+  //   path: '/cotizador',
+  //   description: 'Calculadora detallada de precios paso a paso',
+  // },
   {
     name: 'Cobertura',
     path: '/cobertura',
