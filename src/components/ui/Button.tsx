@@ -5,7 +5,7 @@
 
 import React, { forwardRef } from 'react';
 import clsx from 'clsx';
-import type { ButtonProps } from '@/types';
+import type { ButtonProps, ButtonVariant, ButtonSize } from '@/types';
 import { ButtonLoading } from './Loading';
 
 // ==========================================
@@ -208,12 +208,14 @@ PhoneButton.displayName = 'PhoneButton';
 // Link button that looks like a button but behaves like a link
 export const LinkButton = forwardRef<
   HTMLAnchorElement,
-  Omit<ButtonProps, 'onClick'> & {
+  Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> & {
     href: string;
-    target?: string;
-    rel?: string;
+    variant?: ButtonVariant;
+    size?: ButtonSize;
+    fullWidth?: boolean;
+    icon?: React.ReactNode;
   }
->(({ href, target, rel, variant = 'primary', size = 'md', className, children, ...props }, ref) => {
+>(({ href, target, rel, variant = 'primary', size = 'md', fullWidth = false, icon, className, children, ...props }, ref) => {
   const baseClasses = 'btn-base focus-ring inline-flex items-center justify-center font-semibold transition-all duration-200 no-underline';
 
   const variantClasses = {
@@ -231,10 +233,14 @@ export const LinkButton = forwardRef<
     xl: 'px-8 py-4 text-xl min-h-[60px]',
   };
 
+  // Full width classes
+  const widthClasses = fullWidth ? 'w-full' : '';
+
   const linkClasses = clsx(
     baseClasses,
     variantClasses[variant],
     sizeClasses[size],
+    widthClasses,
     className
   );
 
@@ -247,7 +253,10 @@ export const LinkButton = forwardRef<
       className={linkClasses}
       {...props}
     >
-      {children}
+      <div className="flex items-center justify-center gap-2">
+        {icon && <span className="flex-shrink-0">{icon}</span>}
+        {children}
+      </div>
     </a>
   );
 });

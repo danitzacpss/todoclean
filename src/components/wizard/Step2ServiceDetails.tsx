@@ -6,7 +6,7 @@
 import React, { useState } from 'react';
 import { cn } from '@/utils/cn';
 import DatePicker from '@/components/ui/DatePicker';
-import type { ServiceType, FrequencyType, QuoteFormData } from '@/types';
+import type { ServiceType, FrequencyType, QuoteFormData, ExtraService } from '@/types';
 import { SERVICE_PRICING, FREQUENCY_DISCOUNTS, EXTRA_SERVICES } from '@/utils/constants';
 import { formatPrice, formatDiscount, formatHours } from '@/utils/pricing';
 
@@ -127,9 +127,9 @@ const Step2ServiceDetails: React.FC<Step2ServiceDetailsProps> = ({
     if (!acc[extra.category]) {
       acc[extra.category] = [];
     }
-    acc[extra.category].push(extra);
+    acc[extra.category]!.push(extra);
     return acc;
-  }, {} as Record<string, typeof EXTRA_SERVICES>);
+  }, {} as Record<string, ExtraService[]>);
 
   const categoryNames = {
     interior: 'Interior',
@@ -161,7 +161,7 @@ const Step2ServiceDetails: React.FC<Step2ServiceDetailsProps> = ({
             const isSelected = formData.serviceType === service.id;
             const servicePricing = SERVICE_PRICING[service.id as keyof typeof SERVICE_PRICING];
             const estimatedPrice = formData.squareMeters ? 
-              getEstimatedPrice(service.id, formData.frequency || 'quincenal') : null;
+              getEstimatedPrice(service.id, formData.frequency || 'mensual') : null;
             
             return (
               <div
@@ -406,7 +406,7 @@ const Step2ServiceDetails: React.FC<Step2ServiceDetailsProps> = ({
           onChange={handleDateChange}
           label="¿Cuándo te gustaría agendar? (opcional)"
           placeholder="Selecciona una fecha preferida"
-          error={allErrors.preferredDate || undefined}
+          {...(allErrors.preferredDate && { error: allErrors.preferredDate })}
         />
         <p className="mt-1 text-xs text-neutral-500">
           Si no seleccionas fecha, nos contactaremos contigo para coordinar

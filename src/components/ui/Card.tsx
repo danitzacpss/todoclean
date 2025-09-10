@@ -157,19 +157,24 @@ export const ServiceCard = forwardRef<
     className?: string;
   }
 >(({ title, price, duration, features, popular = false, onSelect, className }, ref) => {
+  const cardProps: any = {
+    ref,
+    variant: "service" as const,
+    className: clsx(
+      'relative overflow-hidden',
+      {
+        'ring-2 ring-primary-500 border-primary-500': popular,
+      },
+      className
+    )
+  };
+
+  if (onSelect) {
+    cardProps.onClick = onSelect;
+  }
+
   return (
-    <Card
-      ref={ref}
-      variant="service"
-      onClick={onSelect}
-      className={clsx(
-        'relative overflow-hidden',
-        {
-          'ring-2 ring-primary-500 border-primary-500': popular,
-        },
-        className
-      )}
-    >
+    <Card {...cardProps}>
       {popular && (
         <div className="absolute top-0 right-0 bg-primary-600 text-white px-3 py-1 text-xs font-semibold rounded-bl-lg">
           Más Popular
@@ -293,7 +298,7 @@ export const TestimonialCard = forwardRef<
                   className="w-4 h-4 text-secondary-600 flex-shrink-0"
                   fill="currentColor"
                   viewBox="0 0 20 20"
-                  title="Cliente verificado"
+                  aria-label="Cliente verificado"
                 >
                   <path
                     fillRule="evenodd"
