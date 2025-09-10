@@ -87,6 +87,33 @@ const ServiciosPage: React.FC = () => {
               precios desde $30.000 y garantía de satisfacción 100%.
             </p>
             
+            {/* Duration and Service Info */}
+            <div className="bg-gradient-to-r from-cyan-50 to-blue-50 rounded-2xl p-6 max-w-4xl mx-auto mb-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                <div className="flex flex-col items-center">
+                  <div className="w-12 h-12 bg-cyan-100 rounded-full flex items-center justify-center mb-2">
+                    <span className="text-2xl">⏱️</span>
+                  </div>
+                  <h3 className="font-semibold text-neutral-900 mb-1">Duración Optimizada</h3>
+                  <p className="text-sm text-neutral-600">3 horas de limpieza profunda</p>
+                </div>
+                <div className="flex flex-col items-center">
+                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-2">
+                    <span className="text-2xl">💰</span>
+                  </div>
+                  <h3 className="font-semibold text-neutral-900 mb-1">Precios Actualizados</h3>
+                  <p className="text-sm text-neutral-600">Desde $30.000 según superficie</p>
+                </div>
+                <div className="flex flex-col items-center">
+                  <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mb-2">
+                    <span className="text-2xl">📋</span>
+                  </div>
+                  <h3 className="font-semibold text-neutral-900 mb-1">Planes Flexibles</h3>
+                  <p className="text-sm text-neutral-600">Mensual, trimestral y anual</p>
+                </div>
+              </div>
+            </div>
+            
             {/* Key Features */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
               <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow-sm">
