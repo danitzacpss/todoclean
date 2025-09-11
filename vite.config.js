@@ -137,26 +137,11 @@ export default defineConfig({
     tsconfigPaths(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
-      manifest: {
-        name: 'Todo Clean Chillán',
-        short_name: 'Todo Clean',
-        description: 'Servicios profesionales de limpieza en Chillán',
-        theme_color: '#2563eb',
-        background_color: '#ffffff',
-        display: 'standalone',
-        icons: [
-          {
-            src: 'pwa-192x192.png',
-            sizes: '192x192',
-            type: 'image/png'
-          },
-          {
-            src: 'pwa-512x512.png',
-            sizes: '512x512',
-            type: 'image/png'
-          }
-        ]
+      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'site.webmanifest'],
+      // Disable manifest generation since we have our own
+      manifest: false,
+      injectManifest: {
+        globPatterns: ['**/*.{js,css,html,png,jpg,svg,ico,webmanifest}']
       }
     })
   ],
