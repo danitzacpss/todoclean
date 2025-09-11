@@ -175,8 +175,8 @@ const ServiciosPage: React.FC = () => {
         <section className="pb-12" id="servicios-tabs">
           <div className="container mx-auto px-0.5 sm:px-2 lg:px-4">
             {/* Sticky Tab Bar */}
-            <div className="bg-white rounded-2xl shadow-lg border border-neutral-200 mb-8 sticky top-20 z-10">
-              <div className="flex flex-col md:flex-row">
+            <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg border border-neutral-200 mb-8 sticky top-16 sm:top-20 z-10">
+              <div className="flex">
                 {TABS.map((tab) => (
                   <button
                     key={tab.id}
@@ -189,14 +189,27 @@ const ServiciosPage: React.FC = () => {
                         window.history.replaceState(null, '', '/servicios');
                       }
                     }}
-                    className={`flex-1 p-4 sm:p-5 text-left transition-all duration-300 first:rounded-l-2xl last:rounded-r-2xl md:first:rounded-tr-none md:last:rounded-tl-none md:first:rounded-bl-2xl md:last:rounded-br-2xl ${
+                    className={`flex-1 p-3 sm:p-4 md:p-5 text-center sm:text-left transition-all duration-300 first:rounded-l-xl sm:first:rounded-l-2xl last:rounded-r-xl sm:last:rounded-r-2xl ${
                       activeTab === tab.id
                         ? 'bg-teal-600 text-white shadow-lg'
                         : 'bg-white text-neutral-600 hover:bg-neutral-50'
                     }`}
                     aria-pressed={activeTab === tab.id}
                   >
-                    <div className="flex items-start space-x-4">
+                    {/* Mobile Design: Icon + Title only, stacked */}
+                    <div className="block sm:hidden">
+                      <div className="flex flex-col items-center space-y-1">
+                        <span className="text-lg">{tab.icon}</span>
+                        <h3 className={`font-semibold text-sm leading-tight ${
+                          activeTab === tab.id ? 'text-white' : 'text-neutral-900'
+                        }`}>
+                          {tab.label.replace('Servicios ', '')}
+                        </h3>
+                      </div>
+                    </div>
+                    
+                    {/* Desktop Design: Full layout */}
+                    <div className="hidden sm:flex items-start space-x-3">
                       <span className="text-2xl">{tab.icon}</span>
                       <div>
                         <h3 className={`font-semibold text-lg mb-1 ${
