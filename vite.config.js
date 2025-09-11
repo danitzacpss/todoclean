@@ -32,8 +32,8 @@ export default defineConfig({
         // Chunk splitting for better caching
         manualChunks: {
           vendor: ['react', 'react-dom'],
-          ui: ['./src/components/ui'],
-          utils: ['./src/utils']
+          framerMotion: ['framer-motion'],
+          helmet: ['react-helmet-async']
         },
         
         // Asset naming
@@ -194,6 +194,6 @@ export default defineConfig({
   // Worker configuration
   worker: {
     format: 'es',
-    plugins: []
+    plugins: () => []
   }
 });
