@@ -98,7 +98,7 @@ const Header: React.FC = () => {
             >
               {/* Logo */}
               <img
-                src="/Documentation/Todo Clean.png"
+                src="/logo.png"
                 alt="Todo Clean - Servicio de Limpieza Profesional"
                 className="h-16 w-auto"
               />

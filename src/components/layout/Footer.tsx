@@ -26,7 +26,7 @@ const Footer: React.FC = () => {
               <div className="flex items-center gap-4 mb-6">
                 {/* Logo */}
                 <img
-                  src="/Documentation/Todo Clean.png"
+                  src="/logo.png"
                   alt="Todo Clean - Servicio de Limpieza Profesional"
                   className="h-16 w-auto flex-shrink-0"
                 />
