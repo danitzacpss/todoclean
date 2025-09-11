@@ -60,7 +60,7 @@ const HomePage: React.FC = () => {
           <div className="absolute top-1/3 left-8 sm:left-16 w-2 h-2 bg-cyan-500/60 rounded-full" />
         </div>
 
-        <div className="container mx-auto px-0.5 sm:px-2 lg:px-4 relative z-10 py-16 lg:py-24">
+        <div className="container mx-auto px-2 sm:px-4 md:px-6 lg:px-8 relative z-10 py-16 lg:py-24">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Content Column */}
             <div className="text-center lg:text-left">
@@ -80,7 +80,7 @@ const HomePage: React.FC = () => {
                 </span>
               </h1>
               
-              <p className="text-lg md:text-xl mb-10 text-gray-600 max-w-none sm:max-w-2xl mx-auto lg:mx-0 leading-relaxed px-1">
+              <p className="text-lg md:text-xl mb-10 text-gray-600 max-w-full sm:max-w-2xl lg:max-w-4xl mx-auto lg:mx-0 leading-relaxed">
                 Transformamos tu hogar con
                 <span className="block font-bold text-gray-900 mt-1">
                   estándares americanos de limpieza
@@ -91,7 +91,7 @@ const HomePage: React.FC = () => {
               </p>
 
               {/* CTAs */}
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start mb-12 px-1">
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center lg:justify-start mb-12">
                 <Button
                   variant="primary"
                   size="lg"
@@ -116,7 +116,7 @@ const HomePage: React.FC = () => {
               </div>
 
               {/* Trust Badges - better mobile layout */}
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 px-1">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
                 <div className="group">
                   <div className="bg-gray-50 border border-gray-200 rounded-xl p-3 sm:p-4 text-center hover:bg-cyan-50 hover:border-cyan-200 transition-all duration-300 group-hover:scale-105">
                     <div className="w-10 h-10 bg-gradient-to-br from-cyan-500 to-teal-600 rounded-lg flex items-center justify-center mx-auto mb-2">
@@ -272,8 +272,8 @@ const HomePage: React.FC = () => {
            <div className="hidden md:block absolute top-1/4 right-20 w-6 h-6 border-2 border-blue-300 opacity-45 rotate-45"></div>
          </div>
         
-        <div className="container mx-auto px-0.5 sm:px-2 lg:px-4 relative z-10">
-          <div className="max-w-none sm:max-w-4xl mx-auto text-center px-1">
+        <div className="container mx-auto px-2 sm:px-4 md:px-6 lg:px-8 relative z-10">
+          <div className="max-w-full sm:max-w-4xl lg:max-w-6xl mx-auto text-center">
             {/* Premium badge */}
             <div className="inline-flex items-center gap-2 bg-cyan-50 border border-cyan-200 rounded-full px-4 py-2 mb-6">
               <div className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse"></div>
@@ -287,16 +287,16 @@ const HomePage: React.FC = () => {
               </span>
             </h2>
             
-            <p className="text-lg md:text-xl text-gray-600 mb-4 max-w-none sm:max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-600 mb-4 max-w-full sm:max-w-3xl lg:max-w-4xl mx-auto leading-relaxed">
               Obtén tu cotización gratuita en menos de 30 segundos
             </p>
             
-            <p className="text-base text-cyan-600 mb-10 max-w-none sm:max-w-2xl mx-auto font-medium">
+            <p className="text-base text-cyan-600 mb-10 max-w-full sm:max-w-2xl lg:max-w-3xl mx-auto font-medium">
               ✨ Únete a los +500 hogares que ya disfrutan de un hogar impecable sin esfuerzo
             </p>
             
             {/* CTA Buttons with enhanced design */}
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-12 px-1">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center mb-12">
               <Button
                 variant="primary"
                 size="lg"
@@ -321,7 +321,7 @@ const HomePage: React.FC = () => {
             </div>
             
             {/* Trust indicators with consistent design - better mobile spacing */}
-            <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-5 text-gray-600 px-1">
+            <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-5 text-gray-600">
               <div className="flex items-center gap-2 group">
                 <div className="w-3 h-3 bg-cyan-500 rounded-full group-hover:scale-110 transition-transform duration-300"></div>
                 <span className="text-sm font-medium">Sin compromiso</span>
