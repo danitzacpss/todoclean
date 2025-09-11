@@ -7,6 +7,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { SITE_CONFIG, NAVIGATION_ROUTES } from '@/utils/constants';
 import { WhatsAppButton, PhoneButton } from '@/components/ui/Button';
+import logoImage from '@/assets/images/logo.png';
 
 // ==========================================
 // FOOTER COMPONENT
@@ -26,7 +27,7 @@ const Footer: React.FC = () => {
               <div className="flex items-center gap-4 mb-6">
                 {/* Logo */}
                 <img
-                  src="/logo.png"
+                  src={logoImage}
                   alt="Todo Clean - Servicio de Limpieza Profesional"
                   className="h-16 w-auto flex-shrink-0"
                 />

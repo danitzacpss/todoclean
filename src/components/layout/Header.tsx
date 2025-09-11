@@ -18,6 +18,7 @@ import {
 } from '@heroicons/react/24/outline';
 import { SITE_CONFIG, NAVIGATION_ROUTES } from '@/utils/constants';
 import { WhatsAppButton, PhoneButton } from '@/components/ui/Button';
+import logoImage from '@/assets/images/logo.png';
 
 // ==========================================
 // HEADER COMPONENT
@@ -98,7 +99,7 @@ const Header: React.FC = () => {
             >
               {/* Logo */}
               <img
-                src="/logo.png"
+                src={logoImage}
                 alt="Todo Clean - Servicio de Limpieza Profesional"
                 className="h-16 w-auto"
               />
