@@ -508,7 +508,7 @@ Frecuencia: ${frequencyName}`;
 
   return (
     <section className="relative bg-gradient-to-br from-neutral-50 via-blue-50/30 to-neutral-50 py-4 pb-16">
-      <div className="container mx-auto px-1 sm:px-4 lg:px-8">
+      <div className="container mx-auto px-0.5 sm:px-2 lg:px-4">
         {/* Section Header */}
         <div className="text-center mb-8">
           <h2 className="text-xl sm:text-3xl lg:text-4xl font-bold font-heading mb-2 text-gray-900">

@@ -60,7 +60,7 @@ const HomePage: React.FC = () => {
           <div className="absolute top-1/3 left-8 sm:left-16 w-2 h-2 bg-cyan-500/60 rounded-full" />
         </div>
 
-        <div className="container mx-auto px-1 sm:px-6 lg:px-8 relative z-10 py-16 lg:py-24">
+        <div className="container mx-auto px-0.5 sm:px-2 lg:px-4 relative z-10 py-16 lg:py-24">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Content Column */}
             <div className="text-center lg:text-left">
@@ -80,7 +80,7 @@ const HomePage: React.FC = () => {
                 </span>
               </h1>
               
-              <p className="text-lg md:text-xl mb-10 text-gray-600 max-w-none sm:max-w-full sm:max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+              <p className="text-lg md:text-xl mb-10 text-gray-600 max-w-none sm:max-w-2xl mx-auto lg:mx-0 leading-relaxed px-1">
                 Transformamos tu hogar con
                 <span className="block font-bold text-gray-900 mt-1">
                   estándares americanos de limpieza
@@ -91,7 +91,7 @@ const HomePage: React.FC = () => {
               </p>
 
               {/* CTAs */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start mb-12 px-1">
                 <Button
                   variant="primary"
                   size="lg"
@@ -116,9 +116,9 @@ const HomePage: React.FC = () => {
               </div>
 
               {/* Trust Badges - better mobile layout */}
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 px-1">
                 <div className="group">
-                  <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 text-center hover:bg-cyan-50 hover:border-cyan-200 transition-all duration-300 group-hover:scale-105">
+                  <div className="bg-gray-50 border border-gray-200 rounded-xl p-3 sm:p-4 text-center hover:bg-cyan-50 hover:border-cyan-200 transition-all duration-300 group-hover:scale-105">
                     <div className="w-10 h-10 bg-gradient-to-br from-cyan-500 to-teal-600 rounded-lg flex items-center justify-center mx-auto mb-2">
                       <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -130,7 +130,7 @@ const HomePage: React.FC = () => {
                 </div>
                 
                 <div className="group">
-                  <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 text-center hover:bg-cyan-50 hover:border-cyan-200 transition-all duration-300 group-hover:scale-105">
+                  <div className="bg-gray-50 border border-gray-200 rounded-xl p-3 sm:p-4 text-center hover:bg-cyan-50 hover:border-cyan-200 transition-all duration-300 group-hover:scale-105">
                     <div className="w-10 h-10 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-lg flex items-center justify-center mx-auto mb-2">
                       <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
@@ -142,7 +142,7 @@ const HomePage: React.FC = () => {
                 </div>
                 
                 <div className="group">
-                  <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 text-center hover:bg-cyan-50 hover:border-cyan-200 transition-all duration-300 group-hover:scale-105">
+                  <div className="bg-gray-50 border border-gray-200 rounded-xl p-3 sm:p-4 text-center hover:bg-cyan-50 hover:border-cyan-200 transition-all duration-300 group-hover:scale-105">
                     <div className="w-10 h-10 bg-gradient-to-br from-cyan-600 to-teal-500 rounded-lg flex items-center justify-center mx-auto mb-2">
                       <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
@@ -154,7 +154,7 @@ const HomePage: React.FC = () => {
                 </div>
                 
                 <div className="group">
-                   <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 text-center hover:bg-cyan-50 hover:border-cyan-200 transition-all duration-300 group-hover:scale-105">
+                   <div className="bg-gray-50 border border-gray-200 rounded-xl p-3 sm:p-4 text-center hover:bg-cyan-50 hover:border-cyan-200 transition-all duration-300 group-hover:scale-105">
                      <div className="w-10 h-10 bg-gradient-to-br from-teal-600 to-cyan-500 rounded-lg flex items-center justify-center mx-auto mb-2">
                        <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
                          <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -272,8 +272,8 @@ const HomePage: React.FC = () => {
            <div className="hidden md:block absolute top-1/4 right-20 w-6 h-6 border-2 border-blue-300 opacity-45 rotate-45"></div>
          </div>
         
-        <div className="container mx-auto px-1 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-full sm:max-w-4xl mx-auto text-center">
+        <div className="container mx-auto px-0.5 sm:px-2 lg:px-4 relative z-10">
+          <div className="max-w-none sm:max-w-4xl mx-auto text-center px-1">
             {/* Premium badge */}
             <div className="inline-flex items-center gap-2 bg-cyan-50 border border-cyan-200 rounded-full px-4 py-2 mb-6">
               <div className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse"></div>
@@ -287,16 +287,16 @@ const HomePage: React.FC = () => {
               </span>
             </h2>
             
-            <p className="text-lg md:text-xl text-gray-600 mb-4 max-w-none sm:max-w-full sm:max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-600 mb-4 max-w-none sm:max-w-3xl mx-auto leading-relaxed">
               Obtén tu cotización gratuita en menos de 30 segundos
             </p>
             
-            <p className="text-base text-cyan-600 mb-10 max-w-none sm:max-w-full sm:max-w-2xl mx-auto font-medium">
+            <p className="text-base text-cyan-600 mb-10 max-w-none sm:max-w-2xl mx-auto font-medium">
               ✨ Únete a los +500 hogares que ya disfrutan de un hogar impecable sin esfuerzo
             </p>
             
             {/* CTA Buttons with enhanced design */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-12 px-1">
               <Button
                 variant="primary"
                 size="lg"
@@ -321,7 +321,7 @@ const HomePage: React.FC = () => {
             </div>
             
             {/* Trust indicators with consistent design - better mobile spacing */}
-            <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-6 text-gray-600">
+            <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-5 text-gray-600 px-1">
               <div className="flex items-center gap-2 group">
                 <div className="w-3 h-3 bg-cyan-500 rounded-full group-hover:scale-110 transition-transform duration-300"></div>
                 <span className="text-sm font-medium">Sin compromiso</span>

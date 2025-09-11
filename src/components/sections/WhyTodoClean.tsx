@@ -88,7 +88,7 @@ const DifferentiatorCard: React.FC<DifferentiatorProps> = ({
       viewport={{ once: true }}
       className="group"
     >
-      <div className="h-full bg-white rounded-2xl shadow-lg p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border border-neutral-200 hover:border-accent-300">
+      <div className="h-full bg-white rounded-2xl shadow-lg p-4 sm:p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border border-neutral-200 hover:border-accent-300">
         {/* Icon Header */}
         <div className="text-center mb-6">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-accent-400 to-accent-600 rounded-2xl text-3xl mb-4 group-hover:scale-110 transition-transform duration-300">
@@ -147,7 +147,7 @@ const WhyTodoClean: React.FC = () => {
         <div className="absolute top-40 right-12 w-6 h-6 border-2 border-blue-300/45 rotate-12" />
       </div>
 
-      <div className="container mx-auto px-1 sm:px-4 lg:px-8 relative z-10">
+      <div className="container mx-auto px-0.5 sm:px-2 lg:px-4 relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
           <motion.div
@@ -162,14 +162,14 @@ const WhyTodoClean: React.FC = () => {
             <h2 className="text-4xl md:text-5xl font-bold font-heading text-neutral-900 mb-4">
               ¿Por Qué Todo Clean?
             </h2>
-            <p className="text-xl text-neutral-600 max-w-full sm:max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-neutral-600 max-w-none sm:max-w-3xl mx-auto leading-relaxed px-1">
               Más de 500 hogares confían en nosotros. Conoce los estándares que nos hacen únicos en Chillán
             </p>
           </motion.div>
         </div>
 
         {/* Differentiators Grid */}
-        <div className="grid lg:grid-cols-2 xl:grid-cols-4 gap-8 max-w-7xl mx-auto mb-16">
+        <div className="grid lg:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6 max-w-7xl mx-auto mb-16 px-1">
           {DIFFERENTIATORS.map((differentiator, index) => (
             <DifferentiatorCard
               key={differentiator.title}
@@ -188,35 +188,35 @@ const WhyTodoClean: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
-          className="bg-gradient-to-br from-white/80 via-cyan-50/60 to-teal-50/80 backdrop-blur-xl rounded-3xl p-8 md:p-12 text-center shadow-xl border border-white/30"
+          className="bg-gradient-to-br from-white/80 via-cyan-50/60 to-teal-50/80 backdrop-blur-xl rounded-3xl p-4 sm:p-6 md:p-8 text-center shadow-xl border border-white/30 mx-1"
         >
           <div className="max-w-5xl mx-auto">
             <h3 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-cyan-700 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
                 Números que Hablan por Nosotros
               </h3>
-              <p className="text-base text-gray-700 mb-10 max-w-full sm:max-w-2xl mx-auto font-medium">
+              <p className="text-base text-gray-700 mb-10 max-w-none sm:max-w-2xl mx-auto font-medium">
                   La confianza de nuestros clientes se refleja en estos resultados
                 </p>
             
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-                <div className="group bg-white/70 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-white/40 hover:bg-white/80 hover:border-cyan-200/50 transition-all duration-500 shadow-lg hover:shadow-xl hover:-translate-y-1">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
+                <div className="group bg-white/70 backdrop-blur-md rounded-2xl p-4 sm:p-5 md:p-6 border border-white/40 hover:bg-white/80 hover:border-cyan-200/50 transition-all duration-500 shadow-lg hover:shadow-xl hover:-translate-y-1">
                   <div className="text-3xl md:text-4xl font-bold bg-gradient-to-br from-cyan-600 to-teal-600 bg-clip-text text-transparent mb-3">+500</div>
                   <div className="text-gray-700 text-sm md:text-base font-semibold">Hogares Atendidos</div>
                     <div className="w-8 h-1 bg-gradient-to-r from-cyan-400 to-teal-400 mx-auto mt-3 rounded-full group-hover:w-12 transition-all duration-300"></div>
                   </div>
-                  <div className="group bg-white/70 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-white/40 hover:bg-white/80 hover:border-cyan-200/50 transition-all duration-500 shadow-lg hover:shadow-xl hover:-translate-y-1">
+                  <div className="group bg-white/70 backdrop-blur-md rounded-2xl p-4 sm:p-5 md:p-6 border border-white/40 hover:bg-white/80 hover:border-cyan-200/50 transition-all duration-500 shadow-lg hover:shadow-xl hover:-translate-y-1">
                     <div className="text-3xl md:text-4xl font-bold bg-gradient-to-br from-cyan-600 to-teal-600 bg-clip-text text-transparent mb-3 flex items-center justify-center gap-1">
                       4.8<span className="text-yellow-500 text-2xl md:text-3xl drop-shadow-sm">★</span>
                     </div>
                     <div className="text-gray-700 text-sm md:text-base font-semibold">Rating Promedio</div>
                     <div className="w-8 h-1 bg-gradient-to-r from-cyan-400 to-teal-400 mx-auto mt-3 rounded-full group-hover:w-12 transition-all duration-300"></div>
                   </div>
-                  <div className="group bg-white/70 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-white/40 hover:bg-white/80 hover:border-cyan-200/50 transition-all duration-500 shadow-lg hover:shadow-xl hover:-translate-y-1">
+                  <div className="group bg-white/70 backdrop-blur-md rounded-2xl p-4 sm:p-5 md:p-6 border border-white/40 hover:bg-white/80 hover:border-cyan-200/50 transition-all duration-500 shadow-lg hover:shadow-xl hover:-translate-y-1">
                     <div className="text-3xl md:text-4xl font-bold bg-gradient-to-br from-cyan-600 to-teal-600 bg-clip-text text-transparent mb-3">&lt;2h</div>
                     <div className="text-gray-700 text-sm md:text-base font-semibold">Tiempo Respuesta</div>
                     <div className="w-8 h-1 bg-gradient-to-r from-cyan-400 to-teal-400 mx-auto mt-3 rounded-full group-hover:w-12 transition-all duration-300"></div>
                   </div>
-                  <div className="group bg-white/70 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-white/40 hover:bg-white/80 hover:border-cyan-200/50 transition-all duration-500 shadow-lg hover:shadow-xl hover:-translate-y-1">
+                  <div className="group bg-white/70 backdrop-blur-md rounded-2xl p-4 sm:p-5 md:p-6 border border-white/40 hover:bg-white/80 hover:border-cyan-200/50 transition-all duration-500 shadow-lg hover:shadow-xl hover:-translate-y-1">
                     <div className="text-3xl md:text-4xl font-bold bg-gradient-to-br from-cyan-600 to-teal-600 bg-clip-text text-transparent mb-3">85%</div>
                     <div className="text-gray-700 text-sm md:text-base font-semibold">Clientes Recurrentes</div>
                     <div className="w-8 h-1 bg-gradient-to-r from-cyan-400 to-teal-400 mx-auto mt-3 rounded-full group-hover:w-12 transition-all duration-300"></div>
@@ -231,7 +231,7 @@ const WhyTodoClean: React.FC = () => {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}
           viewport={{ once: true }}
-          className="flex flex-wrap justify-center items-center gap-6 md:gap-8 mt-12"
+          className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 mt-12 px-1"
         >
           <div className="flex items-center space-x-3 group">
             <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">

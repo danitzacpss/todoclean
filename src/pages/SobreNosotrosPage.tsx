@@ -114,17 +114,17 @@ const SobreNosotrosPage: React.FC = () => {
 
         {/* Hero Section */}
         <section className="py-16">
-          <div className="container mx-auto px-1 sm:px-4 lg:px-8">
-            <div className="max-w-full sm:max-w-4xl mx-auto text-center">
+          <div className="container mx-auto px-0.5 sm:px-2 lg:px-4">
+            <div className="max-w-none sm:max-w-4xl mx-auto text-center">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-neutral-900 leading-tight">
                 Sobre Todo Clean
               </h1>
-              <p className="text-lg md:text-xl text-neutral-600 mb-12 max-w-full sm:max-w-2xl mx-auto">
+              <p className="text-lg md:text-xl text-neutral-600 mb-12 max-w-none sm:max-w-2xl mx-auto px-1">
                 Limpieza profesional con estándares americanos y corazón chillanejo
               </p>
               
               {/* Stats */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 mb-8 px-1">
                 {stats.map((stat, index) => {
                   const IconComponent = stat.icon;
                   return (
@@ -146,9 +146,9 @@ const SobreNosotrosPage: React.FC = () => {
 
         {/* Mission & Vision */}
         <section className="py-16">
-          <div className="container mx-auto px-1 sm:px-4 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-8 items-stretch">
-              <div className="bg-white rounded-2xl p-8 shadow-lg">
+          <div className="container mx-auto px-0.5 sm:px-2 lg:px-4">
+            <div className="grid lg:grid-cols-2 gap-3 sm:gap-6 items-stretch px-1">
+              <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-lg">
                 <h2 className="text-3xl font-bold text-neutral-900 mb-6">
                   Nuestra Misión
                 </h2>
@@ -163,7 +163,7 @@ const SobreNosotrosPage: React.FC = () => {
                 </p>
               </div>
               
-              <div className="bg-white rounded-2xl p-8 shadow-lg">
+              <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-lg">
                 <h2 className="text-3xl font-bold text-neutral-900 mb-6">
                   Nuestra Visión
                 </h2>
@@ -183,7 +183,7 @@ const SobreNosotrosPage: React.FC = () => {
 
         {/* Timeline */}
         <section className="py-16">
-          <div className="container mx-auto px-1 sm:px-4 lg:px-8">
+          <div className="container mx-auto px-0.5 sm:px-2 lg:px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-neutral-900 mb-4">
                 Nuestra Historia
@@ -193,24 +193,42 @@ const SobreNosotrosPage: React.FC = () => {
               </p>
             </div>
             
-            <div className="max-w-full sm:max-w-4xl mx-auto">
+            <div className="max-w-none sm:max-w-4xl mx-auto px-1">
               <div className="relative">
-                {/* Timeline line */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-primary-200" />
+                {/* Timeline line - responsive positioning */}
+                <div className="absolute left-4 sm:left-1/2 sm:transform sm:-translate-x-1/2 w-1 h-full bg-primary-200" />
                 
                 {timeline.map((item, index) => (
-                  <div key={index} className={`relative flex items-center mb-12 ${
-                    index % 2 === 0 ? 'justify-start' : 'justify-end'
-                  }`}>
-                    {/* Timeline dot */}
-                    <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-primary-600 rounded-full border-4 border-white shadow-lg" />
+                  <div key={index} className="relative mb-8 sm:mb-12">
+                    {/* Timeline dot - responsive positioning */}
+                    <div className="absolute left-3 sm:left-1/2 sm:transform sm:-translate-x-1/2 w-4 h-4 bg-primary-600 rounded-full border-4 border-white shadow-lg z-10" />
                     
-                    <div className={`w-5/12 ${index % 2 === 0 ? 'pr-8 text-right' : 'pl-8'}`}>
-                      <Card className="p-6">
-                        <div className="text-primary-600 font-bold mb-2">{item.year}</div>
-                        <h3 className="font-bold text-neutral-900 mb-3">{item.title}</h3>
-                        <p className="text-neutral-600">{item.description}</p>
-                      </Card>
+                    {/* Mobile: Single column layout */}
+                    <div className="block sm:hidden">
+                      <div className="ml-12 pr-2">
+                        <Card className="p-4 hover:shadow-lg transition-shadow duration-300">
+                          <div className="text-primary-600 font-bold mb-2 text-sm">{item.year}</div>
+                          <h3 className="font-bold text-neutral-900 mb-3 text-lg">{item.title}</h3>
+                          <p className="text-neutral-600 text-sm leading-relaxed">{item.description}</p>
+                        </Card>
+                      </div>
+                    </div>
+
+                    {/* Desktop: Alternating layout */}
+                    <div className="hidden sm:flex items-center">
+                      <div className={`flex w-full ${
+                        index % 2 === 0 ? 'justify-start' : 'justify-end'
+                      }`}>
+                        <div className={`w-5/12 ${
+                          index % 2 === 0 ? 'pr-4 text-right' : 'pl-4 text-left'
+                        }`}>
+                          <Card className="p-4 lg:p-5 hover:shadow-lg transition-shadow duration-300">
+                            <div className="text-primary-600 font-bold mb-2">{item.year}</div>
+                            <h3 className="font-bold text-neutral-900 mb-3 text-lg lg:text-xl">{item.title}</h3>
+                            <p className="text-neutral-600 leading-relaxed">{item.description}</p>
+                          </Card>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -221,7 +239,7 @@ const SobreNosotrosPage: React.FC = () => {
 
         {/* Team */}
         <section className="py-16 bg-neutral-50">
-          <div className="container mx-auto px-1 sm:px-4 lg:px-8">
+          <div className="container mx-auto px-0.5 sm:px-2 lg:px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-neutral-900 mb-4">
                 Nuestro Equipo
@@ -231,9 +249,9 @@ const SobreNosotrosPage: React.FC = () => {
               </p>
             </div>
             
-            <div className="grid md:grid-cols-2 gap-6 max-w-full sm:max-w-2xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-3 sm:gap-4 max-w-none sm:max-w-2xl mx-auto px-1">
               {team.map((member, index) => (
-                <Card key={index} className="p-6 text-center">
+                <Card key={index} className="p-4 sm:p-5 text-center">
                   <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <span className="text-2xl font-bold text-primary-600">
                       {member.name.charAt(0)}
@@ -256,7 +274,7 @@ const SobreNosotrosPage: React.FC = () => {
               <p className="text-neutral-600 mb-4">
                 <strong>Características de nuestro equipo:</strong>
               </p>
-              <div className="grid md:grid-cols-3 gap-4 max-w-full sm:max-w-2xl mx-auto">
+              <div className="grid md:grid-cols-3 gap-2 sm:gap-3 max-w-none sm:max-w-2xl mx-auto px-1">
                 <div className="text-sm text-neutral-600">
                   ✓ Verificación de antecedentes
                 </div>
@@ -273,7 +291,7 @@ const SobreNosotrosPage: React.FC = () => {
 
         {/* Certifications */}
         <section className="py-16">
-          <div className="container mx-auto px-1 sm:px-4 lg:px-8">
+          <div className="container mx-auto px-0.5 sm:px-2 lg:px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-neutral-900 mb-4">
                 Certificaciones y Garantías
@@ -283,11 +301,11 @@ const SobreNosotrosPage: React.FC = () => {
               </p>
             </div>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 px-1">
               {certifications.map((cert, index) => {
                 const IconComponent = cert.icon;
                 return (
-                  <Card key={index} className="p-6 text-center">
+                  <Card key={index} className="p-4 sm:p-5 text-center">
                     <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                       <IconComponent className="w-6 h-6 text-green-600" />
                     </div>
@@ -306,7 +324,7 @@ const SobreNosotrosPage: React.FC = () => {
 
         {/* Values */}
         <section className="py-16 bg-primary-50">
-          <div className="container mx-auto px-1 sm:px-4 lg:px-8">
+          <div className="container mx-auto px-0.5 sm:px-2 lg:px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-neutral-900 mb-4">
                 Nuestros Valores
@@ -316,11 +334,11 @@ const SobreNosotrosPage: React.FC = () => {
               </p>
             </div>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 px-1">
               {values.map((value, index) => {
                 const IconComponent = value.icon;
                 return (
-                  <Card key={index} className="p-6 text-center bg-white">
+                  <Card key={index} className="p-4 sm:p-5 text-center bg-white">
                     <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                       <IconComponent className="w-6 h-6 text-primary-600" />
                     </div>
@@ -340,7 +358,7 @@ const SobreNosotrosPage: React.FC = () => {
         {/* CTA Section */}
         <section className="relative py-16 overflow-hidden">
           <div className="container mx-auto px-1 sm:px-4 lg:px-8 relative z-10">
-            <div className="max-w-full sm:max-w-4xl mx-auto text-center">
+            <div className="max-w-none sm:max-w-4xl mx-auto text-center">
               {/* Badge */}
               <div className="inline-flex items-center gap-2 bg-teal-50 border border-teal-200 rounded-full px-4 py-2 mb-6">
                 <div className="w-2 h-2 bg-teal-500 rounded-full animate-pulse"></div>
@@ -354,16 +372,16 @@ const SobreNosotrosPage: React.FC = () => {
                 </span>
               </h2>
               
-              <p className="text-lg md:text-xl text-gray-600 mb-4 max-w-full sm:max-w-3xl mx-auto leading-relaxed">
+              <p className="text-lg md:text-xl text-gray-600 mb-4 max-w-none sm:max-w-3xl mx-auto leading-relaxed">
                 Contáctanos para confirmar disponibilidad y obtener una cotización personalizada
               </p>
               
-              <p className="text-base text-teal-600 mb-10 max-w-full sm:max-w-2xl mx-auto font-medium">
+              <p className="text-base text-teal-600 mb-10 max-w-none sm:max-w-2xl mx-auto font-medium">
                 ✨ Servicio garantizado en todas nuestras zonas de cobertura
               </p>
               
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 px-1">
                 <a
                    href={`https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent('¡Hola! Me interesa conocer más sobre sus servicios de limpieza.')}`}
                    target="_blank"
@@ -386,7 +404,7 @@ const SobreNosotrosPage: React.FC = () => {
               </div>
               
               {/* Trust indicators */}
-              <div className="flex flex-wrap justify-center items-center gap-8 text-gray-600">
+              <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 text-gray-600 px-1">
                 <div className="flex items-center gap-2 group">
                   <div className="w-3 h-3 bg-teal-500 rounded-full group-hover:scale-110 transition-transform duration-300"></div>
                   <span className="text-sm font-medium">Sin compromiso</span>

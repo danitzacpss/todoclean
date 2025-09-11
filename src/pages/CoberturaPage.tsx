@@ -238,8 +238,8 @@ const CoberturaPage: React.FC = () => {
                   </span>
                 </p>
 
-                <div className="grid grid-cols-3 gap-4">
-                  <div className="bg-white border border-gray-200 rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition-shadow">
+                <div className="grid grid-cols-3 gap-1 sm:gap-4">
+                  <div className="bg-white border border-gray-200 rounded-2xl p-3 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow">
                     <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-teal-600 rounded-xl flex items-center justify-center mx-auto mb-3">
                       <MapPinIcon className="w-6 h-6 text-white" />
                     </div>
@@ -247,7 +247,7 @@ const CoberturaPage: React.FC = () => {
                     <div className="text-sm text-gray-600">Zonas</div>
                   </div>
                   
-                  <div className="bg-white border border-gray-200 rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition-shadow">
+                  <div className="bg-white border border-gray-200 rounded-2xl p-3 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow">
                     <div className="w-12 h-12 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-xl flex items-center justify-center mx-auto mb-3">
                       <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
@@ -257,7 +257,7 @@ const CoberturaPage: React.FC = () => {
                     <div className="text-sm text-gray-600">Comunas</div>
                   </div>
                   
-                  <div className="bg-white border border-gray-200 rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition-shadow">
+                  <div className="bg-white border border-gray-200 rounded-2xl p-3 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow">
                     <div className="w-12 h-12 bg-gradient-to-br from-cyan-600 to-teal-500 rounded-xl flex items-center justify-center mx-auto mb-3">
                       <ClockIcon className="w-6 h-6 text-white" />
                     </div>

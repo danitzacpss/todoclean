@@ -41,8 +41,8 @@ const ContactoPage: React.FC = () => {
 
         {/* Hero Section */}
         <section className="py-16">
-          <div className="container mx-auto px-1 sm:px-4 lg:px-8">
-            <div className="max-w-full sm:max-w-4xl mx-auto text-center">
+          <div className="container mx-auto px-0.5 sm:px-2 lg:px-4">
+            <div className="max-w-none sm:max-w-4xl mx-auto text-center px-1">
               {/* Badge */}
               <div className="inline-flex items-center gap-2 bg-teal-50 border border-teal-200 rounded-full px-4 py-2 mb-6">
                 <div className="w-2 h-2 bg-teal-500 rounded-full animate-pulse"></div>
@@ -53,11 +53,11 @@ const ContactoPage: React.FC = () => {
                 Contáctanos
               </h1>
               
-              <p className="text-lg md:text-xl text-neutral-600 mb-12 max-w-full sm:max-w-2xl mx-auto">
+              <p className="text-lg md:text-xl text-neutral-600 mb-12 max-w-none sm:max-w-2xl mx-auto">
                 Respuesta garantizada en menos de 2 horas
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-1">
                 <Button
                   size="lg"
                   className="bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700 text-white shadow-lg transform hover:scale-105 transition-all duration-300 border-0"
@@ -89,8 +89,8 @@ const ContactoPage: React.FC = () => {
 
         {/* Main Content */}
         <section className="py-16 md:py-24">
-          <div className="container mx-auto px-1 sm:px-4 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
+          <div className="container mx-auto px-0.5 sm:px-2 lg:px-4">
+            <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 px-1">
               {/* Contact Form */}
               <div className="space-y-8">
                 <div className="max-w-md">
@@ -103,7 +103,7 @@ const ContactoPage: React.FC = () => {
                 </div>
                 
                 {formSubmitted ? (
-                  <Card className="p-8 text-center space-y-6">
+                  <Card className="p-4 sm:p-6 text-center space-y-6">
                     <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
                       <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -150,9 +150,9 @@ const ContactoPage: React.FC = () => {
                 </div>
 
                 {/* Contact Cards */}
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   {/* WhatsApp */}
-                  <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer group"
+                  <Card className="p-4 sm:p-5 hover:shadow-lg transition-shadow cursor-pointer group"
                         onClick={() => {
                           handleWhatsAppClick();
                           window.open(generateWhatsAppURL(WHATSAPP_MESSAGES.general), '_blank');
@@ -176,7 +176,7 @@ const ContactoPage: React.FC = () => {
                   </Card>
 
                   {/* Phone */}
-                  <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer group"
+                  <Card className="p-4 sm:p-5 hover:shadow-lg transition-shadow cursor-pointer group"
                         onClick={() => {
                           handlePhoneClick();
                           window.open(`tel:${SITE_CONFIG.phone}`, '_self');
@@ -198,7 +198,7 @@ const ContactoPage: React.FC = () => {
                   </Card>
 
                   {/* Email */}
-                  <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer group"
+                  <Card className="p-4 sm:p-5 hover:shadow-lg transition-shadow cursor-pointer group"
                         onClick={() => window.open(`mailto:${SITE_CONFIG.email}`, '_self')}>
                     <div className="flex items-start space-x-4">
                       <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center group-hover:bg-cyan-200 transition-colors">
@@ -217,7 +217,7 @@ const ContactoPage: React.FC = () => {
                   </Card>
 
                   {/* Instagram */}
-                  <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer group"
+                  <Card className="p-4 sm:p-5 hover:shadow-lg transition-shadow cursor-pointer group"
                         onClick={() => window.open(SITE_CONFIG.social.instagram, '_blank')}>
                     <div className="flex items-start space-x-4">
                       <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center group-hover:bg-teal-200 transition-colors">
@@ -241,7 +241,7 @@ const ContactoPage: React.FC = () => {
                 </div>
 
                 {/* Business Hours */}
-                <Card className="p-6">
+                <Card className="p-4 sm:p-5">
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center">
                       <ClockIcon className="w-6 h-6 text-cyan-600" />
@@ -268,7 +268,7 @@ const ContactoPage: React.FC = () => {
                 </Card>
 
                 {/* Location */}
-                <Card className="p-6">
+                <Card className="p-4 sm:p-5">
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center">
                       <MapPinIcon className="w-6 h-6 text-teal-600" />
@@ -287,7 +287,7 @@ const ContactoPage: React.FC = () => {
                         className="mt-3"
                         onClick={() => window.location.href = '/cobertura'}
                       >
-                        Ver mapa de cobertura
+                        Ver zonas de cobertura
                       </Button>
                     </div>
                   </div>
@@ -300,7 +300,7 @@ const ContactoPage: React.FC = () => {
         {/* CTA Section */}
         <section className="relative py-16 overflow-hidden">
           <div className="container mx-auto px-1 sm:px-4 lg:px-8 relative z-10">
-            <div className="max-w-full sm:max-w-4xl mx-auto text-center">
+            <div className="max-w-none sm:max-w-4xl mx-auto text-center px-1">
               {/* Badge */}
               <div className="inline-flex items-center gap-2 bg-teal-50 border border-teal-200 rounded-full px-4 py-2 mb-6">
                 <div className="w-2 h-2 bg-teal-500 rounded-full animate-pulse"></div>
@@ -314,16 +314,16 @@ const ContactoPage: React.FC = () => {
                 </span>
               </h2>
               
-              <p className="text-lg md:text-xl text-gray-600 mb-4 max-w-full sm:max-w-3xl mx-auto leading-relaxed">
+              <p className="text-lg md:text-xl text-gray-600 mb-4 max-w-none sm:max-w-3xl mx-auto leading-relaxed">
                 Usa nuestro cotizador automático y obtén tu precio al instante
               </p>
               
-              <p className="text-base text-teal-600 mb-10 max-w-full sm:max-w-2xl mx-auto font-medium">
+              <p className="text-base text-teal-600 mb-10 max-w-none sm:max-w-2xl mx-auto font-medium">
                 ✨ Respuesta garantizada en tiempo real
               </p>
               
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-12 px-1">
                 <a 
                   href="/#price-calculator"
                   className="inline-block"
@@ -353,7 +353,7 @@ const ContactoPage: React.FC = () => {
               </div>
               
               {/* Trust indicators */}
-              <div className="flex flex-wrap justify-center items-center gap-8 text-gray-600">
+              <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 text-gray-600 px-1">
                 <div className="flex items-center gap-2 group">
                   <div className="w-3 h-3 bg-teal-500 rounded-full group-hover:scale-110 transition-transform duration-300"></div>
                   <span className="text-sm font-medium">Precio instantáneo</span>

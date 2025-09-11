@@ -100,18 +100,18 @@ const ServiciosPage: React.FC = () => {
 
         {/* Hero Section */}
         <section className="py-16">
-          <div className="container mx-auto px-1 sm:px-4 lg:px-8 text-center">
+          <div className="container mx-auto px-0.5 sm:px-2 lg:px-4 text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6">
               Nuestros Servicios de Limpieza
             </h1>
-            <p className="text-xl text-neutral-600 mb-8 max-w-full sm:max-w-3xl mx-auto">
+            <p className="text-xl text-neutral-600 mb-8 max-w-none sm:max-w-3xl mx-auto px-1">
               Ofrecemos servicios profesionales de limpieza con estándares americanos, 
               precios desde $30.000 y garantía de satisfacción 100%.
             </p>
             
             {/* Duration and Service Info */}
-            <div className="bg-gradient-to-r from-cyan-50 to-blue-50 rounded-2xl p-6 max-w-full sm:max-w-4xl mx-auto mb-8">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+            <div className="bg-gradient-to-r from-cyan-50 to-blue-50 rounded-2xl p-4 sm:p-5 max-w-none sm:max-w-4xl mx-auto mb-8 mx-1">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 text-center">
                 <div className="flex flex-col items-center">
                   <div className="w-12 h-12 bg-cyan-100 rounded-full flex items-center justify-center mb-2">
                     <span className="text-2xl">⏱️</span>
@@ -137,8 +137,8 @@ const ServiciosPage: React.FC = () => {
             </div>
             
             {/* Key Features */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-full sm:max-w-4xl mx-auto mb-12">
-              <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow-sm">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 max-w-none sm:max-w-4xl mx-auto mb-12 px-1">
+              <div className="flex flex-col items-center p-4 sm:p-5 bg-white rounded-xl shadow-sm">
                 <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
                   <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -148,7 +148,7 @@ const ServiciosPage: React.FC = () => {
                 <p className="text-neutral-600 text-sm">Sin costos ocultos ni sorpresas</p>
               </div>
               
-              <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow-sm">
+              <div className="flex flex-col items-center p-4 sm:p-5 bg-white rounded-xl shadow-sm">
                 <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
                   <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -158,7 +158,7 @@ const ServiciosPage: React.FC = () => {
                 <p className="text-neutral-600 text-sm">Tu dinero de vuelta si llegamos tarde</p>
               </div>
               
-              <div className="flex flex-col items-center p-6 bg-white rounded-xl shadow-sm">
+              <div className="flex flex-col items-center p-4 sm:p-5 bg-white rounded-xl shadow-sm">
                 <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mb-4">
                   <svg className="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -173,7 +173,7 @@ const ServiciosPage: React.FC = () => {
 
         {/* Tab Navigation */}
         <section className="pb-12" id="servicios-tabs">
-          <div className="container mx-auto px-1 sm:px-4 lg:px-8">
+          <div className="container mx-auto px-0.5 sm:px-2 lg:px-4">
             {/* Sticky Tab Bar */}
             <div className="bg-white rounded-2xl shadow-lg border border-neutral-200 mb-8 sticky top-20 z-10">
               <div className="flex flex-col md:flex-row">
@@ -189,7 +189,7 @@ const ServiciosPage: React.FC = () => {
                         window.history.replaceState(null, '', '/servicios');
                       }
                     }}
-                    className={`flex-1 p-6 text-left transition-all duration-300 first:rounded-l-2xl last:rounded-r-2xl md:first:rounded-tr-none md:last:rounded-tl-none md:first:rounded-bl-2xl md:last:rounded-br-2xl ${
+                    className={`flex-1 p-4 sm:p-5 text-left transition-all duration-300 first:rounded-l-2xl last:rounded-r-2xl md:first:rounded-tr-none md:last:rounded-tl-none md:first:rounded-bl-2xl md:last:rounded-br-2xl ${
                       activeTab === tab.id
                         ? 'bg-teal-600 text-white shadow-lg'
                         : 'bg-white text-neutral-600 hover:bg-neutral-50'
@@ -254,8 +254,8 @@ const ServiciosPage: React.FC = () => {
                 <div className="absolute top-1/4 right-20 w-6 h-6 border-2 border-blue-300 opacity-45 rotate-45"></div>
               </div>
               
-              <div className="container mx-auto px-1 sm:px-4 lg:px-8 relative z-10">
-                <div className="max-w-full sm:max-w-4xl mx-auto text-center">
+              <div className="container mx-auto px-0.5 sm:px-2 lg:px-4 relative z-10">
+                <div className="max-w-none sm:max-w-4xl mx-auto text-center px-1">
                   {/* Premium badge */}
                   <div className="inline-flex items-center gap-2 bg-cyan-50 border border-cyan-200 rounded-full px-4 py-2 mb-6">
                     <div className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse"></div>
@@ -269,7 +269,7 @@ const ServiciosPage: React.FC = () => {
                     </span>
                   </h2>
                   
-                  <p className="text-lg md:text-xl text-gray-600 mb-4 max-w-full sm:max-w-3xl mx-auto leading-relaxed">
+                  <p className="text-lg md:text-xl text-gray-600 mb-4 max-w-none sm:max-w-3xl mx-auto leading-relaxed">
                     Únete a más de 350 clientes satisfechos. Servicios desde $30.000 con limpieza completa en 3 horas.
                   </p>
                   
@@ -288,7 +288,7 @@ const ServiciosPage: React.FC = () => {
                   </div>
                   
                   {/* Trust indicators with consistent design */}
-                  <div className="flex flex-wrap justify-center items-center gap-8 text-gray-600">
+                  <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 text-gray-600 px-1">
                     <div className="flex items-center gap-2 group">
                       <div className="w-3 h-3 bg-cyan-500 rounded-full group-hover:scale-110 transition-transform duration-300"></div>
                       <span className="text-sm font-medium">Sin compromiso</span>
@@ -323,8 +323,8 @@ const ServiciosPage: React.FC = () => {
                 <div className="absolute bottom-1/4 right-1/3 w-20 h-20 bg-cyan-50/50 rounded-full blur-lg"></div>
               </div>
               
-              <div className="container mx-auto px-1 sm:px-4 lg:px-8 relative z-10">
-                <div className="max-w-full sm:max-w-4xl mx-auto text-center">
+              <div className="container mx-auto px-0.5 sm:px-2 lg:px-4 relative z-10">
+                <div className="max-w-none sm:max-w-4xl mx-auto text-center px-1">
                   {/* Premium badge */}
                   <div className="inline-flex items-center gap-2 bg-cyan-50 border border-cyan-200 rounded-full px-4 py-2 mb-6">
                     <div className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse"></div>
@@ -338,7 +338,7 @@ const ServiciosPage: React.FC = () => {
                     </span>
                   </h2>
                   
-                  <p className="text-lg md:text-xl text-gray-600 mb-4 max-w-full sm:max-w-3xl mx-auto leading-relaxed">
+                  <p className="text-lg md:text-xl text-gray-600 mb-4 max-w-none sm:max-w-3xl mx-auto leading-relaxed">
                     Optimiza el rendimiento de tu equipo con espacios de trabajo impecables. 
                     Nuestros servicios especializados garantizan un ambiente productivo y profesional.
                   </p>
@@ -358,7 +358,7 @@ const ServiciosPage: React.FC = () => {
                   </div>
                   
                   {/* Business Trust indicators */}
-                  <div className="flex flex-wrap justify-center items-center gap-8 text-gray-600">
+                  <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 text-gray-600 px-1">
                     <div className="flex items-center gap-2 group">
                       <div className="w-3 h-3 bg-cyan-500 rounded-full group-hover:scale-110 transition-transform duration-300"></div>
                       <span className="text-sm font-medium">Visita comercial gratuita</span>
