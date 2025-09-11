@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { cn } from '@/utils/cn';
-import type { PriceCalculation, ExtraService } from '@/types';
+import type { PriceCalculation } from '@/types';
 import { formatPrice, formatDiscount, formatHours } from '@/utils/pricing';
 import { EXTRA_SERVICES, SERVICE_PRICING, FREQUENCY_DISCOUNTS, SERVICE_AREAS } from '@/utils/constants';
 

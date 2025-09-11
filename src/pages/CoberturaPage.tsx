@@ -44,12 +44,12 @@ const CoberturaPage: React.FC = () => {
   const [isSearching, setIsSearching] = useState(false);
   
   // Función para desplazarse a una sección específica
-  const scrollToSection = (sectionId: string) => {
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
+  // const scrollToSection = (sectionId: string) => {
+  //   const section = document.getElementById(sectionId);
+  //   if (section) {
+  //     section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  //   }
+  // };
 
   const handleAddressSearch = async () => {
     if (!searchAddress.trim()) return;

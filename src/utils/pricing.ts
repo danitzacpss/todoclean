@@ -247,7 +247,7 @@ export function calculatePrice(params: {
   }
 
   // Legacy discount calculation for display purposes
-  const frequencyDiscount = FREQUENCY_DISCOUNTS[frequency]?.discount || 0;
+  // const frequencyDiscount = FREQUENCY_DISCOUNTS[frequency]?.discount || 0;
   const discountAmount = frequency === 'unica' ? 0 : (adjustedBasePrice - finalPrice);
 
   // Calculate zone surcharge
@@ -426,7 +426,7 @@ export function calculateSavings(
 
 export function getFrequencyComparison(
   basePrice: number, 
-  serviceType: ServiceType
+  _serviceType: ServiceType
 ): Array<{
   frequency: FrequencyType;
   price: number;
@@ -635,8 +635,8 @@ export function getPriceRange(
   serviceType: ServiceType,
   frequency: FrequencyType = 'unica'
 ): { min: number; max: number; formatted: string } {
-  const servicePricing = SERVICE_PRICING[serviceType];
-  const frequencyData = FREQUENCY_DISCOUNTS[frequency];
+  // const servicePricing = SERVICE_PRICING[serviceType];
+  // const frequencyData = FREQUENCY_DISCOUNTS[frequency];
   
   // Calculate for minimum scenario (small apartment)
   const minCalculation = calculatePrice({

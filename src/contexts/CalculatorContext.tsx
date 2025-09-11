@@ -4,7 +4,7 @@
 // ===================================
 
 import React, { createContext, useContext, useReducer, useEffect, useCallback, useMemo } from 'react';
-import type { CalculatorContextType, QuoteFormData, PriceCalculation } from '@/types';
+import type { QuoteFormData, PriceCalculation } from '@/types';
 import { calculatePrice, validatePricingParams } from '@/utils/pricing';
 import { trackCalculatorStart, trackCalculatorStep, trackCalculatorComplete } from '@/utils/analytics';
 

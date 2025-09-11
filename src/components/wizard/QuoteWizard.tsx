@@ -78,7 +78,11 @@ const QuoteWizard: React.FC<QuoteWizardProps> = ({
 
   // Handle zone change from address validator
   const handleZoneChange = (zone: ZoneType | null) => {
-    actions.updateFormData({ zone: zone || undefined });
+    if (zone) {
+      actions.updateFormData({ zone });
+    } else {
+      actions.updateFormData({});
+    }
   };
 
   // Handle form submission

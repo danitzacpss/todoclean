@@ -14,11 +14,11 @@ import type { ServiceType, PropertyType, FrequencyType } from '@/types';
 // INTERFACES
 // ==========================================
 
-interface CalculatorStep {
-  step: number;
-  title: string;
-  subtitle: string;
-}
+// interface CalculatorStep {
+//   step: number;
+//   title: string;
+//   subtitle: string;
+// }
 
 interface CalculatorState {
   propertyType: PropertyType | null;
@@ -32,7 +32,7 @@ interface CalculatorState {
 // COMPONENT DATA
 // ==========================================
 
-const CALCULATOR_STEPS: CalculatorStep[] = [
+/* const CALCULATOR_STEPS: CalculatorStep[] = [
   {
     step: 1,
     title: 'calculadora.step1.title',
@@ -48,7 +48,7 @@ const CALCULATOR_STEPS: CalculatorStep[] = [
     title: 'calculadora.step3.title',
     subtitle: 'calculadora.step3.subtitle',
   },
-];
+]; */
 
 const PROPERTY_OPTIONS = [
   { id: 'casa', name: 'Casa/Depto', icon: '🏠', baseService: 'regular' as ServiceType },

@@ -261,9 +261,15 @@ const Step3ResultAndContact: React.FC<Step3ResultAndContactProps> = ({
             <AddressValidator
               value={formData.address || ''}
               onChange={(address) => handleFieldChange('address', address)}
-              onZoneChange={(zone) => updateFormData({ zone: zone || undefined })}
+              onZoneChange={(zone) => {
+                if (zone) {
+                  updateFormData({ zone });
+                } else {
+                  updateFormData({});
+                }
+              }}
               required={true}
-              error={allErrors.address}
+              {...(allErrors.address && { error: allErrors.address })}
             />
           </div>
 

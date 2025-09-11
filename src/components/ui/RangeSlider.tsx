@@ -41,7 +41,7 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
   const thumbRef = useRef<HTMLDivElement>(null);
 
   // Calculate percentage position
-  const percentage = ((value - min) / (max - min)) * 100;
+  // const percentage = ((value - min) / (max - min)) * 100;
 
   // Format display value
   const formattedValue = formatValue ? formatValue(value) : `${value}${unit}`;
@@ -92,8 +92,11 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
 
     const handleTouchMove = (event: TouchEvent) => {
       if (event.touches.length > 0) {
-        const newValue = calculateValueFromPosition(event.touches[0].clientX);
-        setDisplayValue(newValue);
+        const touch = event.touches[0];
+        if (touch) {
+          const newValue = calculateValueFromPosition(touch.clientX);
+          setDisplayValue(newValue);
+        }
       }
     };
 

@@ -190,7 +190,7 @@ export function trackCalculatorStep(step: number, data: any): void {
 export function trackCalculatorComplete(
   service?: ServiceType, 
   value?: number, 
-  step?: string, 
+  _step?: string, 
   metadata?: any
 ): void {
   const analyticsEvent: FlexibleAnalyticsEvent = {

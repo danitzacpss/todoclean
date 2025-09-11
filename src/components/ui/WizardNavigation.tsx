@@ -163,7 +163,7 @@ const WizardNavigation: React.FC<WizardNavigationProps> = ({
             </div>
             {steps[currentStep - 1]?.description && (
               <div className="text-xs text-neutral-500">
-                {steps[currentStep - 1].description}
+                {steps[currentStep - 1]?.description}
               </div>
             )}
           </div>

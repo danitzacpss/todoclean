@@ -19,16 +19,16 @@ export function useLazyImage(src: string, placeholder?: string) {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry?.isIntersecting) {
           const img = new Image();
           img.onload = () => {
             setImageSrc(src);
             setIsLoaded(true);
-            trackEvent('image_lazy_loaded', { src });
+            trackEvent({ event: 'image_lazy_loaded', category: 'performance', label: 'lazy_load' });
           };
           img.onerror = () => {
             setIsError(true);
-            trackEvent('image_load_error', { src });
+            trackEvent({ event: 'image_load_error', category: 'error', label: 'image_error' });
           };
           img.src = src;
           observer.disconnect();
@@ -61,7 +61,11 @@ export function useIntersectionObserver(
     if (!element) return;
 
     const observer = new IntersectionObserver(
-      ([entry]) => callback(entry),
+      ([entry]) => {
+        if (entry) {
+          callback(entry);
+        }
+      },
       options
     );
 
@@ -81,10 +85,12 @@ export function useScrollReveal(threshold = 0.1) {
   
   const ref = useIntersectionObserver(
     (entry) => {
-      if (entry.isIntersecting && !isVisible) {
+      if (entry?.isIntersecting && !isVisible) {
         setIsVisible(true);
-        trackEvent('scroll_reveal', { 
-          element: entry.target.tagName.toLowerCase() 
+        trackEvent({
+          event: 'scroll_reveal',
+          category: 'engagement',
+          label: entry.target.tagName.toLowerCase()
         });
       }
     },
@@ -160,8 +166,10 @@ export function usePerformanceMetrics() {
       const entries = entryList.getEntries();
       const lastEntry = entries[entries.length - 1] as any;
       
-      setMetrics(prev => ({ ...prev, lcp: lastEntry.startTime }));
-      trackEvent('performance_lcp', { value: lastEntry.startTime });
+      if (lastEntry) {
+        setMetrics(prev => ({ ...prev, lcp: lastEntry.startTime }));
+        trackEvent({ event: 'performance_lcp', category: 'performance', label: 'lcp', value: lastEntry.startTime });
+      }
     }).observe({ entryTypes: ['largest-contentful-paint'] });
 
     // First Input Delay
@@ -169,7 +177,7 @@ export function usePerformanceMetrics() {
       const entries = entryList.getEntries();
       entries.forEach((entry: any) => {
         setMetrics(prev => ({ ...prev, fid: entry.processingStart - entry.startTime }));
-        trackEvent('performance_fid', { value: entry.processingStart - entry.startTime });
+        trackEvent({ event: 'performance_fid', category: 'performance', label: 'fid', value: entry.processingStart - entry.startTime });
       });
     }).observe({ entryTypes: ['first-input'] });
 
@@ -194,13 +202,13 @@ export function usePerformanceMetrics() {
       if (navigation) {
         const ttfb = navigation.responseStart - navigation.requestStart;
         setMetrics(prev => ({ ...prev, ttfb }));
-        trackEvent('performance_ttfb', { value: ttfb });
+        trackEvent({ event: 'performance_ttfb', category: 'performance', label: 'ttfb', value: ttfb });
       }
       
       const fcpEntry = paint.find(entry => entry.name === 'first-contentful-paint');
       if (fcpEntry) {
         setMetrics(prev => ({ ...prev, fcp: fcpEntry.startTime }));
-        trackEvent('performance_fcp', { value: fcpEntry.startTime });
+        trackEvent({ event: 'performance_fcp', category: 'performance', label: 'fcp', value: fcpEntry.startTime });
       }
     }
   }, []);
@@ -230,7 +238,7 @@ export function useNetworkStatus() {
       
       const handleConnectionChange = () => {
         setConnectionType(connection.effectiveType || connection.type || 'unknown');
-        trackEvent('connection_change', { type: connection.effectiveType || connection.type });
+        trackEvent({ event: 'connection_change', category: 'performance', label: connection.effectiveType || connection.type });
       };
       
       connection.addEventListener('change', handleConnectionChange);
@@ -273,7 +281,7 @@ export function useMemoryStatus() {
         setMemoryInfo({ used, total, percent });
         
         if (percent > 80) {
-          trackEvent('memory_warning', { percent, used, total });
+          trackEvent({ event: 'memory_warning', category: 'performance', label: 'memory_usage', value: percent });
         }
       }
     };
@@ -313,7 +321,7 @@ export function usePrefetch() {
     document.head.appendChild(link);
     prefetchedUrls.current.add(url);
     
-    trackEvent('resource_prefetch', { url, priority });
+    trackEvent({ event: 'resource_prefetch', category: 'performance', label: priority });
   }, []);
 
   const prefetchPage = useCallback((path: string) => {
@@ -369,6 +377,7 @@ export function useBatteryStatus() {
           console.warn('Battery API not available');
         }
       }
+      return undefined;
     };
 
     getBattery();

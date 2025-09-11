@@ -56,7 +56,7 @@ const NotFoundPage: React.FC = () => {
     }
   ];
 
-  const handleWhatsAppContact = (reason: string) => {
+  const handleWhatsAppContact = (_reason: string) => {
     trackEvent({
       event: 'whatsapp_click',
       category: 'engagement',

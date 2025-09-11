@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { formatPrice } from '@/utils/pricing';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom'; // Unused
 
 interface PricingTier {
   size: string;
@@ -139,7 +139,7 @@ const PricingTable: React.FC<PricingTableProps> = ({ className = '' }) => {
               </tr>
             </thead>
             <tbody className="divide-y divide-neutral-100">
-              {PRICING_TIERS.map((tier, index) => (
+              {PRICING_TIERS.map((tier, _index) => (
                 <tr 
                   key={tier.range} 
                   className={`hover:bg-neutral-50 transition-colors ${

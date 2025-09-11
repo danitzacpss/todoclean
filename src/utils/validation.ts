@@ -209,7 +209,7 @@ export function validateField<T>(
   if (result.success) {
     return { success: true, data: result.data };
   } else {
-    const error = result.error.errors[0];
+    const error = result.error.errors[0] || { message: 'Unknown validation error' };
     return { success: false, error: error.message };
   }
 }
@@ -282,7 +282,7 @@ export function isBusinessEmail(email: string): boolean {
     'live.com', 'icloud.com', 'aol.com'
   ];
   
-  const domain = email.toLowerCase().split('@')[1];
+  const domain = email.toLowerCase().split('@')[1] || '';
   return !businessDomains.includes(domain);
 }
 
@@ -353,8 +353,8 @@ export function validateChileanAddress(address: string): {
   
   return {
     isValid: issues.length === 0,
-    issues: issues.length > 0 ? issues : undefined,
-    suggestions: suggestions.length > 0 ? suggestions : undefined,
+    ...(issues.length > 0 && { issues }),
+    ...(suggestions.length > 0 && { suggestions }),
   };
 }
 

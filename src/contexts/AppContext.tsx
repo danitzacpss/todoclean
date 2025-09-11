@@ -4,7 +4,7 @@
 // ===================================
 
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
-import type { AppContextType } from '@/types';
+// import type { AppContextType } from '@/types'; // Unused
 import { SITE_CONFIG } from '@/utils/constants';
 
 // ==========================================
@@ -206,6 +206,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
       return () => clearTimeout(timer);
     }
+    return undefined;
   }, [state.notifications]);
 
   // ==========================================
@@ -249,7 +250,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       }
     };
 
-    const handleUnhandledRejection = (event: PromiseRejectionEvent) => {
+    const handleUnhandledRejection = (_event: PromiseRejectionEvent) => {
       actions.addNotification(
         'error',
         'Error de conexión. Por favor verifica tu internet.'

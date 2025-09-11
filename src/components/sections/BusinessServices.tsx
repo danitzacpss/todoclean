@@ -7,18 +7,18 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { SITE_CONFIG } from '@/utils/constants';
 
-interface BusinessPlan {
-  id: string;
-  name: string;
-  price: number;
-  yearlyPrice: number;
-  frequency: string;
-  hoursPerVisit: string;
-  supplies: string;
-  discount: string;
-  popular?: boolean;
-  features: string[];
-}
+// interface BusinessPlan {
+//   id: string;
+//   name: string;
+//   price: number;
+//   yearlyPrice: number;
+//   frequency: string;
+//   hoursPerVisit: string;
+//   supplies: string;
+//   discount: string;
+//   popular?: boolean;
+//   features: string[];
+// }
 
 interface Testimonial {
   id: string;
@@ -30,7 +30,7 @@ interface Testimonial {
   logo?: string;
 }
 
-const BUSINESS_PLANS: BusinessPlan[] = [
+/* const BUSINESS_PLANS: BusinessPlan[] = [
   {
     id: 'basic',
     name: 'BÁSICO',
@@ -91,7 +91,7 @@ const BUSINESS_PLANS: BusinessPlan[] = [
       'SLA garantizado',
     ],
   },
-];
+]; */
 
 const BUSINESS_BENEFITS = [
   {
