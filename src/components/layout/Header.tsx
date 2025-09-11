@@ -200,7 +200,12 @@ const Header: React.FC = () => {
           {isMenuOpen && (
             <motion.div
               id="mobile-menu"
-              className="lg:hidden absolute top-full left-2 right-2 w-auto bg-white shadow-2xl z-50 border-t border-neutral-200 rounded-b-2xl overflow-hidden"
+              className="lg:hidden absolute top-full left-2 right-2 w-auto bg-white shadow-2xl z-50 border-t border-neutral-200 rounded-b-2xl"
+              style={{ 
+                maxHeight: 'calc(100vh - 12rem)',
+                overflowY: 'auto',
+                WebkitOverflowScrolling: 'touch'
+              }}
               initial={{ opacity: 0, y: -20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -20, scale: 0.95 }}

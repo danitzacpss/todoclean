@@ -545,3 +545,77 @@ html {
 .calculator-step.next {
   @apply transform translate-x-full opacity-0;
 }
+
+/* ==========================================
+   MOBILE MENU SCROLLABLE STYLES
+   ========================================== */
+
+/* Mobile menu container with optimized scrolling */
+#mobile-menu {
+  /* Ensure smooth scrolling on all devices */
+  scroll-behavior: smooth;
+  
+  /* Optimize for mobile touch scrolling */
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  
+  /* Force scrolling behavior */
+  overflow-y: auto !important;
+  max-height: calc(100vh - 12rem) !important;
+  
+  /* Custom scrollbar styling for the main container */
+  scrollbar-width: thin;
+  scrollbar-color: #14b8a6 transparent;
+}
+
+#mobile-menu::-webkit-scrollbar {
+  width: 4px;
+}
+
+#mobile-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#mobile-menu::-webkit-scrollbar-thumb {
+  background: rgba(20, 184, 166, 0.3);
+  border-radius: 2px;
+}
+
+#mobile-menu::-webkit-scrollbar-thumb:hover {
+  background: rgba(20, 184, 166, 0.5);
+}
+
+/* Simplified mobile menu - remove interfering fade effects for now */
+
+/* Better touch targets for mobile menu items */
+@media (max-width: 640px) {
+  #mobile-menu {
+    /* More restrictive height on small screens to ensure scrolling */
+    max-height: calc(100vh - 14rem) !important;
+  }
+  
+  #mobile-menu nav {
+    /* Add more padding on very small screens */
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  #mobile-menu .group {
+    /* Ensure adequate touch targets */
+    min-height: 44px;
+  }
+  
+  /* Optimize scroll momentum */
+  #mobile-menu nav {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+  }
+}
+
+/* Force scrolling on very small screens */
+@media (max-width: 480px) {
+  #mobile-menu {
+    /* Even more restrictive on tiny screens */
+    max-height: calc(100vh - 16rem) !important;
+  }
+}
