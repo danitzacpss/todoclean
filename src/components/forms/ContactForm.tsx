@@ -5,8 +5,8 @@ import { z } from 'zod';
 import { ExclamationTriangleIcon, CheckCircleIcon } from '@heroicons/react/24/outline';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
-import { contactFormSchema, type ContactFormData, validateField } from '@/utils/validation';
-import { SITE_CONFIG, WHATSAPP_MESSAGES, SERVICE_PRICING } from '@/utils/constants';
+import { contactFormSchema } from '@/utils/validation';
+import { WHATSAPP_MESSAGES } from '@/utils/constants';
 import { generateWhatsAppURL } from '@/utils/whatsapp';
 import { trackEvent } from '@/utils/analytics';
 
@@ -84,19 +84,20 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 
     try {
       // Track form submission attempt
-      trackEvent('form_submit', {
-        form_type: 'contact',
-        service_type: data.servicio || 'general',
-        has_phone: !!data.telefono
+      trackEvent({
+        event: 'form_submit',
+        category: 'form',
+        label: 'contact'
       });
 
       // Simulate form submission (replace with actual API call)
       const response = await simulateFormSubmission(data);
       
       if (response.success) {
-        trackEvent('form_submit_success', {
-          form_type: 'contact',
-          service_type: data.servicio || 'general'
+        trackEvent({
+          event: 'form_submit_success',
+          category: 'form',
+          label: 'contact_success'
         });
         onSuccess();
       } else {
@@ -106,9 +107,10 @@ export const ContactForm: React.FC<ContactFormProps> = ({
       const errorMessage = error instanceof Error ? error.message : 'Error desconocido';
       setSubmitError(errorMessage);
       
-      trackEvent('form_submit_error', {
-        form_type: 'contact',
-        error_message: errorMessage
+      trackEvent({
+        event: 'form_submit_error',
+        category: 'form',
+        label: 'contact_error'
       });
     } finally {
       setIsSubmitting(false);
@@ -122,9 +124,10 @@ export const ContactForm: React.FC<ContactFormProps> = ({
       formData.servicio ? getServiceName(formData.servicio) : undefined
     );
     
-    trackEvent('whatsapp_fallback', {
-      source: 'contact_form',
-      reason: 'form_error'
+    trackEvent({
+      event: 'whatsapp_fallback',
+      category: 'engagement',
+      label: 'contact_form_fallback'
     });
     
     window.open(generateWhatsAppURL(message), '_blank');
@@ -379,9 +382,10 @@ export const ContactForm: React.FC<ContactFormProps> = ({
               type="button"
               variant="outline"
               onClick={() => {
-                trackEvent('whatsapp_click', {
-                  source: 'contact_form',
-                  message_type: 'general'
+                trackEvent({
+                  event: 'whatsapp_click',
+                  category: 'engagement',
+                  label: 'contact_form_whatsapp'
                 });
                 window.open(generateWhatsAppURL(WHATSAPP_MESSAGES.general), '_blank');
               }}
@@ -399,7 +403,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 };
 
 // Simulated form submission (replace with actual API integration)
-async function simulateFormSubmission(data: ExtendedContactFormData): Promise<{
+async function simulateFormSubmission(_data: ExtendedContactFormData): Promise<{
   success: boolean;
   error?: string;
 }> {

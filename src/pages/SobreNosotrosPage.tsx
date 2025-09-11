@@ -9,11 +9,11 @@ import {
   ClockIcon,
   StarIcon
 } from '@heroicons/react/24/outline';
-import { Button } from '../components/ui/Button';
+// import { Button } from '../components/ui/Button'; // Unused
 import { Card } from '../components/ui/Card';
-import { WHATSAPP_MESSAGES, SITE_CONFIG } from '../utils/constants';
-import { generateWhatsAppURL } from '../utils/whatsapp';
-import { trackEvent } from '../utils/analytics';
+import { SITE_CONFIG } from '../utils/constants';
+// import { generateWhatsAppURL } from '../utils/whatsapp'; // Unused
+// import { trackEvent } from '../utils/analytics'; // Unused
 
 const SobreNosotrosPage: React.FC = () => {
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom'; // Unused
 import { MapPinIcon, PhoneIcon, EnvelopeIcon, ClockIcon } from '@heroicons/react/24/outline';
 import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
@@ -13,15 +13,18 @@ const ContactoPage: React.FC = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
 
   const handleWhatsAppClick = () => {
-    trackEvent('whatsapp_click', {
-      source: 'contact_page',
-      message_type: 'general'
+    trackEvent({
+      event: 'whatsapp_click',
+      category: 'engagement',
+      label: 'contact_page_whatsapp'
     });
   };
 
   const handlePhoneClick = () => {
-    trackEvent('phone_click', {
-      source: 'contact_page'
+    trackEvent({
+      event: 'phone_click',
+      category: 'engagement',
+      label: 'contact_page_phone'
     });
   };
 

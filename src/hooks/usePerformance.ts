@@ -403,7 +403,7 @@ export function useResourceTiming(resourceName?: string) {
             tcp: navigation.connectEnd - navigation.connectStart,
             request: navigation.responseStart - navigation.requestStart,
             response: navigation.responseEnd - navigation.responseStart,
-            total: navigation.responseEnd - navigation.navigationStart
+            total: navigation.responseEnd - navigation.startTime
           });
         }
       });

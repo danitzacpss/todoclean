@@ -372,9 +372,9 @@ function createCalculatorMessageWithCustomer(
 
   const frequencyNames = {
     unica: 'Una vez',
-    semanal: 'Semanal',
-    quincenal: 'Quincenal',
     mensual: 'Mensual',
+    trimestral: 'Trimestral',
+    anual: 'Anual',
   };
 
   let message = `¡Hola! Soy ${customerData.name} y acabo de usar su calculadora de precios.\n\n`;

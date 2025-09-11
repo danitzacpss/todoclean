@@ -168,8 +168,8 @@ const BUSINESS_FAQS: FAQItem[] = [
 ];
 
 const BusinessServices: React.FC = () => {
-  const [selectedPlan, setSelectedPlan] = useState<string>('professional');
-  const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly');
+  // const [selectedPlan, setSelectedPlan] = useState<string>('professional');
+  // const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly');
   const [openFAQ, setOpenFAQ] = useState<string | null>(null);
 
   const handleWhatsAppContact = (frequencyType: string, officeSize: string) => {
@@ -183,15 +183,15 @@ const BusinessServices: React.FC = () => {
     );
   };
 
-  const handlePlanSelect = (planId: string) => {
-    const plan = BUSINESS_PLANS.find(p => p.id === planId);
-    if (plan) {
-      const message = encodeURIComponent(
-        `¡Hola! Me interesa el plan ${plan.name} para mi empresa. ¿Podrían darme más información y agendar una visita para cotización personalizada?`
-      );
-      window.open(`https://wa.me/${SITE_CONFIG.whatsapp}?text=${message}`, '_blank');
-    }
-  };
+  // const handlePlanSelect = (planId: string) => {
+  //   const plan = BUSINESS_PLANS.find(p => p.id === planId);
+  //   if (plan) {
+  //     const message = encodeURIComponent(
+  //       `¡Hola! Me interesa el plan ${plan.name} para mi empresa. ¿Podrían darme más información y agendar una visita para cotización personalizada?`
+  //     );
+  //     window.open(`https://wa.me/${SITE_CONFIG.whatsapp}?text=${message}`, '_blank');
+  //   }
+  // };
 
   return (
     <div className="space-y-16">

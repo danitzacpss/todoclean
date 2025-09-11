@@ -47,7 +47,7 @@ const initialState: CalculatorState = {
     rooms: 3,
     // Step 2 defaults
     serviceType: 'regular',
-    frequency: 'quincenal',
+    frequency: 'mensual',
     extras: [],
     // Step 3 empty
   },

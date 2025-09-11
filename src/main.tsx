@@ -50,7 +50,7 @@ class ErrorBoundary extends React.Component<
     return { hasError: true, error };
   }
 
-  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+  override componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     console.error('React Error Boundary:', error, errorInfo);
     
     // Track error in analytics
@@ -62,7 +62,7 @@ class ErrorBoundary extends React.Component<
     }
   }
 
-  render() {
+  override render() {
     if (this.state.hasError) {
       return (
         <div className='min-h-screen flex items-center justify-center bg-neutral-50 px-4'>

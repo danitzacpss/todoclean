@@ -81,17 +81,18 @@ const PreguntasFrecuentesPage: React.FC = () => {
     }
     setExpandedFAQs(newExpanded);
 
-    trackEvent('faq_toggle', {
-      faq_id: faqId,
-      action: newExpanded.has(faqId) ? 'expand' : 'collapse',
-      category: selectedCategory
+    trackEvent({
+      event: 'faq_toggle',
+      category: 'engagement',
+      label: newExpanded.has(faqId) ? 'expand' : 'collapse'
     });
   };
 
   const handleWhatsAppContact = () => {
-    trackEvent('whatsapp_click', {
-      source: 'faq_page',
-      reason: 'question_not_found'
+    trackEvent({
+      event: 'whatsapp_click',
+      category: 'engagement',
+      label: 'faq_page_whatsapp'
     });
     window.open(generateWhatsAppURL(WHATSAPP_MESSAGES.general), '_blank');
   };

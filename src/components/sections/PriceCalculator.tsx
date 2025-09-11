@@ -270,32 +270,32 @@ Frecuencia: ${frequencyName}`;
   // RENDER METHODS
   // ==========================================
 
-  const renderStepIndicator = () => (
-    <div className="flex items-center justify-center mb-8">
-      {CALCULATOR_STEPS.map((step, index) => (
-        <React.Fragment key={step.step}>
-          <div 
-            className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold transition-colors duration-300 ${
-              state.currentStep >= step.step
-                ? 'bg-cyan-600 text-white'
-                : 'bg-gray-200 text-gray-500'
-            }`}
-          >
-            {step.step}
-          </div>
-          {index < CALCULATOR_STEPS.length - 1 && (
-            <div 
-              className={`w-8 h-0.5 mx-2 transition-colors duration-500 ${
-                state.currentStep > step.step
-                  ? 'bg-cyan-600'
-                  : 'bg-gray-200'
-              }`}
-            />
-          )}
-        </React.Fragment>
-      ))}
-    </div>
-  );
+  // const renderStepIndicator = () => (
+  //   <div className="flex items-center justify-center mb-8">
+  //     {CALCULATOR_STEPS.map((step, index) => (
+  //       <React.Fragment key={step.step}>
+  //         <div 
+  //           className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold transition-colors duration-300 ${
+  //             state.currentStep >= step.step
+  //               ? 'bg-cyan-600 text-white'
+  //               : 'bg-gray-200 text-gray-500'
+  //           }`}
+  //         >
+  //           {step.step}
+  //         </div>
+  //         {index < CALCULATOR_STEPS.length - 1 && (
+  //           <div 
+  //             className={`w-8 h-0.5 mx-2 transition-colors duration-500 ${
+  //               state.currentStep > step.step
+  //                 ? 'bg-cyan-600'
+  //                 : 'bg-gray-200'
+  //             }`}
+  //           />
+  //         )}
+  //       </React.Fragment>
+  //     ))}
+  //   </div>
+  // );
 
   const renderStep1 = () => (
     <motion.div

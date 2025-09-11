@@ -3,10 +3,10 @@
 // Interactive services cards with pricing
 // ===================================
 
-import React from 'react';
+// React import not needed with modern JSX transform
 import { motion } from 'framer-motion';
-import { SERVICE_PRICING, WHATSAPP_MESSAGES } from '@/utils/constants';
-import { getPriceRange, formatPrice } from '@/utils/pricing';
+// import { SERVICE_PRICING, WHATSAPP_MESSAGES } from '@/utils/constants';
+// import { getPriceRange, formatPrice } from '@/utils/pricing';
 import { WhatsAppButton } from '@/components/ui/Button';
 import type { ServiceType } from '@/types';
 
@@ -94,7 +94,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   popular = false,
   index,
   price,
-  period,
+  // period, // Currently unused
 }) => {
   // WhatsApp click is handled by the WhatsAppButton component itself
 

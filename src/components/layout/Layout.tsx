@@ -3,7 +3,7 @@
 // Primary layout wrapper with header, footer, and outlet
 // ===================================
 
-import React from 'react';
+// Layout component - no React import needed with modern JSX transform
 import { Outlet } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';

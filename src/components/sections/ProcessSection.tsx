@@ -3,9 +3,9 @@
 // Visual 3-step process explanation
 // ===================================
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { WhatsAppButton } from '@/components/ui/Button';
+// import { WhatsAppButton } from '@/components/ui/Button';
 import { WHATSAPP_MESSAGES } from '@/utils/constants';
 
 // ==========================================

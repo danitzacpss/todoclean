@@ -3,7 +3,7 @@
 // Root component with routing and global providers
 // ===================================
 
-import React, { Suspense, lazy, useEffect, useState } from 'react';
+import { Suspense, lazy, useEffect, useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
@@ -29,7 +29,7 @@ const HomePage = lazy(() => import('./pages/HomePage'));
 const ServiciosPage = lazy(() => import('./pages/ServiciosPage'));
 const ServiciosResidencialPage = lazy(() => import('./pages/ServiciosResidencialPage'));
 const ServiciosEmpresarialPage = lazy(() => import('./pages/ServiciosEmpresarialPage'));
-const CotizadorPage = lazy(() => import('./pages/CotizadorPage'));
+// const CotizadorPage = lazy(() => import('./pages/CotizadorPage'));
 const CoberturaPage = lazy(() => import('./pages/CoberturaPage'));
 const SobreNosotrosPage = lazy(() => import('./pages/SobreNosotrosPage'));
 const ContactoPage = lazy(() => import('./pages/ContactoPage'));

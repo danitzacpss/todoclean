@@ -3,7 +3,7 @@ import { ExclamationTriangleIcon, ArrowPathIcon, HomeIcon, ChatBubbleLeftRightIc
 import { Button } from './Button';
 import { Card } from './Card';
 import { generateWhatsAppURL } from '@/utils/whatsapp';
-import { WHATSAPP_MESSAGES } from '@/utils/constants';
+// import { WHATSAPP_MESSAGES } from '@/utils/constants'; // Unused
 import { trackEvent } from '@/utils/analytics';
 
 interface ErrorInfo {
@@ -57,15 +57,13 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     };
   }
 
-  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+  override componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     this.setState({ errorInfo });
 
-    trackEvent('error_boundary_catch', {
-      error_id: this.state.errorId,
-      error_message: error.message,
-      error_stack: error.stack,
-      component_stack: errorInfo.componentStack,
-      level: this.props.level || 'component'
+    trackEvent({
+      event: 'error_boundary_catch',
+      category: 'error',
+      label: this.state.errorId
     });
 
     if (this.props.onError) {
@@ -80,7 +78,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     }
   }
 
-  componentDidUpdate(prevProps: ErrorBoundaryProps) {
+  override componentDidUpdate(prevProps: ErrorBoundaryProps) {
     const { resetOnPropsChange } = this.props;
     const { hasError } = this.state;
 
@@ -94,9 +92,10 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
       clearTimeout(this.resetTimeoutId);
     }
 
-    trackEvent('error_boundary_reset', {
-      error_id: this.state.errorId,
-      level: this.props.level || 'component'
+    trackEvent({
+      event: 'error_boundary_reset',
+      category: 'error',
+      label: 'boundary_reset'
     });
 
     this.setState({
@@ -107,7 +106,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     });
   };
 
-  render() {
+  override render() {
     const { hasError, error, errorInfo, errorId } = this.state;
     const { children, fallback: Fallback, level = 'component' } = this.props;
 
@@ -263,9 +262,10 @@ export function useAsyncError() {
   const [, forceUpdate] = React.useReducer((x: number) => x + 1, 0);
   
   return React.useCallback((error: Error) => {
-    trackEvent('async_error', {
-      error_message: error.message,
-      error_stack: error.stack
+    trackEvent({
+      event: 'async_error',
+      category: 'error',
+      label: 'async_error'
     });
     
     forceUpdate();

@@ -95,14 +95,14 @@ const DatePicker: React.FC<DatePickerProps> = ({
   // Generate quick date options
   const generateQuickOptions = () => {
     const options = [];
-    const startDate = new Date(minDateString);
+    const startDate = new Date(minDateString || new Date());
     
     // Next 14 days
     for (let i = 0; i < 14; i++) {
       const date = new Date(startDate);
       date.setDate(startDate.getDate() + i);
       
-      if (date <= new Date(maxDateString)) {
+      if (date <= new Date(maxDateString || '2030-12-31')) {
         options.push(date);
       }
     }
@@ -214,7 +214,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
                         ? 'bg-primary-50 text-primary-700 font-medium' 
                         : 'text-neutral-700 hover:bg-neutral-50'
                     )}
-                    onClick={() => handleDateSelect(dateString)}
+                    onClick={() => dateString && handleDateSelect(dateString)}
                   >
                     {formatOptionDisplay(date)}
                   </button>

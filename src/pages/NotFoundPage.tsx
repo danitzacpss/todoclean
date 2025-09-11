@@ -22,9 +22,10 @@ const NotFoundPage: React.FC = () => {
     setCurrentUrl(window.location.pathname);
     
     // Track 404 error
-    trackEvent('404_error', {
-      requested_url: window.location.pathname,
-      referrer: document.referrer
+    trackEvent({
+      event: '404_error',
+      category: 'error',
+      label: window.location.pathname
     });
   }, []);
 
@@ -56,25 +57,29 @@ const NotFoundPage: React.FC = () => {
   ];
 
   const handleWhatsAppContact = (reason: string) => {
-    trackEvent('whatsapp_click', {
-      source: '404_page',
-      reason
+    trackEvent({
+      event: 'whatsapp_click',
+      category: 'engagement',
+      label: '404_page_whatsapp'
     });
     window.open(generateWhatsAppURL(WHATSAPP_MESSAGES.general), '_blank');
   };
 
   const handleNavigation = (href: string, name: string) => {
-    trackEvent('404_navigation', {
-      destination: href,
-      service_name: name
+    trackEvent({
+      event: '404_navigation',
+      category: 'navigation',
+      label: name
     });
     window.location.href = href;
   };
 
   const handleSearch = () => {
     if (searchTerm.trim()) {
-      trackEvent('404_search', {
-        search_term: searchTerm
+      trackEvent({
+        event: '404_search',
+        category: 'engagement',
+        label: 'search_from_404'
       });
       window.location.href = `/servicios?q=${encodeURIComponent(searchTerm)}`;
     }
