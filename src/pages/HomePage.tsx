@@ -15,8 +15,6 @@ import ProcessSection from '@/components/sections/ProcessSection';
 import QuilamapuPromo from '@/components/sections/QuilamapuPromo';
 import AirbnbPromo from '@/components/sections/AirbnbPromo';
 import PartyCleanupPromo from '@/components/sections/PartyCleanupPromo';
-import EmergencyCleanPromo from '@/components/sections/EmergencyCleanPromo';
-import DeepCleanPromo from '@/components/sections/DeepCleanPromo';
 import logoImage from '@/assets/images/logo.png';
 
 // ==========================================
