@@ -17,9 +17,10 @@ import {
 } from '@heroicons/react/24/outline';
 import { Button, WhatsAppButton } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
-import { SERVICE_AREAS, WHATSAPP_MESSAGES, SITE_CONFIG } from '@/utils/constants';
+import { SERVICE_AREAS, SPECIAL_ZONES, WHATSAPP_MESSAGES, SITE_CONFIG } from '@/utils/constants';
 import { generateWhatsAppURL } from '@/utils/whatsapp';
 import { trackEvent } from '@/utils/analytics';
+import EmergencyCleanPromo from '@/components/sections/EmergencyCleanPromo';
 
 // Importamos los estilos específicos para la página de cobertura
 import '@/design-system/layouts/coverage.css';
@@ -78,16 +79,16 @@ const CoberturaPage: React.FC = () => {
     // If no exact match, try to match by keywords
     if (!foundZone) {
       const zoneKeywords = {
-        'A': ['centro', 'quilamapu', 'las termas', 'termas'],
-        'B': ['viejo', 'san carlos', 'coihueco', 'niquen'],
-        'C': ['bulnes', 'quillen', 'quillon', 'san ignacio', 'carmen', 'pemuco']
+        'A': ['centro', 'chillan', 'viejo'],
+        'B': ['pinto', 'mariposas'],
+        'C': ['san carlos', 'bulnes']
       };
-      
+
       for (const [zone, keywords] of Object.entries(zoneKeywords)) {
-        const keywordFound = keywords.some(keyword => 
+        const keywordFound = keywords.some(keyword =>
           addressLower.includes(keyword)
         );
-        
+
         if (keywordFound) {
           foundZone = SERVICE_AREAS.find(area => area.zone === zone) || null;
           break;
@@ -208,7 +209,7 @@ const CoberturaPage: React.FC = () => {
         <link rel="canonical" href={`${SITE_CONFIG.url}/cobertura`} />
       </Helmet>
       
-      <div className="min-h-screen bg-gradient-to-br from-neutral-50 to-blue-50/30 coverage-page">
+      <div className="min-h-screen !bg-gradient-to-br !from-neutral-50 !to-blue-50/30 coverage-page !bg-white">
 
         {/* Combined Hero and Search Section */}
         <section className="py-16">
@@ -216,73 +217,73 @@ const CoberturaPage: React.FC = () => {
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               {/* Left Column - Areas de Cobertura */}
               <div className="text-center lg:text-left">
-                <div className="inline-flex items-center gap-2 bg-cyan-50 border border-cyan-200 rounded-full px-3 py-1 mb-3">
-                  <div className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse" />
-                  <span className="text-sm font-medium text-cyan-700">Cobertura Garantizada</span>
+                <div className="inline-flex items-center gap-2 !bg-cyan-50 !border !border-cyan-200 rounded-full px-3 py-1 mb-3">
+                  <div className="w-2 h-2 !bg-cyan-500 rounded-full animate-pulse" />
+                  <span className="text-sm font-medium !text-cyan-700">Cobertura Garantizada</span>
                 </div>
-                
+
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-                  <span className="block text-gray-900">Áreas de</span>
+                  <span className="block !text-gray-900">Áreas de</span>
                   <span className="block bg-gradient-to-r from-cyan-600 via-teal-600 to-cyan-700 bg-clip-text text-transparent">
                     Cobertura
                   </span>
-                  <span className="block text-gray-700 text-2xl md:text-3xl lg:text-4xl">
+                  <span className="block !text-gray-700 text-2xl md:text-3xl lg:text-4xl">
                     en Chillán y alrededores
                   </span>
                 </h1>
-                
-                <p className="text-lg md:text-xl text-gray-600 mb-6 leading-relaxed">
-                  Brindamos servicios en <span className="font-bold text-gray-900">Chillán y comunas cercanas</span>
-                  <span className="block text-base text-cyan-600 mt-2 font-medium">
+
+                <p className="text-lg md:text-xl !text-gray-600 mb-6 leading-relaxed">
+                  Brindamos servicios en <span className="font-bold !text-gray-900">Chillán y comunas cercanas</span>
+                  <span className="block text-base !text-cyan-600 mt-2 font-medium">
                     ✨ Con diferentes zonas de precio y tiempos de respuesta
                   </span>
                 </p>
 
                 <div className="grid grid-cols-3 gap-1 sm:gap-4">
-                  <div className="bg-white border border-gray-200 rounded-2xl p-3 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow">
+                  <div className="!bg-white !border !border-gray-200 rounded-2xl p-3 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow">
                     <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-teal-600 rounded-xl flex items-center justify-center mx-auto mb-3">
                       <MapPinIcon className="w-6 h-6 text-white" />
                     </div>
-                    <div className="text-2xl font-bold text-gray-900 mb-1">{SERVICE_AREAS ? SERVICE_AREAS.length : 0}</div>
-                    <div className="text-sm text-gray-600">Zonas</div>
+                    <div className="text-2xl font-bold !text-gray-900 mb-1">{SERVICE_AREAS ? SERVICE_AREAS.length : 0}</div>
+                    <div className="text-sm !text-gray-600">Zonas</div>
                   </div>
-                  
-                  <div className="bg-white border border-gray-200 rounded-2xl p-3 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow">
+
+                  <div className="!bg-white !border !border-gray-200 rounded-2xl p-3 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow">
                     <div className="w-12 h-12 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-xl flex items-center justify-center mx-auto mb-3">
                       <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <div className="text-2xl font-bold text-gray-900 mb-1">{allCommunes.length > 0 ? `${allCommunes.length}+` : '0'}</div>
-                    <div className="text-sm text-gray-600">Comunas</div>
+                    <div className="text-2xl font-bold !text-gray-900 mb-1">{allCommunes.length > 0 ? `${allCommunes.length}+` : '0'}</div>
+                    <div className="text-sm !text-gray-600">Comunas</div>
                   </div>
-                  
-                  <div className="bg-white border border-gray-200 rounded-2xl p-3 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow">
+
+                  <div className="!bg-white !border !border-gray-200 rounded-2xl p-3 sm:p-6 text-center shadow-sm hover:shadow-md transition-shadow">
                     <div className="w-12 h-12 bg-gradient-to-br from-cyan-600 to-teal-500 rounded-xl flex items-center justify-center mx-auto mb-3">
                       <ClockIcon className="w-6 h-6 text-white" />
                     </div>
-                    <div className="text-2xl font-bold text-gray-900 mb-1">24h</div>
-                    <div className="text-sm text-gray-600">Respuesta</div>
+                    <div className="text-2xl font-bold !text-gray-900 mb-1">24h</div>
+                    <div className="text-sm !text-gray-600">Respuesta</div>
                   </div>
                 </div>
               </div>
 
-              {/* Right Column - Busca tu dirección */}
+              {/* Right Column - Busca tu comuna o zona */}
               <div>
                 <div className="text-center mb-6">
-                  <div className="inline-flex items-center gap-2 bg-cyan-50 border border-cyan-200 rounded-full px-4 py-2 mb-4">
-                    <div className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse"></div>
-                    <span className="text-sm font-medium text-cyan-700">Búsqueda Inteligente</span>
+                  <div className="inline-flex items-center gap-2 !bg-cyan-50 !border !border-cyan-200 rounded-full px-4 py-2 mb-4">
+                    <div className="w-2 h-2 !bg-cyan-500 rounded-full animate-pulse"></div>
+                    <span className="text-sm font-medium !text-cyan-700">Búsqueda Inteligente</span>
                   </div>
-                  
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                    Busca tu dirección
+
+                  <h2 className="text-3xl md:text-4xl font-bold !text-gray-900 mb-4">
+                    Busca tu comuna o zona
                   </h2>
-                  <p className="text-lg text-gray-600">
-                    Ingresa tu dirección para conocer la zona de servicio, recargos y tiempo de respuesta
+                  <p className="text-lg !text-gray-600">
+                    Ingresa tu comuna o zona para conocer la cobertura, recargos y tiempo de respuesta
                   </p>
                 </div>
-                
+
                 <Card className="p-6">
                   <div className="space-y-4">
                     <div className="relative">
@@ -291,7 +292,7 @@ const CoberturaPage: React.FC = () => {
                         value={searchAddress}
                         onChange={(e) => setSearchAddress(e.target.value)}
                         onKeyPress={(e) => e.key === 'Enter' && handleAddressSearch()}
-                        placeholder="Ej: Av. Libertad 123, Centro, Chillán"
+                        placeholder="Ej: Chillán, Pinto, San Carlos..."
                         className="w-full pl-12 pr-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
                         disabled={isSearching}
                       />
@@ -425,84 +426,84 @@ const CoberturaPage: React.FC = () => {
           <div className="container mx-auto px-1 sm:px-4 lg:px-8 relative z-10">
             <div className="text-center mb-8">
               {/* Premium badge */}
-              <div className="inline-flex items-center gap-2 bg-cyan-50 border border-cyan-200 rounded-full px-4 py-2 mb-6">
-                <div className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse"></div>
-                <span className="text-sm font-medium text-cyan-700">Zonas Detalladas</span>
+              <div className="inline-flex items-center gap-2 !bg-cyan-50 !border !border-cyan-200 rounded-full px-4 py-2 mb-6">
+                <div className="w-2 h-2 !bg-cyan-500 rounded-full animate-pulse"></div>
+                <span className="text-sm font-medium !text-cyan-700">Zonas Detalladas</span>
               </div>
-              
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+
+              <h2 className="text-3xl md:text-4xl font-bold !text-gray-900 mb-4">
                 Zonas de servicio
               </h2>
-              <p className="text-lg text-gray-600 max-w-xl mx-auto">
+              <p className="text-lg !text-gray-600 max-w-xl mx-auto">
                 Revisa los detalles de cada zona y sus tarifas
               </p>
             </div>
             
             <div className="grid lg:grid-cols-3 gap-6">
               {SERVICE_AREAS && SERVICE_AREAS.map((area) => (
-                <Card 
+                <Card
                   key={area.zone}
-                  className={`p-6 cursor-pointer transition-all duration-300 hover:shadow-xl ${
-                    selectedZone === area.zone 
-                      ? 'ring-2 ring-primary-500 shadow-lg' 
+                  className={`p-6 cursor-pointer transition-all duration-300 hover:shadow-xl !bg-white !border-neutral-200 ${
+                    selectedZone === area.zone
+                      ? 'ring-2 ring-primary-500 shadow-lg'
                       : 'hover:shadow-lg'
                   }`}
                   onClick={() => setSelectedZone(selectedZone === area.zone ? null : area.zone)}
                 >
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center space-x-3">
-                      <div 
+                      <div
                         className="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold"
                         style={{ backgroundColor: area.color }}
                       >
                         {area.zone}
                       </div>
-                      <h3 className="text-xl font-bold text-neutral-900">
+                      <h3 className="text-xl font-bold !text-neutral-900">
                         {area.name}
                       </h3>
                     </div>
                     {getZoneIcon(area.zone)}
                   </div>
-                  
+
                   <div className="space-y-3 mb-4">
                     <div className="flex items-center justify-between">
-                      <span className="text-neutral-600">Recargo por distancia:</span>
+                      <span className="!text-neutral-600">Recargo por distancia:</span>
                       <span className="font-semibold" style={{ color: area.color }}>
                         {formatSurcharge(area.surcharge)}
                       </span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-neutral-600">Tiempo de respuesta:</span>
-                      <span className="font-semibold text-neutral-900">
+                      <span className="!text-neutral-600">Tiempo de respuesta:</span>
+                      <span className="font-semibold !text-neutral-900">
                         {area.responseTime}
                       </span>
                     </div>
                   </div>
-                  
+
                   {/* Communes list */}
                   <div className={`space-y-2 transition-all duration-300 ${
                     selectedZone === area.zone ? 'max-h-96 opacity-100' : 'max-h-20 opacity-70'
                   } overflow-hidden`}>
-                    <h4 className="font-medium text-neutral-800 text-sm">
+                    <h4 className="font-medium !text-neutral-800 text-sm">
                       Comunas incluidas:
                     </h4>
                     <div className="grid grid-cols-1 gap-1">
                       {area.communes.map((commune, index) => (
                         <div key={index} className="flex items-center space-x-2">
-                          <div 
-                            className="w-2 h-2 rounded-full" 
+                          <div
+                            className="w-2 h-2 rounded-full"
                             style={{ backgroundColor: area.color }}
                           />
-                          <span className="text-sm text-neutral-600">{commune}</span>
+                          <span className="text-sm !text-neutral-600">{commune}</span>
                         </div>
                       ))}
                     </div>
                   </div>
-                  
+
                   {selectedZone === area.zone && (
-                    <div className="mt-4 pt-4 border-t border-neutral-200">
-                      <Button 
-                        size="sm" 
+                    <div className="mt-4 pt-4 !border-t !border-neutral-200">
+                      <Button
+                        size="sm"
                         className="w-full"
                         onClick={(e) => {
                           e.stopPropagation();
@@ -516,6 +517,54 @@ const CoberturaPage: React.FC = () => {
                 </Card>
               ))}
             </div>
+
+            {/* Special Zones Section */}
+            {SPECIAL_ZONES && SPECIAL_ZONES.length > 0 && (
+              <div className="mt-8">
+                <div className="!bg-amber-50 !border-l-4 !border-amber-500 rounded-lg p-6">
+                  <div className="flex items-start">
+                    <ExclamationCircleIcon className="w-6 h-6 !text-amber-600 flex-shrink-0 mt-0.5 mr-3" />
+                    <div>
+                      <h4 className="font-semibold !text-amber-900 mb-2">
+                        Zonas Especiales
+                      </h4>
+                      <div className="space-y-2">
+                        {SPECIAL_ZONES.map((zone, index) => (
+                          <div key={index} className="flex items-center justify-between">
+                            <div>
+                              <span className="font-medium !text-amber-800">{zone.name}</span>
+                              <span className="text-sm !text-amber-700 ml-2">- {zone.note}</span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="mt-4">
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="!border-amber-600 !text-amber-700 hover:!bg-amber-100"
+                          onClick={() => {
+                            const message = encodeURIComponent(
+                              '¡Hola! Me interesa consultar disponibilidad y precio para Termas de Chillán.'
+                            );
+                            window.open(`https://wa.me/${SITE_CONFIG.whatsapp}?text=${message}`, '_blank');
+                          }}
+                        >
+                          Consultar disponibilidad
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* Emergency Clean Promo Banner */}
+        <section className="py-8">
+          <div className="container mx-auto px-4">
+            <EmergencyCleanPromo />
           </div>
         </section>
 

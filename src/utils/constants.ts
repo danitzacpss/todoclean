@@ -26,6 +26,7 @@ export const SITE_CONFIG: SiteConfig = {
   address: 'Chillán, Región del Ñuble, Chile',
   social: {
     instagram: 'https://instagram.com/todo_cleanchillan',
+    facebook: 'https://facebook.com/todocleanchillan',
     google: 'https://g.page/todo-clean-chillan',
   },
   businessHours: {
@@ -198,10 +199,8 @@ export const SERVICE_AREAS: ServiceArea[] = [
     zone: 'A',
     name: 'Zona Centro',
     communes: [
-      'Chillán Centro',
-      'Las Termas',
-      'Quilamapu',
-      'Chillán Viejo (centro)',
+      'Chillán',
+      'Chillán Viejo',
     ],
     surcharge: 0,
     responseTime: '24 horas',
@@ -216,14 +215,12 @@ export const SERVICE_AREAS: ServiceArea[] = [
   },
   {
     zone: 'B',
-    name: 'Zona Intermedia', 
+    name: 'Zona Intermedia',
     communes: [
-      'Chillán Viejo (periferia)',
-      'San Carlos',
-      'Coihueco',
-      'Ñiquén',
+      'Pinto',
+      'Las Mariposas',
     ],
-    surcharge: 5000,
+    surcharge: 10000,
     responseTime: '48 horas',
     color: '#f59e0b', // amber
     description: 'Servicio con recargo moderado',
@@ -238,13 +235,10 @@ export const SERVICE_AREAS: ServiceArea[] = [
     zone: 'C',
     name: 'Zona Extendida',
     communes: [
+      'San Carlos',
       'Bulnes',
-      'Quillón',
-      'San Ignacio',
-      'El Carmen',
-      'Pemuco',
     ],
-    surcharge: 10000,
+    surcharge: 15000,
     responseTime: '72 horas',
     color: '#f97316', // orange
     description: 'Servicio con recargo adicional',
@@ -254,6 +248,18 @@ export const SERVICE_AREAS: ServiceArea[] = [
       [-36.655, -72.035],
       [-36.665, -72.125],
     ],
+  },
+];
+
+// ==========================================
+// SPECIAL ZONES (consultar)
+// ==========================================
+
+export const SPECIAL_ZONES = [
+  {
+    name: 'Termas de Chillán',
+    note: 'A consultar (depende de la ubicación)',
+    important: true,
   },
 ];
 
@@ -302,7 +308,7 @@ Precio estimado: $${price.toLocaleString().replace(/,/g, '.')} CLP
     frequencyDiscount: '¡Hola! Me interesa conocer más sobre los descuentos por frecuencia para servicios regulares.',
   },
 
-  // Business Services Messages  
+  // Business Services Messages
   business: {
     general: '¡Hola! Soy gerente/administrador de una empresa y me interesa conocer sus servicios corporativos.',
     basicPlan: '¡Hola! Me interesa el plan BÁSICO para mi empresa. ¿Podrían darme más información y agendar una visita para cotización personalizada?',
@@ -312,8 +318,22 @@ Precio estimado: $${price.toLocaleString().replace(/,/g, '.')} CLP
     commercial: '¡Hola! Soy gerente/administrador de una empresa y me interesa agendar una visita comercial para una cotización personalizada.',
     proposal: '¡Hola! Me interesa recibir una propuesta comercial detallada para servicios empresariales.',
     benefits: '¡Hola! Me interesa conocer más sobre los beneficios exclusivos para empresas como facturación consolidada y portal web.',
-    industry: (industryType: string) => 
+    industry: (industryType: string) =>
       `¡Hola! Tengo ${industryType} y me interesa conocer sus protocolos especializados para mi industria.`,
+  },
+
+  // Airbnb Services Messages
+  airbnb: {
+    general: '¡Hola! Tengo una propiedad Airbnb y me interesa conocer sus servicios de limpieza express entre huéspedes.',
+    basicCabin: '¡Hola! Tengo una cabaña básica (hasta 40m²) y me interesa el servicio de limpieza Airbnb por $15.000. ¿Podrían darme más información?',
+    standardApt: '¡Hola! Tengo un departamento estándar (40-70m²) y me interesa el servicio de limpieza Airbnb por $25.000. ¿Podrían darme más información?',
+    completeHouse: '¡Hola! Tengo una casa completa (70-120m²) y me interesa el servicio de limpieza Airbnb por $35.000. ¿Podrían darme más información?',
+    premiumProperty: '¡Hola! Tengo una propiedad premium (>120m²) y me interesa el servicio de limpieza Airbnb por $50.000. ¿Podrían darme más información?',
+    urgentService: '¡Hola! Necesito un servicio de limpieza Airbnb urgente en menos de 3 horas. ¿Tienen disponibilidad?',
+    calendarSync: '¡Hola! Me interesa coordinar sus servicios de limpieza con mi calendario de Airbnb. ¿Cómo funciona?',
+    photoReport: '¡Hola! Me interesa agregar el servicio de reporte fotográfico a mi limpieza Airbnb.',
+    inventoryCheck: '¡Hola! Me interesa agregar el servicio de check de inventario a mi limpieza Airbnb.',
+    multipleProperties: '¡Hola! Tengo varias propiedades Airbnb y me interesa un plan corporativo de limpieza. ¿Ofrecen descuentos por volumen?',
   },
 
   // Service-specific messages

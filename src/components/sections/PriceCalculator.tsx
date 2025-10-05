@@ -6,7 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { WHATSAPP_MESSAGES } from '@/utils/constants';
-import { calculatePrice, formatPrice } from '@/utils/pricing';
+import { calculatePrice, formatPrice, formatHours } from '@/utils/pricing';
 import Button, { WhatsAppButton } from '@/components/ui/Button';
 import type { ServiceType, PropertyType, FrequencyType } from '@/types';
 
@@ -53,6 +53,7 @@ interface CalculatorState {
 const PROPERTY_OPTIONS = [
   { id: 'casa', name: 'Casa/Depto', icon: '🏠', baseService: 'regular' as ServiceType },
   { id: 'oficina', name: 'Oficina', icon: '🏢', baseService: 'regular' as ServiceType },
+  { id: 'airbnb', name: 'Airbnb', icon: '🏡', baseService: 'regular' as ServiceType },
   // Temporalmente oculto
   // { id: 'local', name: 'Post-Obra', icon: '🔨', baseService: 'postobra' as ServiceType },
 ];
@@ -86,6 +87,7 @@ const PriceCalculator: React.FC = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [calculatedPrice, setCalculatedPrice] = useState<number | null>(null);
+  const [estimatedHours, setEstimatedHours] = useState<number>(3);
   const [isNavigatingBack, setIsNavigatingBack] = useState(false);
 
   // Auto-advance logic
@@ -108,37 +110,45 @@ const PriceCalculator: React.FC = () => {
     return () => clearTimeout(timer);
   }, [state.propertyType, state.squareMeters, state.frequency, state.currentStep, isNavigatingBack]);
 
+  // Calculate Airbnb prices based on AirbnbServices.tsx pricing
+  const calculateAirbnbPrice = (squareMeters: number): number => {
+    if (squareMeters <= 40) return 15000; // Cabaña Básica
+    if (squareMeters <= 70) return 25000; // Departamento Estándar
+    if (squareMeters <= 120) return 35000; // Casa Completa
+    return 50000; // Propiedad Premium
+  };
+
   // Calculate business prices based on BusinessServices.tsx pricing table
   const calculateBusinessPrice = (squareMeters: number, frequency: FrequencyType): number => {
     // Business pricing table from BusinessServices.tsx
     const businessPricing = {
       // Pequeña: Hasta 50m²
       small: {
-        semanal: 80000,
-        bisemanal: 136000,
-        mensual: 60000,
-        unica: 90000
+        mensual: 115500,
+        trimestral: 103950,
+        anual: 93450,
+        unica: 35000
       },
       // Mediana: 50-150m² (Más Popular)
       medium: {
-        semanal: 150000,
-        bisemanal: 255000,
-        mensual: 112500,
-        unica: 170000
+        mensual: 132000,
+        trimestral: 118800,
+        anual: 106800,
+        unica: 40000
       },
-      // Grande: 150-300m²
+      // Grande: 150-200m²
       large: {
-        semanal: 280000,
-        bisemanal: 476000,
-        mensual: 210000,
-        unica: 320000
+        mensual: 181500,
+        trimestral: 163350,
+        anual: 146850,
+        unica: 55000
       },
-      // Corporativa: Más de 300m²
+      // Corporativa: Más de 200m²
       corporate: {
-        semanal: 450000,
-        bisemanal: 765000,
-        mensual: 337500,
-        unica: 520000
+        mensual: 231000,
+        trimestral: 207900,
+        anual: 186900,
+        unica: 70000
       }
     };
 
@@ -148,7 +158,7 @@ const PriceCalculator: React.FC = () => {
       sizeCategory = 'small';
     } else if (squareMeters <= 150) {
       sizeCategory = 'medium';
-    } else if (squareMeters <= 300) {
+    } else if (squareMeters <= 200) {
       sizeCategory = 'large';
     } else {
       sizeCategory = 'corporate';
@@ -174,15 +184,42 @@ const PriceCalculator: React.FC = () => {
 
     try {
       let finalPrice: number;
+      let calculatedHours: number;
 
-      if (state.propertyType === 'oficina') {
+      const selectedProperty = PROPERTY_OPTIONS.find(p => p.id === state.propertyType);
+      const serviceType = selectedProperty?.baseService || 'regular';
+
+      if (state.propertyType === 'airbnb') {
+        // Use Airbnb pricing (single service only, frequency doesn't affect price)
+        finalPrice = calculateAirbnbPrice(state.squareMeters);
+
+        // Calculate estimated hours for Airbnb (express service)
+        if (state.squareMeters <= 40) {
+          calculatedHours = 1;
+        } else if (state.squareMeters <= 70) {
+          calculatedHours = 1.5;
+        } else if (state.squareMeters <= 120) {
+          calculatedHours = 2;
+        } else {
+          calculatedHours = 3;
+        }
+      } else if (state.propertyType === 'oficina') {
         // Use business pricing for offices
         finalPrice = calculateBusinessPrice(state.squareMeters, state.frequency);
+
+        // Calculate estimated hours for offices
+        const calculation = calculatePrice({
+          serviceType,
+          propertyType: state.propertyType,
+          squareMeters: state.squareMeters,
+          rooms: Math.ceil(state.squareMeters / 25),
+          frequency: state.frequency,
+          extras: [],
+          zone: 'A',
+        });
+        calculatedHours = calculation.estimatedHours;
       } else {
         // Use residential pricing for other property types
-        const selectedProperty = PROPERTY_OPTIONS.find(p => p.id === state.propertyType);
-        const serviceType = selectedProperty?.baseService || 'regular';
-
         const calculation = calculatePrice({
           serviceType,
           propertyType: state.propertyType === 'local' ? 'casa' : state.propertyType,
@@ -194,10 +231,12 @@ const PriceCalculator: React.FC = () => {
         });
 
         finalPrice = calculation.totalPrice;
+        calculatedHours = calculation.estimatedHours;
       }
 
       setCalculatedPrice(finalPrice);
-      
+      setEstimatedHours(calculatedHours);
+
       // Delay for better UX
       setTimeout(() => {
         setIsLoading(false);
@@ -219,6 +258,7 @@ const PriceCalculator: React.FC = () => {
       showResult: false,
     });
     setCalculatedPrice(null);
+    setEstimatedHours(3);
   };
 
   // Go back to previous step
@@ -374,50 +414,59 @@ Frecuencia: ${frequencyName}`;
     </motion.div>
   );
 
-  const renderStep3 = () => (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      className="text-center"
-    >
-      <h3 className="text-xl font-bold text-gray-900">
-        ¿Con qué frecuencia?
-      </h3>
-      <p className="text-gray-600 mb-2">
-        Elige la frecuencia que más te convenga
-      </p>
-      
-      <div className="grid grid-cols-1 gap-2 sm:gap-4">
-        {FREQUENCY_OPTIONS.map((option) => (
+  const renderStep3 = () => {
+    // Filter frequency options for Airbnb (only "Una vez")
+    const frequencyOptions = state.propertyType === 'airbnb'
+      ? FREQUENCY_OPTIONS.filter(option => option.id === 'unica')
+      : FREQUENCY_OPTIONS;
+
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        className="text-center"
+      >
+        <h3 className="text-xl font-bold text-gray-900">
+          ¿Con qué frecuencia?
+        </h3>
+        <p className="text-gray-600 mb-2">
+          {state.propertyType === 'airbnb'
+            ? 'Servicio único por limpieza'
+            : 'Elige la frecuencia que más te convenga'}
+        </p>
+
+        <div className="grid grid-cols-1 gap-2 sm:gap-4">
+          {frequencyOptions.map((option) => (
+            <button
+              key={option.id}
+              onClick={() => setState(prev => ({ ...prev, frequency: option.id as FrequencyType }))}
+              className={`p-3 sm:p-4 rounded-xl border-2 transition-all duration-300 hover:scale-105 text-center shadow-sm ${
+                state.frequency === option.id
+                  ? 'border-cyan-500 bg-cyan-50 shadow-lg'
+                  : 'border-gray-200 bg-white hover:border-gray-300 hover:shadow-md'
+              }`}
+            >
+              <div className={`font-semibold mb-1 text-sm sm:text-base ${
+                state.frequency === option.id ? 'text-cyan-700' : 'text-gray-700'
+              }`}>{option.label}</div>
+              <div className={`text-xs sm:text-sm ${
+                state.frequency === option.id ? 'text-cyan-600' : 'text-gray-500'
+              }`}>{option.description}</div>
+            </button>
+          ))}
+        </div>
+        <div className="mt-6">
           <button
-            key={option.id}
-            onClick={() => setState(prev => ({ ...prev, frequency: option.id as FrequencyType }))}
-            className={`p-3 sm:p-4 rounded-xl border-2 transition-all duration-300 hover:scale-105 text-center shadow-sm ${
-              state.frequency === option.id
-                ? 'border-cyan-500 bg-cyan-50 shadow-lg'
-                : 'border-gray-200 bg-white hover:border-gray-300 hover:shadow-md'
-            }`}
+            onClick={goBackStep}
+            className="px-4 py-2 text-sm text-gray-600 hover:text-gray-800 transition-colors duration-200 flex items-center mx-auto"
           >
-            <div className={`font-semibold mb-1 text-sm sm:text-base ${
-              state.frequency === option.id ? 'text-cyan-700' : 'text-gray-700'
-            }`}>{option.label}</div>
-            <div className={`text-xs sm:text-sm ${
-              state.frequency === option.id ? 'text-cyan-600' : 'text-gray-500'
-            }`}>{option.description}</div>
+            ← Atrás
           </button>
-        ))}
-      </div>
-      <div className="mt-6">
-        <button
-          onClick={goBackStep}
-          className="px-4 py-2 text-sm text-gray-600 hover:text-gray-800 transition-colors duration-200 flex items-center mx-auto"
-        >
-          ← Atrás
-        </button>
-      </div>
-    </motion.div>
-  );
+        </div>
+      </motion.div>
+    );
+  };
 
   const renderLoading = () => (
     <motion.div
@@ -468,8 +517,11 @@ Frecuencia: ${frequencyName}`;
           <p className="mb-1">
             <span className="font-semibold text-gray-700">Tamaño:</span> {SQUARE_METER_OPTIONS.find(s => s.value === state.squareMeters)?.label}
           </p>
-          <p>
+          <p className="mb-1">
             <span className="font-semibold text-gray-700">Frecuencia:</span> {FREQUENCY_OPTIONS.find(f => f.id === state.frequency)?.label}
+          </p>
+          <p>
+            <span className="font-semibold text-gray-700">Duración estimada:</span> {formatHours(estimatedHours)}
           </p>
         </div>
       </div>
@@ -525,7 +577,7 @@ Frecuencia: ${frequencyName}`;
             {/* Duration Badge */}
             <div className="absolute top-2 right-2">
               <div className="bg-neutral-100 text-neutral-700 px-2 py-1 rounded-full text-xs font-medium">
-                3h
+                {state.showResult ? formatHours(estimatedHours) : '~3h'}
               </div>
             </div>
 

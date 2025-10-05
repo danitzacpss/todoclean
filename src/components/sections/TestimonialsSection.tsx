@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TESTIMONIALS } from '@/utils/constants';
 import type { Testimonial } from '@/types';
+import logoImage from '@/assets/images/logo.png';
 
 // ==========================================
 // INTERFACES
@@ -167,13 +168,22 @@ const TestimonialsSection: React.FC = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-br from-white to-neutral-50 overflow-hidden relative">      
+    <section className="py-20 bg-gradient-to-br from-white to-neutral-50 overflow-hidden relative">
+      {/* Logo Watermark */}
+      <div className="absolute top-8 left-8 z-10 opacity-20 hover:opacity-30 transition-opacity duration-300">
+        <img
+          src={logoImage}
+          alt="Todo Clean"
+          className="h-12 w-auto"
+        />
+      </div>
+
       {/* Elementos decorativos sutiles pero visibles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Pequeños acentos celestes visibles */}
         <div className="absolute top-32 right-1/3 w-1.5 h-1.5 bg-cyan-500 rounded-full opacity-30"></div>
         <div className="absolute bottom-40 left-1/4 w-2 h-2 bg-teal-500 rounded-full opacity-25"></div>
-        
+
         {/* Elementos geométricos más visibles */}
         <div className="absolute top-20 right-20 w-8 h-8 border-2 border-cyan-300 rounded rotate-12 opacity-50"></div>
         <div className="absolute bottom-28 left-20 w-10 h-10 border-2 border-teal-300 rounded-full opacity-40"></div>

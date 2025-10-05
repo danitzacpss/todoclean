@@ -5,6 +5,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import logoImage from '@/assets/images/logo.png';
 
 // ==========================================
 // INTERFACES
@@ -135,12 +136,21 @@ const DifferentiatorCard: React.FC<DifferentiatorProps> = ({
 const WhyTodoClean: React.FC = () => {
   return (
     <section className="relative py-20 bg-gradient-to-b from-neutral-50/60 via-white to-white overflow-hidden">
+      {/* Logo Watermark */}
+      <div className="absolute top-8 right-8 z-10 opacity-20 hover:opacity-30 transition-opacity duration-300">
+        <img
+          src={logoImage}
+          alt="Todo Clean"
+          className="h-12 w-auto"
+        />
+      </div>
+
       {/* Elementos decorativos sutiles pero visibles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Pequeños acentos celestes visibles */}
         <div className="absolute top-32 left-32 w-1.5 h-1.5 bg-cyan-500/30 rounded-full" />
         <div className="absolute bottom-40 right-20 w-2 h-2 bg-teal-500/25 rounded-full" />
-        
+
         {/* Elementos geométricos más visibles */}
         <div className="absolute top-24 right-32 w-8 h-8 border-2 border-cyan-300/50 rotate-45" />
         <div className="absolute bottom-32 left-24 w-10 h-10 border-2 border-teal-300/40 rotate-12" />

@@ -381,6 +381,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
             <Button
               type="button"
               variant="outline"
+              className="hover:bg-teal-600 hover:text-white hover:border-teal-600"
               onClick={() => {
                 trackEvent({
                   event: 'whatsapp_click',

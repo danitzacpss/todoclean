@@ -9,6 +9,7 @@ import { motion } from 'framer-motion';
 import QuoteWizard from '@/components/wizard/QuoteWizard';
 import { CalculatorProvider } from '@/contexts/CalculatorContext';
 import { trackCalculatorStart } from '@/utils/analytics';
+import logoImage from '@/assets/images/logo.png';
 
 const CotizadorPage: React.FC = () => {
   // Track page visit
@@ -75,6 +76,15 @@ const CotizadorPage: React.FC = () => {
       <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-primary-50/30 to-neutral-50">
         {/* Hero Section */}
         <section className="relative py-16 lg:py-24">
+          {/* Logo Watermark */}
+          <div className="absolute top-4 right-4 sm:top-8 sm:right-8 z-10 opacity-30 hover:opacity-50 transition-opacity duration-300">
+            <img
+              src={logoImage}
+              alt="Todo Clean"
+              className="h-12 sm:h-16 w-auto"
+            />
+          </div>
+
           <div className="container mx-auto px-1 sm:px-4 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 30 }}

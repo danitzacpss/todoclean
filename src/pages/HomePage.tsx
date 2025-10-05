@@ -13,6 +13,11 @@ import WhyTodoClean from '@/components/sections/WhyTodoClean';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import ProcessSection from '@/components/sections/ProcessSection';
 import QuilamapuPromo from '@/components/sections/QuilamapuPromo';
+import AirbnbPromo from '@/components/sections/AirbnbPromo';
+import PartyCleanupPromo from '@/components/sections/PartyCleanupPromo';
+import EmergencyCleanPromo from '@/components/sections/EmergencyCleanPromo';
+import DeepCleanPromo from '@/components/sections/DeepCleanPromo';
+import logoImage from '@/assets/images/logo.png';
 
 // ==========================================
 // HOMEPAGE COMPONENT
@@ -47,13 +52,22 @@ const HomePage: React.FC = () => {
 
       {/* Hero Section */}
       <section className="relative bg-white overflow-hidden">
+        {/* Logo Watermark */}
+        <div className="absolute top-4 right-4 sm:top-8 sm:right-8 z-10 opacity-30 hover:opacity-50 transition-opacity duration-300">
+          <img
+            src={logoImage}
+            alt="Todo Clean"
+            className="h-12 sm:h-16 w-auto"
+          />
+        </div>
+
         {/* Subtle Background Elements */}
         <div className="absolute inset-0">
           {/* Subtle color accents - responsive positioning */}
           <div className="absolute top-20 left-4 sm:left-10 w-24 sm:w-32 h-24 sm:h-32 bg-cyan-100/40 rounded-full blur-2xl" />
           <div className="absolute bottom-32 left-8 sm:left-20 w-20 sm:w-24 h-20 sm:h-24 bg-teal-100/30 rounded-full blur-xl" />
           <div className="absolute top-40 right-1/4 sm:right-1/3 w-12 sm:w-16 h-12 sm:h-16 bg-cyan-200/20 rounded-full blur-lg" />
-          
+
           {/* Geometric details - hidden on mobile for cleaner look */}
           <div className="hidden sm:block absolute top-16 right-20 w-8 h-8 border border-cyan-300/30 rotate-45" />
           <div className="hidden sm:block absolute bottom-20 left-32 w-4 h-4 bg-teal-400/40 rounded-full" />
@@ -236,8 +250,18 @@ const HomePage: React.FC = () => {
       {/* Quilamapu Promotion Banner */}
       <QuilamapuPromo />
 
+      {/* Airbnb Promotion Banner */}
+      <AirbnbPromo />
+
       {/* Services Section */}
       <ServicesSection />
+
+      {/* Party Cleanup Promo */}
+      <section className="py-8">
+        <div className="container mx-auto px-4">
+          <PartyCleanupPromo />
+        </div>
+      </section>
 
       {/* Price Calculator */}
       <div data-section="calculator">

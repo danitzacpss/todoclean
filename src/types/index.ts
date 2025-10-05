@@ -8,7 +8,7 @@
 // ==========================================
 
 export type ServiceType = 'regular' | 'profunda' | 'postobra';
-export type PropertyType = 'casa' | 'departamento' | 'oficina' | 'local';
+export type PropertyType = 'casa' | 'departamento' | 'oficina' | 'local' | 'airbnb';
 export type FrequencyType = 'unica' | 'mensual' | 'trimestral' | 'anual';
 export type ZoneType = 'A' | 'B' | 'C';
 

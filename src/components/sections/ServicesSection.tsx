@@ -79,6 +79,22 @@ const SERVICES_DATA = [
     price: 80000,
     period: 'Anual',
   },
+  {
+    serviceType: 'regular' as ServiceType,
+    title: 'Airbnb Express',
+    description: 'Limpieza express entre huéspedes',
+    features: [
+      'Servicio express 1-3 horas',
+      'Cambio de ropa de cama',
+      'Limpieza de baños',
+      'Reposición de amenities',
+      'Reporte fotográfico disponible',
+      'Coordinación con calendario',
+    ],
+    icon: '🏡',
+    price: 15000,
+    period: 'Por servicio',
+  },
 ];
 
 // ==========================================
@@ -135,10 +151,10 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
           </span>
         </div>
         <div className="text-neutral-500">
-          Mensual
+          {title === 'Airbnb Express' ? 'Por servicio' : 'Mensual'}
         </div>
         <div className="text-sm text-accent-600 font-semibold mt-2">
-          3 horas de limpieza profunda
+          {title === 'Airbnb Express' ? '1-3 horas express' : '3 horas de limpieza profunda'}
         </div>
       </div>
 
@@ -235,10 +251,10 @@ const ServicesSection: React.FC = () => {
         </div>
 
         {/* Service Cards */}
-        <div className="grid lg:grid-cols-3 gap-4 sm:gap-6 max-w-7xl mx-auto px-1">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-7xl mx-auto px-1">
           {SERVICES_DATA.map((service, index) => (
           <ServiceCard
-            key={service.serviceType}
+            key={`${service.serviceType}-${index}`}
             serviceType={service.serviceType}
             title={service.title}
             description={service.description}

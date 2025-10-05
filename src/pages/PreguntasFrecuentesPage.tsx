@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { 
-  ChevronDownIcon, 
+import {
+  ChevronDownIcon,
   MagnifyingGlassIcon,
   TagIcon,
   QuestionMarkCircleIcon,
@@ -14,6 +14,7 @@ import { Card } from '@/components/ui/Card';
 import { FAQ_DATA, WHATSAPP_MESSAGES } from '@/utils/constants';
 import { generateWhatsAppURL } from '@/utils/whatsapp';
 import { trackEvent } from '@/utils/analytics';
+import logoImage from '@/assets/images/logo.png';
 
 type FAQCategory = 'all' | 'service' | 'booking' | 'pricing' | 'general';
 
@@ -112,6 +113,15 @@ const PreguntasFrecuentesPage: React.FC = () => {
       <div className="min-h-screen bg-white">
         {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-primary-900 to-primary-700 text-white py-16 md:py-24">
+          {/* Logo Watermark */}
+          <div className="absolute top-8 right-8 z-10 opacity-30 hover:opacity-50 transition-opacity duration-300">
+            <img
+              src={logoImage}
+              alt="Todo Clean"
+              className="h-12 w-auto"
+            />
+          </div>
+
           <div className="absolute inset-0 bg-black/20" />
           <div className="relative container mx-auto px-1 sm:px-4 lg:px-8">
             <div className="max-w-full sm:max-w-4xl mx-auto text-center">

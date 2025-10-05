@@ -42,9 +42,10 @@ const PriceBreakdown: React.FC<PriceBreakdownProps> = ({
 
   const propertyNames = {
     casa: 'Casa',
-    departamento: 'Departamento', 
+    departamento: 'Departamento',
     oficina: 'Oficina',
     local: 'Local Comercial',
+    airbnb: 'Airbnb',
   };
 
   if (compact) {

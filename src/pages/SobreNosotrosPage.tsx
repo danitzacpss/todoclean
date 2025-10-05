@@ -12,6 +12,8 @@ import {
 // import { Button } from '../components/ui/Button'; // Unused
 import { Card } from '../components/ui/Card';
 import { SITE_CONFIG } from '../utils/constants';
+import DeepCleanPromo from '../components/sections/DeepCleanPromo';
+import logoImage from '@/assets/images/logo.png';
 // import { generateWhatsAppURL } from '../utils/whatsapp'; // Unused
 // import { trackEvent } from '../utils/analytics'; // Unused
 
@@ -113,7 +115,16 @@ const SobreNosotrosPage: React.FC = () => {
       <div className="min-h-screen bg-gradient-to-br from-neutral-50 to-blue-50/30">
 
         {/* Hero Section */}
-        <section className="py-16">
+        <section className="py-16 relative">
+          {/* Logo Watermark */}
+          <div className="absolute top-8 right-8 z-10 opacity-30 hover:opacity-50 transition-opacity duration-300">
+            <img
+              src={logoImage}
+              alt="Todo Clean"
+              className="h-12 w-auto"
+            />
+          </div>
+
           <div className="container mx-auto px-0.5 sm:px-2 lg:px-4">
             <div className="max-w-none sm:max-w-4xl mx-auto text-center">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-neutral-900 leading-tight">
@@ -248,7 +259,7 @@ const SobreNosotrosPage: React.FC = () => {
                 Profesionales capacitados, verificados y comprometidos con la excelencia
               </p>
             </div>
-            
+
             <div className="grid md:grid-cols-2 gap-3 sm:gap-4 max-w-none sm:max-w-2xl mx-auto px-1">
               {team.map((member, index) => (
                 <Card key={index} className="p-4 sm:p-5 text-center">
@@ -269,7 +280,7 @@ const SobreNosotrosPage: React.FC = () => {
                 </Card>
               ))}
             </div>
-            
+
             <div className="text-center mt-8">
               <p className="text-neutral-600 mb-4">
                 <strong>Características de nuestro equipo:</strong>
@@ -286,6 +297,13 @@ const SobreNosotrosPage: React.FC = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Deep Clean Promo Banner */}
+        <section className="py-8">
+          <div className="container mx-auto px-4">
+            <DeepCleanPromo />
           </div>
         </section>
 
@@ -333,7 +351,7 @@ const SobreNosotrosPage: React.FC = () => {
                 Los principios que guían nuestro trabajo diario
               </p>
             </div>
-            
+
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 px-1">
               {values.map((value, index) => {
                 const IconComponent = value.icon;

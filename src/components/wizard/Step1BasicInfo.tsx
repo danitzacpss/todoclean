@@ -69,6 +69,7 @@ const Step1BasicInfo: React.FC<Step1BasicInfoProps> = ({
         casa: 120,
         oficina: 80,
         local: 100,
+        airbnb: 75,
       };
       updateFormData({ propertyType, squareMeters: defaultSqm[propertyType] });
     }

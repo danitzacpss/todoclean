@@ -33,7 +33,7 @@ function calculateBusinessPrice(params: {
   const { squareMeters, frequency, extras, zone = 'A' } = params;
 
   // Business pricing table calculated from base prices using residential logic
-  // Base prices: Pequeña $35k, Mediana $40k, Grande $45k, Corporativa $50k
+  // Base prices: Pequeña $35k, Mediana $40k, Grande $55k, Corporativa $70k
   // Proportions from residential: Mensual 3.3x, Trimestral 2.97x, Anual 2.67x
   const businessPrices = {
     // Pequeña: Hasta 50m²
@@ -50,19 +50,19 @@ function calculateBusinessPrice(params: {
       mensual: Math.round(40000 * 3.3), // 132,000
       unica: 40000
     },
-    // Grande: 150-300m²
+    // Grande: 150-200m²
     grande: {
-      anual: Math.round(45000 * 2.67), // 120,150
-      trimestral: Math.round(45000 * 2.97), // 133,650
-      mensual: Math.round(45000 * 3.3), // 148,500
-      unica: 45000
+      anual: Math.round(55000 * 2.67), // 146,850
+      trimestral: Math.round(55000 * 2.97), // 163,350
+      mensual: Math.round(55000 * 3.3), // 181,500
+      unica: 55000
     },
-    // Corporativa: Más de 300m²
+    // Corporativa: Más de 200m²
     corporativa: {
-      anual: Math.round(50000 * 2.67), // 133,500
-      trimestral: Math.round(50000 * 2.97), // 148,500
-      mensual: Math.round(50000 * 3.3), // 165,000
-      unica: 50000
+      anual: Math.round(70000 * 2.67), // 186,900
+      trimestral: Math.round(70000 * 2.97), // 207,900
+      mensual: Math.round(70000 * 3.3), // 231,000
+      unica: 70000
     }
   };
 
@@ -72,7 +72,7 @@ function calculateBusinessPrice(params: {
     sizeCategory = 'pequena';
   } else if (squareMeters <= 150) {
     sizeCategory = 'mediana';
-  } else if (squareMeters <= 300) {
+  } else if (squareMeters <= 200) {
     sizeCategory = 'grande';
   } else {
     sizeCategory = 'corporativa';
@@ -227,11 +227,11 @@ export function calculatePrice(params: {
         // For larger spaces, calculate based on one-time price ranges with same proportions
         let oneTimePrice;
         if (squareMeters <= 100) {
-          oneTimePrice = 35000; // 50-100m²
+          oneTimePrice = 40000; // 50-100m²
         } else if (squareMeters <= 150) {
-          oneTimePrice = 40000; // 100-150m²
+          oneTimePrice = 55000; // 100-150m²
         } else {
-          oneTimePrice = 45000; // >150m²
+          oneTimePrice = 65000; // >150m²
         }
         
         // Apply same proportion as <50m² (mensual: 3.3x, trimestral: 2.97x, anual: 2.67x)
@@ -294,6 +294,7 @@ function getPropertyMultiplier(propertyType: PropertyType): number {
     departamento: 0.9, // Usually easier to clean
     oficina: 1.1, // Commercial cleaning standards
     local: 1.2, // More demanding cleaning
+    airbnb: 1.0, // Same as casa
   };
 
   return multipliers[propertyType] || 1.0;
@@ -664,5 +665,71 @@ export function getPriceRange(
     min: minCalculation.totalPrice,
     max: maxCalculation.totalPrice,
     formatted: `${formatPrice(minCalculation.totalPrice)} - ${formatPrice(maxCalculation.totalPrice)}`,
+  };
+}
+
+// ==========================================
+// AIRBNB PRICING CALCULATION
+// ==========================================
+
+/**
+ * Calculate Airbnb cleaning service price based on property size
+ * Airbnb services are express cleaning between guests (1-3 hours)
+ * Pricing based on AirbnbServices.tsx pricing table
+ */
+export function calculateAirbnbPrice(params: {
+  squareMeters: number;
+  extras?: string[];
+  zone?: ZoneType;
+}): PriceCalculation {
+  const { squareMeters, extras = [], zone = 'A' } = params;
+
+  // Airbnb pricing table - express service pricing
+  let basePrice: number;
+  let estimatedHours: number;
+
+  if (squareMeters <= 40) {
+    basePrice = 15000; // Cabaña Básica
+    estimatedHours = 1;
+  } else if (squareMeters <= 70) {
+    basePrice = 25000; // Departamento Estándar
+    estimatedHours = 1.5;
+  } else if (squareMeters <= 120) {
+    basePrice = 35000; // Casa Completa
+    estimatedHours = 2;
+  } else {
+    basePrice = 50000; // Propiedad Premium
+    estimatedHours = 3;
+  }
+
+  // Calculate extras (like inventory check, photo report)
+  let extrasTotal = 0;
+  extras.forEach(extraId => {
+    const extra = EXTRA_SERVICES.find(e => e.id === extraId);
+    if (extra) {
+      extrasTotal += extra.price;
+    }
+  });
+
+  // Apply zone surcharge
+  const zoneInfo = SERVICE_AREAS.find(area => area.zone === zone);
+  const zoneSurcharge = zoneInfo?.surcharge || 0;
+
+  const finalPrice = basePrice + extrasTotal + zoneSurcharge;
+
+  return {
+    serviceType: 'regular', // Airbnb uses regular service type
+    propertyType: 'casa', // Airbnb properties treated as residential
+    squareMeters,
+    rooms: Math.ceil(squareMeters / 25), // Estimate rooms
+    frequency: 'unica', // Airbnb is always one-time service
+    extras,
+    zone,
+    basePrice,
+    frequencyDiscount: 0, // No frequency discounts for Airbnb
+    zoneCharge: zoneSurcharge,
+    extrasTotal,
+    totalPrice: finalPrice,
+    estimatedHours,
   };
 }

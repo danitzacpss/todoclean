@@ -9,9 +9,11 @@ import { Helmet } from 'react-helmet-async';
 import { SITE_CONFIG } from '@/utils/constants';
 import ResidentialServices from '../components/sections/ResidentialServices';
 import BusinessServices from '../components/sections/BusinessServices';
+import AirbnbServices from '../components/sections/AirbnbServices';
+import DeepCleanPromo from '../components/sections/DeepCleanPromo';
 
 interface TabProps {
-  id: 'residential' | 'business';
+  id: 'residential' | 'business' | 'airbnb';
   label: string;
   description: string;
   icon: string;
@@ -30,10 +32,16 @@ const TABS: TabProps[] = [
     description: 'Soluciones corporativas integrales',
     icon: '🏢',
   },
+  {
+    id: 'airbnb',
+    label: 'Servicios Airbnb',
+    description: 'Limpieza express entre huéspedes',
+    icon: '🏡',
+  },
 ];
 
 const ServiciosPage: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'residential' | 'business'>('residential');
+  const [activeTab, setActiveTab] = useState<'residential' | 'business' | 'airbnb'>('residential');
 
   // Handle URL hash to set active tab
   useEffect(() => {
@@ -50,6 +58,15 @@ const ServiciosPage: React.FC = () => {
         }, 100);
       } else if (hash === '#residencial') {
         setActiveTab('residential');
+        // Scroll to tabs section
+        setTimeout(() => {
+          const tabsElement = document.getElementById('servicios-tabs');
+          if (tabsElement) {
+            tabsElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 100);
+      } else if (hash === '#airbnb') {
+        setActiveTab('airbnb');
         // Scroll to tabs section
         setTimeout(() => {
           const tabsElement = document.getElementById('servicios-tabs');
@@ -171,6 +188,13 @@ const ServiciosPage: React.FC = () => {
           </div>
         </section>
 
+        {/* Promotional Banner */}
+        <section className="pb-8 -mt-16">
+          <div className="container mx-auto px-0.5 sm:px-2 lg:px-4">
+            <DeepCleanPromo />
+          </div>
+        </section>
+
         {/* Tab Navigation */}
         <section className="pb-12" id="servicios-tabs">
           <div className="container mx-auto px-0.5 sm:px-2 lg:px-4">
@@ -185,13 +209,19 @@ const ServiciosPage: React.FC = () => {
                       // Update URL hash when clicking tabs
                       if (tab.id === 'business') {
                         window.history.replaceState(null, '', '/servicios#empresariales');
+                      } else if (tab.id === 'airbnb') {
+                        window.history.replaceState(null, '', '/servicios#airbnb');
                       } else {
                         window.history.replaceState(null, '', '/servicios');
                       }
                     }}
                     className={`flex-1 p-3 sm:p-4 md:p-5 text-center sm:text-left transition-all duration-300 first:rounded-l-xl sm:first:rounded-l-2xl last:rounded-r-xl sm:last:rounded-r-2xl ${
                       activeTab === tab.id
-                        ? 'bg-teal-600 text-white shadow-lg'
+                        ? tab.id === 'residential'
+                          ? 'bg-gradient-to-r from-teal-600 to-cyan-600 text-white shadow-lg'
+                          : tab.id === 'business'
+                          ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg'
+                          : 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg'
                         : 'bg-white text-neutral-600 hover:bg-neutral-50'
                     }`}
                     aria-pressed={activeTab === tab.id}
@@ -218,7 +248,13 @@ const ServiciosPage: React.FC = () => {
                           {tab.label}
                         </h3>
                         <p className={`text-sm ${
-                          activeTab === tab.id ? 'text-teal-100' : 'text-neutral-500'
+                          activeTab === tab.id
+                            ? tab.id === 'residential'
+                              ? 'text-teal-100'
+                              : tab.id === 'business'
+                              ? 'text-blue-100'
+                              : 'text-purple-100'
+                            : 'text-neutral-500'
                         }`}>
                           {tab.description}
                         </p>
@@ -236,10 +272,16 @@ const ServiciosPage: React.FC = () => {
                   <ResidentialServices />
                 </div>
               )}
-              
+
               {activeTab === 'business' && (
                 <div className="animate-in fade-in duration-500">
                   <BusinessServices />
+                </div>
+              )}
+
+              {activeTab === 'airbnb' && (
+                <div className="animate-in fade-in duration-500">
+                  <AirbnbServices />
                 </div>
               )}
             </div>

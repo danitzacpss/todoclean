@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { WhatsAppButton } from '@/components/ui/Button';
 import { WHATSAPP_MESSAGES } from '@/utils/constants';
+import logoImage from '@/assets/images/logo.png';
 
 // ==========================================
 // MAIN COMPONENT
@@ -97,6 +98,15 @@ const QuilamapuPromo: React.FC = () => {
           >
             ✨
           </motion.div>
+        </div>
+
+        {/* Logo */}
+        <div className="absolute top-0 right-0 z-20 bg-white/90 backdrop-blur-md rounded-bl-2xl p-3 hover:bg-white transition-all shadow-xl">
+          <img
+            src={logoImage}
+            alt="Todo Clean"
+            className="h-8 w-auto"
+          />
         </div>
 
         <div className="container mx-auto px-1 sm:px-4 lg:px-8 py-8 relative z-10">
